@@ -65,8 +65,8 @@ public class SqoopLoadFunction implements
 
                 LOG.info("Running loader class " + loaderName);
                 loader.load(loaderContext, toLinkConfig, toJobConfig);
-                System.out.println("Loader has finished");
-                System.out.println(">>> REDUCE time ms:" + (System.currentTimeMillis() - reduceTime));
+                LOG.info("Loader has finished");
+                LOG.info(">>> REDUCE time ms:" + (System.currentTimeMillis() - reduceTime));
             }
         } catch (Throwable t) {
             LOG.error("Error while loading data out of MR job.", t);
