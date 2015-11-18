@@ -27,7 +27,6 @@ public class SqoopExtractFunction implements Function<Partition, List<Intermedia
 
     private final SparkJobRequest request;
 
-
     public static final Logger LOG = Logger.getLogger(SqoopExtractFunction.class);
 
     public SqoopExtractFunction(JobRequest request) {
@@ -70,10 +69,10 @@ public class SqoopExtractFunction implements Function<Partition, List<Intermedia
         Object fromJobConfig = request.getJobConfig(Direction.FROM);
 
         ExtractorContext extractorContext = new ExtractorContext(subContext, new SparkDataWriter(
-                request, fromIDF, toIDF, matcher), fromSchema,SparkJobConstants.SUBMITTING_USER);
+                request, fromIDF, toIDF, matcher), fromSchema, SparkJobConstants.SUBMITTING_USER);
 
         try {
-            System.out.println("Starting extractor... ");
+            LOG.info("Starting extractor... ");
             extractor.extract(extractorContext, fromLinkConfig, fromJobConfig, p);
 
         } catch (Exception e) {
@@ -82,8 +81,8 @@ public class SqoopExtractFunction implements Function<Partition, List<Intermedia
             LOG.info("Stopping extractor service");
         }
 
-        System.out.println("Extractor has finished");
-        System.out.println(">>> MAP time ms:" + (System.currentTimeMillis() - mapTime));
+        LOG.info("Extractor has finished");
+        LOG.info(">>> MAP time ms:" + (System.currentTimeMillis() - mapTime));
 
         return request.getData();
     }
