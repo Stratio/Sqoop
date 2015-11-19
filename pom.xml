@@ -480,6 +480,11 @@ limitations under the License.
         <version>${project.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.apache.sqoop.submission</groupId>
+        <artifactId>sqoop-submission-spark</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.apache.sqoop.execution</groupId>
         <artifactId>sqoop-execution-mapreduce</artifactId>
         <version>${project.version}</version>

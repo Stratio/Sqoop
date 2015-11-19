@@ -1,13 +1,16 @@
 package org.apache.sqoop.execution.spark;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.OutputFormat;
+import org.apache.sqoop.connector.idf.IntermediateDataFormat;
 import org.apache.sqoop.driver.JobRequest;
 
 /**
@@ -18,6 +21,7 @@ public class SparkJobRequest extends JobRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Map<String, String> map;
+    private List<IntermediateDataFormat<?>> rowData = new ArrayList<IntermediateDataFormat<?>>();
 
     /**
      * Map-reduce specific options.
@@ -94,5 +98,13 @@ public class SparkJobRequest extends JobRequest implements Serializable {
     public Map<String, String> getConf() {
         return map;
     }
+
+    public void addData(IntermediateDataFormat<?> idf) {
+        rowData.add(idf);
+    }
+    public List<IntermediateDataFormat<?>> getData() {
+        return rowData;
+    }
+
 
 }
