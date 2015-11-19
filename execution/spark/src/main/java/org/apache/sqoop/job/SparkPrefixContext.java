@@ -17,6 +17,7 @@ sss * Licensed to the Apache Software Foundation (ASF) under one
  */
 package org.apache.sqoop.job;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class SparkPrefixContext implements ImmutableContext {
 
   @Override
   public String getString(String key, String defaultValue) {
-    String value = getString(prefix + key);
+    String value = getString(key);
     if (value == null || value.trim().length() == 0) {
       value = defaultValue;
     }
@@ -62,7 +63,7 @@ public class SparkPrefixContext implements ImmutableContext {
    */
   @Override
   public boolean getBoolean(String key, boolean defaultValue) {
-    String value = getString(prefix + key);
+    String value = getString(key);
     boolean result = defaultValue;
     if (value != null) {
       result = Boolean.valueOf(value);
@@ -101,7 +102,17 @@ public class SparkPrefixContext implements ImmutableContext {
 
   @Override
   public Iterator<Map.Entry<String, String>> iterator() {
-    return options.entrySet().iterator();
+    Map<String, String> intermediateMap = new HashMap<String, String>();
+
+    for(Map.Entry<String, String> entry : options.entrySet()) {
+      String key = entry.getKey();
+
+      if(key.startsWith(prefix)) {
+        intermediateMap.put(key.replaceFirst(prefix, ""), entry.getValue());
+      }
+    }
+
+    return intermediateMap.entrySet().iterator();
   }
 
 }
