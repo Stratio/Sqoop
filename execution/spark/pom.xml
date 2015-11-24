@@ -32,6 +32,7 @@ limitations under the License.
         <dependency>
             <groupId>org.apache.sqoop</groupId>
             <artifactId>sqoop-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.sqoop.execution</groupId>
@@ -41,7 +42,12 @@ limitations under the License.
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_${scala.minor.version}</artifactId>
-            <scope>provided</scope>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-yarn_${scala.minor.version}</artifactId>
+            <version>${spark.version}</version>
         </dependency>
 
     </dependencies>

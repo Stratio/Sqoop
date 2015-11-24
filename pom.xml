@@ -98,7 +98,7 @@ limitations under the License.
     <derby.version>10.8.2.2</derby.version>
     <hadoop.2.version>2.6.0</hadoop.2.version>
     <spark.version>1.4.1</spark.version>
-    <scala.minor.version>2.11</scala.minor.version>
+    <scala.minor.version>2.10</scala.minor.version>
     <hive.version>0.13.1</hive.version>
     <guava.version>11.0.2</guava.version>
     <json-simple.version>1.1</json-simple.version>
@@ -671,25 +671,21 @@ limitations under the License.
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-core_${scala.minor.version}</artifactId>
         <version>${spark.version}</version>
-        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-yarn_${scala.minor.version}</artifactId>
         <version>${spark.version}</version>
-        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-streaming_${scala.minor.version}</artifactId>
         <version>${spark.version}</version>
-        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.spark</groupId>
         <artifactId>spark-streaming-kafka_${scala.minor.version}</artifactId>
         <version>${spark.version}</version>
-        <scope>provided</scope>
       </dependency>
    </dependencies>
   </dependencyManagement>
