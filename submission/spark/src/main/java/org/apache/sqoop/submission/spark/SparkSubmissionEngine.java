@@ -27,6 +27,7 @@ import org.apache.sqoop.common.MapContext;
 import org.apache.sqoop.common.SqoopException;
 import org.apache.sqoop.driver.JobRequest;
 import org.apache.sqoop.driver.SubmissionEngine;
+import org.apache.sqoop.error.code.MapreduceSubmissionError;
 import org.apache.sqoop.error.code.SparkSubmissionError;
 import org.apache.sqoop.execution.spark.SparkExecutionEngine;
 import org.apache.sqoop.execution.spark.SparkJobRequest;
@@ -49,10 +50,53 @@ public class SparkSubmissionEngine extends SubmissionEngine {
 
     private SqoopConf sqoopConf;
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void initialize(MapContext context, String prefix) {
+        LOG.info("Initializing Spark Submission Engine");
+
+        sqoopConf = new SqoopConf();
+        // Load configured spark configuration directory
+        // Create spark client, for now a local one
+        try {
+
+            sqoopConf.add(Constants.SPARK_UI_ENABLED, "false");
+            sqoopConf.add(Constants.SPARK_DRIVER_ALLOWMULTIPLECONTEXTS, "true");
+
+            sparkClient = SqoopSparkClientFactory.createSqoopSparkClient(sqoopConf);
+        } catch (IOException | SparkException e) {
+            throw new SqoopException(SparkSubmissionError.SPARK_0002, e);
+        }
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void destroy() {
+        super.destroy();
+        LOG.info("Destroying Spark Submission Engine");
+
+        // Closing spark client
+        try {
+            sparkClient.close();
+        } catch (IOException e) {
+            throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0005, e);
+        }
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isExecutionEngineSupported(Class<?> executionEngineClass) {
         return executionEngineClass == SparkExecutionEngine.class;
     }
+
 
     /**
      * {@inheritDoc}
@@ -62,6 +106,7 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         // We're supporting only map reduce jobs
         SparkJobRequest request = (SparkJobRequest) jobRequest;
 
+        //TODO: Review SPARK_MARTER variable
         sqoopConf.add(Constants.SPARK_MASTER, "local");// + request.getExtractors() + "]");
 
         // setYarnConfig(request);
@@ -85,12 +130,30 @@ public class SparkSubmissionEngine extends SubmissionEngine {
 
     }
 
+    //TODO: Review how to stop a Spark job
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void stop(String externalJobId) {
 
         LOG.info("Destroying Spark Submission Engine");
+/*        try {
+            RunningJob runningJob = sparkClient.getJob(JobID.forName(externalJobId));
+            if(runningJob == null) {
+                return;
+            }
+
+            runningJob.killJob();
+        } catch (IOException e) {
+            throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);
+        }   */
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(MSubmission submission) {
 
@@ -98,28 +161,5 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         // app stats from in process
     }
 
-    @Override
-    public void initialize(MapContext context, String prefix) {
-        LOG.info("Initializing Spark Submission Engine");
-
-        sqoopConf = new SqoopConf();
-        // Load configured spark configuration directory
-        // Create spark client, for now a local one
-        try {
-
-            sqoopConf.add(Constants.SPARK_UI_ENABLED, "false");
-            sqoopConf.add(Constants.SPARK_DRIVER_ALLOWMULTIPLECONTEXTS, "true");
-
-            sparkClient = SqoopSparkClientFactory.createSqoopSparkClient(sqoopConf);
-        } catch (IOException | SparkException e) {
-            throw new SqoopException(SparkSubmissionError.SPARK_0002, e);
-        }
-
-    }
-
-    @Override
-    public void destroy() {
-
-    }
 
 }

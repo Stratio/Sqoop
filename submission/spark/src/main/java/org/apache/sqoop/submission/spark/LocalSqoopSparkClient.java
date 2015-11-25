@@ -38,7 +38,7 @@ public class LocalSqoopSparkClient implements SqoopSparkClient {
     private List<String> localFiles = new ArrayList<String>();
 
     private LocalSqoopSparkClient(SparkConf sparkConf) {
-        // = new JavaSparkContext(sparkConf);
+        sc = new JavaSparkContext(sparkConf);
     }
 
     public SparkConf getSparkConf() {
