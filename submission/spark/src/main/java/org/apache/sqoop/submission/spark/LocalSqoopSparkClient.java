@@ -31,32 +31,32 @@ public class LocalSqoopSparkClient implements SqoopSparkClient {
         return client;
     }
 
-    private JavaSparkContext sc;
+    private JavaSparkContext context;
 
     private List<String> localJars = new ArrayList<String>();
 
     private List<String> localFiles = new ArrayList<String>();
 
     private LocalSqoopSparkClient(SparkConf sparkConf) {
-        sc = new JavaSparkContext(sparkConf);
+        context = new JavaSparkContext(sparkConf);
     }
 
     public SparkConf getSparkConf() {
-        return sc.getConf();
+        return context.getConf();
     }
 
     public int getExecutorCount() {
-        return sc.sc().getExecutorMemoryStatus().size();
+        return context.sc().getExecutorMemoryStatus().size();
     }
 
     public int getDefaultParallelism() throws Exception {
-        return sc.sc().defaultParallelism();
+        return context.sc().defaultParallelism();
     }
 
     public void execute(JobRequest request) throws Exception {
 
-        // SparkCounters sparkCounters = new SparkCounters(sc);
-        SqoopSparkDriver.execute(request, getSparkConf(), sc);
+        //SparkCounters sparkCounters = new SparkCounters(sc);
+        SqoopSparkDriver.execute(request, getSparkConf(), context);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.FROM, SparkJobConstants.SUBMITTING_USER);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.TO,SparkJobConstants.SUBMITTING_USER);
 
@@ -66,7 +66,7 @@ public class LocalSqoopSparkClient implements SqoopSparkClient {
         for (String addedFile : CSV_SPLITTER.split(Strings.nullToEmpty(addedFiles))) {
             if (!localFiles.contains(addedFile)) {
                 localFiles.add(addedFile);
-                sc.addFile(addedFile);
+                context.addFile(addedFile);
             }
         }
     }
@@ -75,13 +75,13 @@ public class LocalSqoopSparkClient implements SqoopSparkClient {
         for (String addedJar : CSV_SPLITTER.split(Strings.nullToEmpty(addedJars))) {
             if (!localJars.contains(addedJar)) {
                 localJars.add(addedJar);
-                sc.addJar(addedJar);
+                context.addJar(addedJar);
             }
         }
     }
 
     public void close() {
-        sc.stop();
+        context.stop();
         client = null;
     }
 }

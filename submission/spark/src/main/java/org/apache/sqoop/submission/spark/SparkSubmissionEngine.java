@@ -58,8 +58,8 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         LOG.info("Initializing Spark Submission Engine");
 
         sqoopConf = new SqoopConf();
-        // Load configured spark configuration directory
-        // Create spark client, for now a local one
+        //TODO: Load configured spark configuration directory
+        //TODO: Create spark client, for now a local one
         try {
 
             sqoopConf.add(Constants.SPARK_UI_ENABLED, "false");
