@@ -12,7 +12,6 @@ import org.apache.sqoop.common.SqoopException;
 import org.apache.sqoop.connector.idf.IntermediateDataFormat;
 import org.apache.sqoop.connector.matcher.Matcher;
 import org.apache.sqoop.connector.matcher.MatcherFactory;
-import org.apache.sqoop.driver.JobRequest;
 import org.apache.sqoop.error.code.SparkExecutionError;
 import org.apache.sqoop.etl.io.DataReader;
 import org.apache.sqoop.execution.spark.SparkJobRequest;
@@ -27,14 +26,12 @@ import org.apache.sqoop.utils.ClassUtils;
 public class SqoopLoadFunction implements
         FlatMapFunction<Iterator<List<IntermediateDataFormat<?>>>, Void>, Serializable {
 
-    private final SparkJobRequest request;
+    private static SparkJobRequest reqLoad;
 
     public static final Logger LOG = Logger.getLogger(SqoopLoadFunction.class);
 
-    public SqoopLoadFunction(JobRequest request) {
-        assert request instanceof SparkJobRequest;
-
-        this.request = (SparkJobRequest) request;
+    public SqoopLoadFunction(SparkJobRequest request) {
+        reqLoad =  request;
     }
 
     @Override
@@ -42,9 +39,9 @@ public class SqoopLoadFunction implements
 
         long reduceTime = System.currentTimeMillis();
 
-        String loaderName = request.getDriverContext().getString(SparkJobConstants.JOB_ETL_LOADER);
-        Schema fromSchema = request.getJobSubmission().getFromSchema();
-        Schema toSchema = request.getJobSubmission().getToSchema();
+        String loaderName = reqLoad.getDriverContext().getString(SparkJobConstants.JOB_ETL_LOADER);
+        Schema fromSchema = reqLoad.getJobSubmission().getFromSchema();
+        Schema toSchema = reqLoad.getJobSubmission().getToSchema();
         Matcher matcher = MatcherFactory.getMatcher(fromSchema, toSchema);
 
         LOG.info("Sqoop Load Function is  starting");
@@ -54,11 +51,11 @@ public class SqoopLoadFunction implements
 
                 Loader loader = (Loader) ClassUtils.instantiate(loaderName);
 
-                SparkPrefixContext subContext = new SparkPrefixContext(request.getConf(),
+                SparkPrefixContext subContext = new SparkPrefixContext(reqLoad.getConf(),
                         SparkJobConstants.PREFIX_CONNECTOR_TO_CONTEXT);
 
-                Object toLinkConfig = request.getConnectorLinkConfig(Direction.TO);
-                Object toJobConfig = request.getJobConfig(Direction.TO);
+                Object toLinkConfig = reqLoad.getConnectorLinkConfig(Direction.TO);
+                Object toJobConfig = reqLoad.getJobConfig(Direction.TO);
 
                 // Create loader context
                 LoaderContext loaderContext = new LoaderContext(subContext, reader, matcher.getToSchema(),SparkJobConstants.SUBMITTING_USER);

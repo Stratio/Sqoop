@@ -48,17 +48,16 @@ public class SqoopSparkDriver {
         LOG.info(">>> Partition size:" + sp.size());
 
         JavaRDD<Partition> rdd = sc.parallelize(sp, sp.size());
-        JavaRDD<List<IntermediateDataFormat<?>>> mapRDD = rdd.map(new SqoopExtractFunction(
-                request));
+        JavaRDD<List<IntermediateDataFormat<?>>> mapRDD = rdd.map(new SqoopExtractFunction(sparkJobRequest));
         // if max loaders or num loaders is given reparition to adjust the max
         // loader parallelism
         if (numLoaders != numExtractors) {
             JavaRDD<List<IntermediateDataFormat<?>>> reParitionedRDD = mapRDD.repartition(numLoaders);
             LOG.info(">>> RePartition RDD size:" + reParitionedRDD.partitions().size());
-            reParitionedRDD.mapPartitions(new SqoopLoadFunction(request)).collect();
+            reParitionedRDD.mapPartitions(new SqoopLoadFunction(sparkJobRequest)).collect();
         } else {
             LOG.info(">>> Mapped RDD size:" + mapRDD.partitions().size());
-            mapRDD.mapPartitions(new SqoopLoadFunction(request)).collect();
+            mapRDD.mapPartitions(new SqoopLoadFunction(sparkJobRequest)).collect();
         }
 
         LOG.info(">>> TOTAL time ms:" + (System.currentTimeMillis() - totalTime));

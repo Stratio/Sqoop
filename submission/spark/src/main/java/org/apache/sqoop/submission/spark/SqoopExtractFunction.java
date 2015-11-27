@@ -10,7 +10,6 @@ import org.apache.sqoop.common.SqoopException;
 import org.apache.sqoop.connector.idf.IntermediateDataFormat;
 import org.apache.sqoop.connector.matcher.Matcher;
 import org.apache.sqoop.connector.matcher.MatcherFactory;
-import org.apache.sqoop.driver.JobRequest;
 import org.apache.sqoop.error.code.SparkExecutionError;
 import org.apache.sqoop.execution.spark.SparkJobRequest;
 import org.apache.sqoop.job.SparkJobConstants;
@@ -25,51 +24,48 @@ import org.apache.sqoop.utils.ClassUtils;
 public class SqoopExtractFunction implements Function<Partition, List<IntermediateDataFormat<?>>>,
         Serializable {
 
-    private final SparkJobRequest request;
-
+    private static SparkJobRequest req;
     public static final Logger LOG = Logger.getLogger(SqoopExtractFunction.class);
 
-    public SqoopExtractFunction(JobRequest request) {
-        assert request instanceof SparkJobRequest;
-
-        this.request = (SparkJobRequest) request;
+    public SqoopExtractFunction(SparkJobRequest request) {
+        req = request;
     }
 
     @Override
     public List<IntermediateDataFormat<?>> call(Partition p) throws Exception {
 
         long mapTime = System.currentTimeMillis();
-        String extractorName = request.getDriverContext().getString(SparkJobConstants.JOB_ETL_EXTRACTOR);
+        String extractorName = req.getDriverContext().getString(SparkJobConstants.JOB_ETL_EXTRACTOR);
 
         Extractor extractor = (Extractor) ClassUtils.instantiate(extractorName);
 
-        Schema fromSchema = request.getJobSubmission().getFromSchema();
+        Schema fromSchema = req.getJobSubmission().getFromSchema();
 
-        Schema toSchema = request.getJobSubmission().getToSchema();
+        Schema toSchema = req.getJobSubmission().getToSchema();
 
         Matcher matcher = MatcherFactory.getMatcher(fromSchema, toSchema);
 
-        String fromIDFClass = request.getDriverContext().getString(
+        String fromIDFClass = req.getDriverContext().getString(
                 SparkJobConstants.FROM_INTERMEDIATE_DATA_FORMAT);
         IntermediateDataFormat<Object> fromIDF = (IntermediateDataFormat<Object>) ClassUtils
                 .instantiate(fromIDFClass);
         fromIDF.setSchema(matcher.getFromSchema());
 
-        String toIDFClass = request.getDriverContext().getString(
+        String toIDFClass = req.getDriverContext().getString(
                 SparkJobConstants.TO_INTERMEDIATE_DATA_FORMAT);
         IntermediateDataFormat<Object> toIDF = (IntermediateDataFormat<Object>) ClassUtils
                 .instantiate(toIDFClass);
         toIDF.setSchema(matcher.getToSchema());
 
         // Objects that should be passed to the Executor execution
-        SparkPrefixContext subContext = new SparkPrefixContext(request.getConf(),
+        SparkPrefixContext subContext = new SparkPrefixContext(req.getConf(),
                 SparkJobConstants.PREFIX_CONNECTOR_FROM_CONTEXT);
 
-        Object fromLinkConfig = request.getConnectorLinkConfig(Direction.FROM);
-        Object fromJobConfig = request.getJobConfig(Direction.FROM);
+        Object fromLinkConfig = req.getConnectorLinkConfig(Direction.FROM);
+        Object fromJobConfig = req.getJobConfig(Direction.FROM);
 
         ExtractorContext extractorContext = new ExtractorContext(subContext, new SparkDataWriter(
-                request, fromIDF, toIDF, matcher), fromSchema, SparkJobConstants.SUBMITTING_USER);
+                req, fromIDF, toIDF, matcher), fromSchema, SparkJobConstants.SUBMITTING_USER);
 
         try {
             LOG.info("Starting extractor... ");
@@ -84,7 +80,7 @@ public class SqoopExtractFunction implements Function<Partition, List<Intermedia
         LOG.info("Extractor has finished");
         LOG.info(">>> MAP time ms:" + (System.currentTimeMillis() - mapTime));
 
-        return request.getData();
+        return req.getData();
     }
 
 }
