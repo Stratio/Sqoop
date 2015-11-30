@@ -20,11 +20,13 @@ package org.apache.sqoop.submission.spark;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.apache.spark.SparkException;
 import org.apache.sqoop.common.MapContext;
 import org.apache.sqoop.common.SqoopException;
+import org.apache.sqoop.driver.JobManager;
 import org.apache.sqoop.driver.JobRequest;
 import org.apache.sqoop.driver.SubmissionEngine;
 import org.apache.sqoop.error.code.MapreduceSubmissionError;
@@ -33,12 +35,15 @@ import org.apache.sqoop.execution.spark.SparkExecutionEngine;
 import org.apache.sqoop.execution.spark.SparkJobRequest;
 import org.apache.sqoop.model.MSubmission;
 import org.apache.sqoop.model.SubmissionError;
+import org.apache.sqoop.submission.SubmissionStatus;
+import org.apache.sqoop.submission.counter.Counters;
 
 /**
  * This is very simple and straightforward implementation of spark submission
  * engine.
  */
 public class SparkSubmissionEngine extends SubmissionEngine {
+//public abstract class SparkSubmissionEngine {
 
     private static Logger LOG = Logger.getLogger(SparkSubmissionEngine.class);
 
@@ -113,6 +118,9 @@ public class SparkSubmissionEngine extends SubmissionEngine {
 
         try {
             sparkClient.execute(jobRequest);
+            request.getJobSubmission().setExternalJobId(jobRequest.getJobName());
+            request.getJobSubmission().setLastUpdateDate(new Date());
+
         } catch (Exception e) {
             SubmissionError error = new SubmissionError();
             error.setErrorSummary(e.toString());
@@ -134,20 +142,15 @@ public class SparkSubmissionEngine extends SubmissionEngine {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void stop(String externalJobId) {
+//    @Override
+    public void stop(String jobId) {
 
         LOG.info("Destroying Spark Submission Engine");
-/*        try {
-            RunningJob runningJob = sparkClient.getJob(JobID.forName(externalJobId));
-            if(runningJob == null) {
-                return;
-            }
-
-            runningJob.killJob();
-        } catch (IOException e) {
+        try {
+            sparkClient.stop(JobManager.getInstance().status(jobId).getExternalJobId());
+        } catch (Exception e) {
             throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);
-        }   */
+        }
     }
 
 
@@ -156,7 +159,30 @@ public class SparkSubmissionEngine extends SubmissionEngine {
      */
     @Override
     public void update(MSubmission submission) {
+        double progress = -1;
+        Counters counters = null;
+        String externalJobId = submission.getExternalJobId();
+        try {
 
+//            MSubmission runningJob=JobManager.getInstance().status(submission.getExternalJobId());
+            SubmissionStatus newStatus =submission.getStatus() ;
+//            SubmissionError error = error(runningJob);
+//
+//            if (newStatus.isRunning()) {
+//                progress = progress(runningJob);
+//            } else {
+//                counters = counters(runningJob);
+//            }
+            // these properties change as the job runs, rest of the submission attributes
+            // do not change as job runs
+            submission.setStatus(newStatus);
+//            submission.setError(error);
+//            submission.setProgress(progress);
+//            submission.setCounters(counters);
+            submission.setLastUpdateDate(new Date());
+        } catch (Exception e) {
+            throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);
+        }
         // not much can be done, since we do not have easy api to ping spark for
         // app stats from in process
     }

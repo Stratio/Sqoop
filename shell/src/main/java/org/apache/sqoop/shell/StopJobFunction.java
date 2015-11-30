@@ -25,6 +25,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.sqoop.model.MSubmission;
 import org.apache.sqoop.shell.core.Constants;
 import org.apache.sqoop.shell.utils.SubmissionDisplayer;
+import org.apache.sqoop.submission.SubmissionStatus;
 import org.apache.sqoop.validation.Status;
 
 @SuppressWarnings("serial")
@@ -49,6 +50,7 @@ public class StopJobFunction extends SqoopFunction {
       } else {
         SubmissionDisplayer.displayHeader(submission);
         SubmissionDisplayer.displayProgress(submission);
+        submission.setStatus(SubmissionStatus.SUCCEEDED);
       }
     } else {
       return null;

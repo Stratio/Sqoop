@@ -1,5 +1,6 @@
 package org.apache.sqoop.submission.spark;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,9 +80,13 @@ public class LocalSqoopSparkClient implements SqoopSparkClient {
             }
         }
     }
-
-    public void close() {
+    public void stop(String jobId) throws Exception {
         context.stop();
         client = null;
+    }
+
+    @Override
+    public void close() throws IOException {
+
     }
 }

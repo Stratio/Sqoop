@@ -7,9 +7,12 @@ import java.io.Serializable;
 import org.apache.spark.SparkConf;
 import org.apache.sqoop.driver.JobRequest;
 
-public interface SqoopSparkClient extends Serializable, Closeable {
+public interface SqoopSparkClient extends Serializable,Closeable {
 
     void execute(JobRequest request) throws Exception;
+
+    void stop(String jobId) throws Exception;
+
 
     /**
      * @return spark configuration

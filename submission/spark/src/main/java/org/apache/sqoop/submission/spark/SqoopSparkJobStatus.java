@@ -12,5 +12,7 @@ public interface SqoopSparkJobStatus {
 
     JobExecutionStatus getState() throws SqoopException;
 
+    JobExecutionStatus getStatus() throws SqoopException;
+
     void cleanup();
 }

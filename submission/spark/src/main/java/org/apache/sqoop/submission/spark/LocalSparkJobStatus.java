@@ -6,6 +6,7 @@ import org.apache.spark.JobExecutionStatus;
 import org.apache.spark.SparkJobInfo;
 import org.apache.spark.api.java.JavaFutureAction;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.sqoop.common.SqoopException;
 
 public class LocalSparkJobStatus implements SqoopSparkJobStatus {
 
@@ -35,6 +36,7 @@ public class LocalSparkJobStatus implements SqoopSparkJobStatus {
         // receive JobStart/JobEnd event in JobStateListener, use
         // JavaFutureAction to get current
         // job state.
+
         if (sparkJobInfo == null && future.isDone()) {
             try {
                 future.get();
@@ -45,6 +47,12 @@ public class LocalSparkJobStatus implements SqoopSparkJobStatus {
             return JobExecutionStatus.SUCCEEDED;
         }
         return sparkJobInfo == null ? null : sparkJobInfo.status();
+    }
+
+    @Override
+    public JobExecutionStatus getStatus() throws SqoopException {
+        SparkJobInfo sparkJobInfo = getJobInfo();
+        return sparkJobInfo.status();
     }
 
     @Override
