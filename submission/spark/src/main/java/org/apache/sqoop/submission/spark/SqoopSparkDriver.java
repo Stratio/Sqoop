@@ -49,7 +49,7 @@ public class SqoopSparkDriver {
 
         JavaRDD<Partition> rdd = sc.parallelize(sp, sp.size());
         JavaRDD<List<IntermediateDataFormat<?>>> mapRDD = rdd.map(new SqoopExtractFunction(sparkJobRequest));
-        // if max loaders or num loaders is given reparition to adjust the max
+        // if max loaders or num loaders is given repartition to adjust the max
         // loader parallelism
         if (numLoaders != numExtractors) {
             JavaRDD<List<IntermediateDataFormat<?>>> reParitionedRDD = mapRDD.repartition(numLoaders);
