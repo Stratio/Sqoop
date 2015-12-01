@@ -334,7 +334,6 @@ public class JobManager implements Reconfigurable {
       // status ( which is the default one)
       //Change status when job has finished
       RepositoryManager.getInstance().getRepository().createSubmission(mSubmission);
-      mSubmission.setStatus(SubmissionStatus.SUCCEEDED);
 
     }
     return mSubmission;

@@ -23,6 +23,7 @@ import java.io.StringWriter;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
+import org.apache.spark.JobExecutionStatus;
 import org.apache.spark.SparkException;
 import org.apache.sqoop.common.MapContext;
 import org.apache.sqoop.common.SqoopException;
@@ -122,6 +123,14 @@ public class SparkSubmissionEngine extends SubmissionEngine {
             sparkClient.execute(jobRequest);
             request.getJobSubmission().setExternalJobId(jobRequest.getJobName());
             request.getJobSubmission().setLastUpdateDate(new Date());
+            //TODO Update that to more concurrent jobs.
+            if(sparkClient.getSparkContext().sc().statusTracker().getJobInfo(0).get().status()== JobExecutionStatus
+                    .SUCCEEDED){
+                request.getJobSubmission().setStatus(SubmissionStatus.SUCCEEDED);
+            }else{
+                request.getJobSubmission().setStatus(SubmissionStatus.FAILED);
+            }
+
 
         } catch (Exception e) {
             SubmissionError error = new SubmissionError();

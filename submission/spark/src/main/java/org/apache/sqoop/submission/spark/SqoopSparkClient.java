@@ -5,6 +5,7 @@ import java.io.Closeable;
 import java.io.Serializable;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.sqoop.driver.JobRequest;
 
 public interface SqoopSparkClient extends Serializable,Closeable {
@@ -18,7 +19,10 @@ public interface SqoopSparkClient extends Serializable,Closeable {
      * @return spark configuration
      */
     SparkConf getSparkConf();
-
+    /**
+     * @return spark configuration
+     */
+    JavaSparkContext getSparkContext();
     /**
      * @return the number of executors
      */

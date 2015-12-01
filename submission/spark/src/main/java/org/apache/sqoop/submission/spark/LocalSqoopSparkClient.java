@@ -45,6 +45,9 @@ public class LocalSqoopSparkClient implements SqoopSparkClient {
     public SparkConf getSparkConf() {
         return context.getConf();
     }
+    public JavaSparkContext getSparkContext() {
+        return context;
+    }
 
     public int getExecutorCount() {
         return context.sc().getExecutorMemoryStatus().size();
