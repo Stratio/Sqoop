@@ -108,6 +108,8 @@ public class SparkSubmissionEngine extends SubmissionEngine {
      */
     @Override
     public boolean submit(JobRequest jobRequest) {
+        assert jobRequest instanceof SparkJobRequest;
+
         // We're supporting only map reduce jobs
         SparkJobRequest request = (SparkJobRequest) jobRequest;
 
@@ -166,19 +168,9 @@ public class SparkSubmissionEngine extends SubmissionEngine {
 
 //            MSubmission runningJob=JobManager.getInstance().status(submission.getExternalJobId());
             SubmissionStatus newStatus =submission.getStatus() ;
-//            SubmissionError error = error(runningJob);
-//
-//            if (newStatus.isRunning()) {
-//                progress = progress(runningJob);
-//            } else {
-//                counters = counters(runningJob);
-//            }
             // these properties change as the job runs, rest of the submission attributes
             // do not change as job runs
             submission.setStatus(newStatus);
-//            submission.setError(error);
-//            submission.setProgress(progress);
-//            submission.setCounters(counters);
             submission.setLastUpdateDate(new Date());
         } catch (Exception e) {
             throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);

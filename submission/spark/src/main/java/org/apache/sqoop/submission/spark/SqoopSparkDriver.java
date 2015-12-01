@@ -61,7 +61,8 @@ public class SqoopSparkDriver {
         }
 
         LOG.info(">>> TOTAL time ms:" + (System.currentTimeMillis() - totalTime));
-
+        //Change status when job has finished
+//        sparkJobRequest.getJobSubmission().setStatus(SubmissionStatus.SUCCEEDED);
         LOG.info("Done EL in sqoop spark job, next call destroy apis");
 
     }
