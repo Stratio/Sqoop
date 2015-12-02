@@ -113,9 +113,9 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         SparkJobRequest request = (SparkJobRequest) jobRequest;
 
         //TODO: Review SPARK_MARTER variable
-        sqoopConf.add(Constants.SPARK_MASTER, "local");// + request.getExtractors() + "]");
+        //sqoopConf.add(Constants.SPARK_MASTER, "local");// + request.getExtractors() + "]");
 
-        // setYarnConfig(request);
+        //setYarnConfig(request);
 
         try {
             sparkClient.execute(jobRequest);
@@ -155,6 +155,7 @@ public class SparkSubmissionEngine extends SubmissionEngine {
     }
 
     //TODO: Review how to stop a Spark job
+
 
     /**
      * {@inheritDoc}
@@ -241,6 +242,15 @@ public class SparkSubmissionEngine extends SubmissionEngine {
             throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);
         }
     }
-
+    /**
+     * Detect MapReduce local mode.
+     *
+     * @return True if we're running in local mode
+     */
+    private boolean isLocal() {
+        if (sparkClient.getSparkConf().get(Constants.SPARK_MASTER).startsWith("yarn"))
+            return false;
+        return true;
+    }
 
 }
