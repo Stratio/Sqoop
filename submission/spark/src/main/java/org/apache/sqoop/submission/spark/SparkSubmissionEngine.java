@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,7 +44,7 @@ import org.apache.sqoop.submission.counter.Counters;
  * engine.
  */
 public class SparkSubmissionEngine extends SubmissionEngine {
-//public abstract class SparkSubmissionEngine {
+    //public abstract class SparkSubmissionEngine {
 
     private static Logger LOG = Logger.getLogger(SparkSubmissionEngine.class);
 
@@ -94,7 +94,6 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         }
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -102,7 +101,6 @@ public class SparkSubmissionEngine extends SubmissionEngine {
     public boolean isExecutionEngineSupported(Class<?> executionEngineClass) {
         return executionEngineClass == SparkExecutionEngine.class;
     }
-
 
     /**
      * {@inheritDoc}
@@ -122,14 +120,21 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         try {
             sparkClient.execute(jobRequest);
             request.getJobSubmission().setExternalJobId(jobRequest.getJobName());
-            request.getJobSubmission().setLastUpdateDate(new Date());
-            //TODO Update that to more concurrent jobs.
-            if(sparkClient.getSparkContext().sc().statusTracker().getJobInfo(0).get().status()== JobExecutionStatus
-                    .SUCCEEDED){
+            request.getJobSubmission().setProgress(progress(request));
+            SubmissionStatus successful=convertSparkState(sparkClient.getSparkContext().statusTracker()
+                    .getJobInfo(sparkClient.getSparkContext().sc().jobProgressListener().jobIdToData().size()-1)
+                    .status());
+            if (successful==SubmissionStatus.SUCCEEDED) {
                 request.getJobSubmission().setStatus(SubmissionStatus.SUCCEEDED);
-            }else{
+            } else {
+                // treat any other state as failed
                 request.getJobSubmission().setStatus(SubmissionStatus.FAILED);
             }
+
+            // there is no failure info in this job api, unlike the running job
+            request.getJobSubmission().setError(null);
+            request.getJobSubmission().setLastUpdateDate(new Date());
+
 
 
         } catch (Exception e) {
@@ -150,10 +155,11 @@ public class SparkSubmissionEngine extends SubmissionEngine {
     }
 
     //TODO: Review how to stop a Spark job
+
     /**
      * {@inheritDoc}
      */
-//    @Override
+    //    @Override
     public void stop(String jobId) {
 
         LOG.info("Destroying Spark Submission Engine");
@@ -163,7 +169,6 @@ public class SparkSubmissionEngine extends SubmissionEngine {
             throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);
         }
     }
-
 
     /**
      * {@inheritDoc}
@@ -175,17 +180,66 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         String externalJobId = submission.getExternalJobId();
         try {
 
-//            MSubmission runningJob=JobManager.getInstance().status(submission.getExternalJobId());
-            SubmissionStatus newStatus =submission.getStatus() ;
+
             // these properties change as the job runs, rest of the submission attributes
             // do not change as job runs
+            SubmissionStatus newStatus = convertSparkState(sparkClient.getSparkContext().statusTracker()
+                    .getJobInfo(sparkClient.getSparkContext().sc().jobProgressListener().jobIdToData().size()-1)
+                    .status());
+            if (newStatus.isRunning()) {
+                progress = (Double.valueOf(sqoopConf.get("mapTime"))+Double.valueOf(sqoopConf.get
+                        ("reduceTime")))/2;
+            }
+//            else {
+//                counters = counters(runningJob);
+//            }
             submission.setStatus(newStatus);
+            submission.setProgress(progress);
             submission.setLastUpdateDate(new Date());
         } catch (Exception e) {
             throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);
         }
         // not much can be done, since we do not have easy api to ping spark for
         // app stats from in process
+    }
+
+    /**
+     * Convert spark specific job status constants to Sqoop job status
+     * constants.
+     *
+     * @param status Spark job constant
+     * @return Equivalent submission status
+     */
+    private SubmissionStatus convertSparkState(JobExecutionStatus status) {
+        if (JobExecutionStatus.RUNNING == status) {
+            return SubmissionStatus.RUNNING;
+        } else if (JobExecutionStatus.FAILED == status) {
+            return SubmissionStatus.FAILED;
+        } else if (JobExecutionStatus.UNKNOWN == status) {
+            return SubmissionStatus.UNKNOWN;
+        } else if (JobExecutionStatus.SUCCEEDED == status) {
+            return SubmissionStatus.SUCCEEDED;
+        }
+        throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0004,
+                "Unknown status " + status);
+    }
+
+    private double progress(SparkJobRequest sparkJobRequest) {
+        try {
+            if (JobManager.getInstance().status(sparkJobRequest.getJobName()).getStatus() == null) {
+                // Return default value
+                return -1;
+            }
+            return (Double.valueOf(sparkJobRequest.getConf().get("mapTime"))+Double.valueOf(sparkJobRequest.getConf()
+                    .get
+                    ("reduceTime")))/2;
+//return sparkClient.getSparkContext().sc().jobProgressListener().activeJobs();
+//            return System.currentTimeMillis()-sparkClient.getSparkContext().sc().jobProgressListener().startTime();
+
+//            return JobManager.getInstance().status(jobId).getProgress();
+        } catch (Exception e) {
+            throw new SqoopException(MapreduceSubmissionError.MAPREDUCE_0003, e);
+        }
     }
 
 

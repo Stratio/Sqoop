@@ -64,6 +64,8 @@ public class SqoopLoadFunction implements
                 loader.load(loaderContext, toLinkConfig, toJobConfig);
                 LOG.info("Loader has finished");
                 LOG.info(">>> REDUCE time ms:" + (System.currentTimeMillis() - reduceTime));
+
+                reqLoad.getConf().put("reduceTime",""+(System.currentTimeMillis() - reduceTime));
             }
         } catch (Throwable t) {
             LOG.error("Error while loading data out of MR job.", t);

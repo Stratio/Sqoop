@@ -19,6 +19,7 @@ import org.apache.sqoop.job.etl.Partition;
 import org.apache.sqoop.job.etl.Partitioner;
 import org.apache.sqoop.job.etl.PartitionerContext;
 import org.apache.sqoop.schema.Schema;
+import org.apache.sqoop.submission.SubmissionStatus;
 import org.apache.sqoop.utils.ClassUtils;
 
 public class SqoopSparkDriver {
@@ -55,6 +56,7 @@ public class SqoopSparkDriver {
             JavaRDD<List<IntermediateDataFormat<?>>> reParitionedRDD = mapRDD.repartition(numLoaders);
             LOG.info(">>> RePartition RDD size:" + reParitionedRDD.partitions().size());
             reParitionedRDD.mapPartitions(new SqoopLoadFunction(sparkJobRequest)).collect();
+            sparkJobRequest.getJobSubmission().setStatus(SubmissionStatus.RUNNING);
         } else {
             LOG.info(">>> Mapped RDD size:" + mapRDD.partitions().size());
             mapRDD.mapPartitions(new SqoopLoadFunction(sparkJobRequest)).collect();

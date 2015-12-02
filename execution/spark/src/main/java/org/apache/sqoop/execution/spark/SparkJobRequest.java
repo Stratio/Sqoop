@@ -15,7 +15,6 @@ import org.apache.sqoop.driver.JobRequest;
 
 /**
  * Custom data required for the spark job request
- *
  */
 public class SparkJobRequest extends JobRequest implements Serializable {
 
@@ -105,6 +104,5 @@ public class SparkJobRequest extends JobRequest implements Serializable {
     public List<IntermediateDataFormat<?>> getData() {
         return rowData;
     }
-
 
 }

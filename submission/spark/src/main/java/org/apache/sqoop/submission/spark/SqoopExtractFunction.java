@@ -79,6 +79,7 @@ public class SqoopExtractFunction implements Function<Partition, List<Intermedia
 
         LOG.info("Extractor has finished");
         LOG.info(">>> MAP time ms:" + (System.currentTimeMillis() - mapTime));
+        req.getConf().put("mapTime",""+(System.currentTimeMillis() - mapTime));
 
         return req.getData();
     }
