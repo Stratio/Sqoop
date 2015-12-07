@@ -44,7 +44,6 @@ import org.apache.sqoop.submission.counter.Counters;
  * engine.
  */
 public class SparkSubmissionEngine extends SubmissionEngine {
-    //public abstract class SparkSubmissionEngine {
 
     private static Logger LOG = Logger.getLogger(SparkSubmissionEngine.class);
 
@@ -192,9 +191,10 @@ public class SparkSubmissionEngine extends SubmissionEngine {
                         ("reduceTime")))/2;
             }
 //            else {
-//                counters = counters(runningJob);
+//                counters = counters(sparkClient.getSparkContext().sc().jobProgressListener().);
 //            }
             submission.setStatus(newStatus);
+//            submission.setCounters(counters);
             submission.setProgress(progress);
             submission.setLastUpdateDate(new Date());
         } catch (Exception e) {
@@ -232,8 +232,7 @@ public class SparkSubmissionEngine extends SubmissionEngine {
                 return -1;
             }
             return (Double.valueOf(sparkJobRequest.getConf().get("mapTime"))+Double.valueOf(sparkJobRequest.getConf()
-                    .get
-                    ("reduceTime")))/2;
+                    .get("reduceTime")))/2;
 //return sparkClient.getSparkContext().sc().jobProgressListener().activeJobs();
 //            return System.currentTimeMillis()-sparkClient.getSparkContext().sc().jobProgressListener().startTime();
 

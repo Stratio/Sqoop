@@ -66,7 +66,7 @@ public class YarnSqoopSparkClient extends SqoopSparkClientManager {
         Client yarnClient= new Client(clientArgs, yarnConfig, getSparkConf());
         yarnClient.run();
 
-        //SparkCounters sparkCounters = new SparkCounters(sc);
+//      SparkCounters sparkCounters = new SparkCounters(sc);
         SqoopSparkDriver.execute(request, getSparkConf(), context);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.FROM, SparkJobConstants.SUBMITTING_USER);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.TO,SparkJobConstants.SUBMITTING_USER);
@@ -76,6 +76,11 @@ public class YarnSqoopSparkClient extends SqoopSparkClientManager {
     public void stop(String jobId) throws Exception {
         context.stop();
         client = null;
+    }
+
+    @Override
+    public JavaSparkContext getSparkContext() {
+        return context;
     }
 
     @Override
