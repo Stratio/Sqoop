@@ -97,7 +97,7 @@ limitations under the License.
     <commons-codec.version>1.9</commons-codec.version>
     <derby.version>10.8.2.2</derby.version>
     <hadoop.2.version>2.6.0</hadoop.2.version>
-    <spark.version>1.4.1</spark.version>
+    <spark.version>1.5.2</spark.version>
     <scala.minor.version>2.10</scala.minor.version>
     <hive.version>0.13.1</hive.version>
     <guava.version>11.0.2</guava.version>

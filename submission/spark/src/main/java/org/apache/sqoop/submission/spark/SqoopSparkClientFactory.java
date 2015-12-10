@@ -29,19 +29,27 @@ public class SqoopSparkClientFactory {
         // Submit spark job through local spark context while spark master is local
         // mode, otherwise submit spark job through remote spark context.
         String master = sparkConf.get(Constants.SPARK_MASTER);
-        if (master.equals("yarn") || master.startsWith("yarn")) {
-
-            LOG.info("Using yarn submitter");
-            return YarnSqoopSparkClient.getInstance(sparkConf);
-
-        } else if (master.equals("local") || master.startsWith("local[")) {
+        if (master.equals("local") || master.startsWith("local[")) {
             // With local spark context, all user sessions share the same spark context.
             return LocalSqoopSparkClient.getInstance(generateSparkConf(sparkConf));
-
         } else {
-            LOG.error("Unable to parse master configuration: "+ master);
+            LOG.info("Using yarn submitter");
+            //TODO: hook up yarn submitter
             return null;
         }
+//        if (master.equals("yarn") || master.startsWith("yarn")) {
+//
+//            LOG.info("Using yarn submitter");
+//            return YarnSqoopSparkClient.getInstance(sparkConf);
+//
+//        } else if (master.equals("local") || master.startsWith("local[")) {
+//            // With local spark context, all user sessions share the same spark context.
+//            return LocalSqoopSparkClient.getInstance(generateSparkConf(sparkConf));
+//
+//        } else {
+//            LOG.error("Unable to parse master configuration: "+ master);
+//            return null;
+//        }
     }
 
     public static Map<String, String> prepareSparkConfMapFromSqoopConfig(SqoopConf sqoopConf) {

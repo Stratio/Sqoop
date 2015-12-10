@@ -13,4 +13,5 @@ public class Constants {
     public static final String SPARK_UI_ENABLED =    "spark.ui.enabled";
     public static final String SPARK_DRIVER_ALLOWMULTIPLECONTEXTS = "spark.driver.allowMultipleContexts";
 
+
 }

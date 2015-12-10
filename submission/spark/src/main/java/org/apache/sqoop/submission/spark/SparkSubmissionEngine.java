@@ -227,13 +227,16 @@ public class SparkSubmissionEngine extends SubmissionEngine {
 
     private double progress(SparkJobRequest sparkJobRequest) {
         try {
-            if (JobManager.getInstance().status(sparkJobRequest.getJobName()).getStatus() == null) {
+            if (sparkClient.getSparkContext().statusTracker()
+                    .getJobInfo(sparkClient.getSparkContext().sc().jobProgressListener().jobIdToData().size()-1)
+                    .status()== null) {
                 // Return default value
                 return -1;
+
             }
             return (Double.valueOf(sparkJobRequest.getConf().get("mapTime"))+Double.valueOf(sparkJobRequest.getConf()
                     .get("reduceTime")))/2;
-//return sparkClient.getSparkContext().sc().jobProgressListener().activeJobs();
+            //return sparkClient.getSparkContext().sc().jobProgressListener().activeJobs();
 //            return System.currentTimeMillis()-sparkClient.getSparkContext().sc().jobProgressListener().startTime();
 
 //            return JobManager.getInstance().status(jobId).getProgress();

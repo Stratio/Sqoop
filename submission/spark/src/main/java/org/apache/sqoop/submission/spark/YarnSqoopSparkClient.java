@@ -35,8 +35,8 @@ public class YarnSqoopSparkClient extends SqoopSparkClientManager {
 
             SparkConf sparkConf= SqoopSparkClientFactory.generateSparkConf(conf);
 
-            client = new YarnSqoopSparkClient(sparkConf);
             yarnConfig= generateYarnSparkConf(conf);
+            client = new YarnSqoopSparkClient(sparkConf);
 
             clientArgs = new ClientArguments(args, sparkConf);
 
@@ -46,7 +46,6 @@ public class YarnSqoopSparkClient extends SqoopSparkClientManager {
 
     static YarnConfiguration generateYarnSparkConf(Map<String, String> conf) {
         YarnConfiguration yarnConf = new YarnConfiguration();
-
         for (Map.Entry<String, String> entry : conf.entrySet()) {
             yarnConf.set(entry.getKey(), entry.getValue());
         }
