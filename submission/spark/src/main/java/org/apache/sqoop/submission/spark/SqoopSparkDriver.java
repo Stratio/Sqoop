@@ -19,6 +19,7 @@ import org.apache.sqoop.job.etl.Partition;
 import org.apache.sqoop.job.etl.Partitioner;
 import org.apache.sqoop.job.etl.PartitionerContext;
 import org.apache.sqoop.schema.Schema;
+import org.apache.sqoop.submission.SubmissionStatus;
 import org.apache.sqoop.utils.ClassUtils;
 
 public class SqoopSparkDriver {
@@ -48,21 +49,22 @@ public class SqoopSparkDriver {
         LOG.info(">>> Partition size:" + sp.size());
 
         JavaRDD<Partition> rdd = sc.parallelize(sp, sp.size());
-        JavaRDD<List<IntermediateDataFormat<?>>> mapRDD = rdd.map(new SqoopExtractFunction(
-                request));
-        // if max loaders or num loaders is given reparition to adjust the max
+        JavaRDD<List<IntermediateDataFormat<?>>> mapRDD = rdd.map(new SqoopExtractFunction(sparkJobRequest));
+        // if max loaders or num loaders is given repartition to adjust the max
         // loader parallelism
         if (numLoaders != numExtractors) {
             JavaRDD<List<IntermediateDataFormat<?>>> reParitionedRDD = mapRDD.repartition(numLoaders);
             LOG.info(">>> RePartition RDD size:" + reParitionedRDD.partitions().size());
-            reParitionedRDD.mapPartitions(new SqoopLoadFunction(request)).collect();
+            reParitionedRDD.mapPartitions(new SqoopLoadFunction(sparkJobRequest)).collect();
+            sparkJobRequest.getJobSubmission().setStatus(SubmissionStatus.RUNNING);
         } else {
             LOG.info(">>> Mapped RDD size:" + mapRDD.partitions().size());
-            mapRDD.mapPartitions(new SqoopLoadFunction(request)).collect();
+            mapRDD.mapPartitions(new SqoopLoadFunction(sparkJobRequest)).collect();
         }
 
         LOG.info(">>> TOTAL time ms:" + (System.currentTimeMillis() - totalTime));
-
+        //Change status when job has finished
+//        sparkJobRequest.getJobSubmission().setStatus(SubmissionStatus.SUCCEEDED);
         LOG.info("Done EL in sqoop spark job, next call destroy apis");
 
     }

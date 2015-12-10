@@ -28,7 +28,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import jline.ConsoleReader;
+import jline.console.ConsoleReader;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sqoop.client.SqoopClient;
@@ -80,14 +79,13 @@ public class TestCreateCommand {
   public void setup() throws IOException {
     Groovysh shell = new Groovysh();
     createCmd = new CreateCommand(shell);
-    ShellEnvironment.setInteractive(false);
     ShellEnvironment.setIo(shell.getIo());
     client = mock(SqoopClient.class);
     ShellEnvironment.setClient(client);
 
     data = new byte[1000];
     in = new ByteArrayInputStream(data);
-    reader = new ConsoleReader(in, new OutputStreamWriter(System.out));
+    reader = new ConsoleReader(in, System.out);
     ShellEnvironment.setConsoleReader(reader);
     resourceBundle = new ResourceBundle() {
       @Override
@@ -104,6 +102,7 @@ public class TestCreateCommand {
 
   @Test
   public void testCreateLink() {
+    ShellEnvironment.setInteractive(false);
     when(client.getConnector("connector_test")).thenReturn(new MConnector("", "", "", null, null, null));
     when(client.createLink("connector_test")).thenReturn(new MLink(1, new MLinkConfig(new ArrayList<MConfig>(), new ArrayList<MValidator>())));
     when(client.saveLink(any(MLink.class))).thenReturn(Status.OK);
@@ -128,6 +127,7 @@ public class TestCreateCommand {
 
   @Test
   public void testCreateLinkWithNonExistingConnector() {
+    ShellEnvironment.setInteractive(false);
     when(client.getConnector(any(String.class))).thenThrow(new SqoopException(TestShellError.TEST_SHELL_0000, "Connector doesn't exist"));
     when(client.getConnector(any(Integer.class))).thenThrow(new SqoopException(TestShellError.TEST_SHELL_0000, "Connector doesn't exist"));
 
@@ -177,6 +177,7 @@ public class TestCreateCommand {
 
   @Test
   public void testCreateJob() {
+    ShellEnvironment.setInteractive(false);
     MConnector fromConnector = new MConnector("connector_from", "", "", null, new MFromConfig(new ArrayList<MConfig>(), new ArrayList<MValidator>()), null);
     MConnector toConnector = new MConnector("connector_to", "", "", null, null, new MToConfig(new ArrayList<MConfig>(), new ArrayList<MValidator>()));
     when(client.createJob("link_from", "link_to")).thenReturn(
@@ -203,6 +204,7 @@ public class TestCreateCommand {
 
   @Test
   public void testCreateJobWithNonExistingLink() {
+    ShellEnvironment.setInteractive(false);
     when(client.createJob("link_from", "link_to")).thenThrow(new SqoopException(TestShellError.TEST_SHELL_0000, "From link doesn't exist"));
 
     try {
@@ -304,6 +306,7 @@ public class TestCreateCommand {
 
   @Test
   public void testCreateRole() {
+    ShellEnvironment.setInteractive(false);
     // create role -r role_test
     Status status = (Status) createCmd.execute(Arrays.asList(Constants.FN_ROLE, "-r", "role_test"));
     assertTrue(status != null && status == Status.OK);

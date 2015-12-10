@@ -1,7 +1,6 @@
 package org.apache.sqoop.submission.spark;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,15 +11,10 @@ import org.apache.sqoop.driver.JobRequest;
 import org.apache.sqoop.job.SparkJobConstants;
 import org.apache.sqoop.job.spark.SparkDestroyerExecutor;
 
-import com.google.common.base.Splitter;
-import com.google.common.base.Strings;
-
-public class LocalSqoopSparkClient implements SqoopSparkClient {
+public class LocalSqoopSparkClient extends SqoopSparkClientManager {
 
     private static final long serialVersionUID = 1L;
     protected static final transient Log LOG = LogFactory.getLog(LocalSqoopSparkClient.class);
-
-    private static final Splitter CSV_SPLITTER = Splitter.on(",").omitEmptyStrings();
 
     private static LocalSqoopSparkClient client;
 
@@ -31,57 +25,43 @@ public class LocalSqoopSparkClient implements SqoopSparkClient {
         return client;
     }
 
-    private JavaSparkContext sc;
-
-    private List<String> localJars = new ArrayList<String>();
-
-    private List<String> localFiles = new ArrayList<String>();
-
-    private LocalSqoopSparkClient(SparkConf sparkConf) {
-        // = new JavaSparkContext(sparkConf);
+    public LocalSqoopSparkClient(SparkConf sparkConf) {
+        context = new JavaSparkContext(sparkConf);
     }
 
     public SparkConf getSparkConf() {
-        return sc.getConf();
+        return context.getConf();
+    }
+    public JavaSparkContext getSparkContext() {
+        return context;
     }
 
     public int getExecutorCount() {
-        return sc.sc().getExecutorMemoryStatus().size();
+        return context.sc().getExecutorMemoryStatus().size();
     }
 
     public int getDefaultParallelism() throws Exception {
-        return sc.sc().defaultParallelism();
+        return context.sc().defaultParallelism();
     }
 
     public void execute(JobRequest request) throws Exception {
 
-        // SparkCounters sparkCounters = new SparkCounters(sc);
-        SqoopSparkDriver.execute(request, getSparkConf(), sc);
+        //SparkCounters sparkCounters = new SparkCounters(sc);
+
+        SqoopSparkDriver.execute(request, getSparkConf(), context);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.FROM, SparkJobConstants.SUBMITTING_USER);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.TO,SparkJobConstants.SUBMITTING_USER);
+        request.getJobSubmission().setExternalJobId(request.getJobName());
 
     }
 
-    public void addResources(String addedFiles) {
-        for (String addedFile : CSV_SPLITTER.split(Strings.nullToEmpty(addedFiles))) {
-            if (!localFiles.contains(addedFile)) {
-                localFiles.add(addedFile);
-                sc.addFile(addedFile);
-            }
-        }
-    }
-
-    private void addJars(String addedJars) {
-        for (String addedJar : CSV_SPLITTER.split(Strings.nullToEmpty(addedJars))) {
-            if (!localJars.contains(addedJar)) {
-                localJars.add(addedJar);
-                sc.addJar(addedJar);
-            }
-        }
-    }
-
-    public void close() {
-        sc.stop();
+    public void stop(String jobId) throws Exception {
+        context.stop();
         client = null;
+    }
+
+    @Override
+    public void close() throws IOException {
+
     }
 }

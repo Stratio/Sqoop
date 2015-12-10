@@ -28,7 +28,6 @@ import static org.testng.Assert.fail;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import jline.ConsoleReader;
+import jline.console.ConsoleReader;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sqoop.client.SqoopClient;
@@ -80,14 +79,13 @@ public class TestCloneCommand {
   public void setup() throws IOException {
     Groovysh shell = new Groovysh();
     cloneCmd = new CloneCommand(shell);
-    ShellEnvironment.setInteractive(false);
     ShellEnvironment.setIo(shell.getIo());
     client = mock(SqoopClient.class);
     ShellEnvironment.setClient(client);
 
     data = new byte[1000];
     in = new ByteArrayInputStream(data);
-    reader = new ConsoleReader(in, new OutputStreamWriter(System.out));
+    reader = new ConsoleReader(in, System.out);
     ShellEnvironment.setConsoleReader(reader);
     resourceBundle = new ResourceBundle() {
       @Override
@@ -105,6 +103,7 @@ public class TestCloneCommand {
   @SuppressWarnings({ "unchecked", "rawtypes" })
   @Test
   public void testCloneLink() {
+    ShellEnvironment.setInteractive(false);
     MLink link = new MLink(1L, new MLinkConfig(new ArrayList<MConfig>(), new ArrayList<MValidator>()));
     when(client.getLink("link_test")).thenReturn(link);
     when(client.getConnectorConfigBundle(1L)).thenReturn(new MapResourceBundle(new HashMap()));
@@ -171,6 +170,7 @@ public class TestCloneCommand {
   @SuppressWarnings({ "unchecked", "rawtypes" })
   @Test
   public void testCloneJob() {
+    ShellEnvironment.setInteractive(false);
     MJob job = new MJob(1L, 2L, 1L, 2L,
         new MFromConfig(new ArrayList<MConfig>(), new ArrayList<MValidator>()),
         new MToConfig(new ArrayList<MConfig>(), new ArrayList<MValidator>()),
