@@ -4,4 +4,5 @@ Only listing significant user-visible, not internal code cleanups and minor bug 
 
 ## 2.0.0 (upcoming)
 
+* Sqoop on Spark (1.5)
 * First Stratio-based version
