@@ -307,8 +307,8 @@ limitations under the License.
                                     <to>/opt/sds/sqoop-server/config</to>
                                 </copyDirectory>
                                 <copyFile>
-                                    <path>target/sqoop-server-2.0.0-SNAPSHOT.jar</path>
-                                    <toFile>/opt/sds/sqoop-server/repo/sqoop-server-2.0.0-SNAPSHOT.jar</toFile>
+                                    <path>target/sqoop-server-0.1.0-SNAPSHOT.jar</path>
+                                    <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-SNAPSHOT.jar</toFile>
                                 </copyFile>
                             </assembly>
                             <defaults>

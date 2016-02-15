@@ -23,7 +23,7 @@ public class LocalSparkClientTest {
 
         SparkConf sparkConf = new SparkConf().setAppName("JavaWordCount").setMaster("local");
         JavaSparkContext ctx = new JavaSparkContext(sparkConf);
-        ctx.addJar("server/target/sqoop-server-2.0.0-SNAPSHOT.jar");
+        ctx.addJar("server/target/sqoop-server-0.1.0-SNAPSHOT.jar");
         JavaRDD<String> lines = ctx.textFile("README.txt");
 
         JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {

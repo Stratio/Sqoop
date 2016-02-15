@@ -34,7 +34,7 @@ public @interface VersionAnnotation {
 
   /**
    * Get the sqoop build version
-   * @return the version string (eg. "2.0.0")
+   * @return the version string (eg. "0.1.0")
    */
   String version();
 
