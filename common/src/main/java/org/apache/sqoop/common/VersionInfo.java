@@ -39,8 +39,8 @@ public final class VersionInfo {
 
   /**
    * Get the build version of the package
-   * @return the version string, eg. "2.0.0"
-   * NOTE: Read here for some background on why we are using 2.0.0 to begin with
+   * @return the version string, eg. "0.1.0"
+   * NOTE: Read here for some background on why we are using 0.1.0 to begin with
    *       http://markmail.org/message/5jygqqy3oryxqdib
    */
   public static String getBuildVersion() {
