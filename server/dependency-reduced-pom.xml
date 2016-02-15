@@ -150,7 +150,8 @@
                     <mkdirs>
                       <path>/var/log/sds/sqoop-server</path>
                       <attributes>
-                        <mode>755</mode>
+                        <user>stratio</user>
+                        <group>stratio</group>
                       </attributes>
                     </mkdirs>
                     <copyDirectory>
@@ -226,7 +227,8 @@
                     <mkdirs>
                       <path>/var/log/sds/sqoop-server</path>
                       <attributes>
-                        <mode>755</mode>
+                        <user>stratio</user>
+                        <group>stratio</group>
                       </attributes>
                     </mkdirs>
                     <copyDirectory>
@@ -297,7 +299,8 @@
                 <mkdirs>
                   <path>/var/log/sds/sqoop-server</path>
                   <attributes>
-                    <mode>755</mode>
+                    <user>stratio</user>
+                    <group>stratio</group>
                   </attributes>
                 </mkdirs>
                 <copyDirectory>
