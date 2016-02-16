@@ -1,0 +1,3 @@
+/etc/default/sqoop
+/etc/sds/sqoop/spark-defaults.conf
+/etc/sds/sqoop/sqoop.properties
