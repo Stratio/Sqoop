@@ -18,18 +18,18 @@
 #
 
 ### BEGIN INIT INFO
-# Provides:          Sqoop-server
+# Provides:          Sqoop
 # Required-Start:    $network $remote_fs $syslog
 # Required-Stop:     $network $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Starts Sqoop-server
-# Description:       Sqoop Server
+# Short-Description: Starts Sqoop
+# Description:       Sqoop
 ### END INIT INFO
 
 # Only configuration needed here
-NAME="sqoop-server"
-DESC="Sqoop-server single sign on service"
+NAME="sqoop"
+DESC="Sqoop single sign on service"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin

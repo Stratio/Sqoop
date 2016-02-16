@@ -19,26 +19,26 @@
 #
 
 #
-#   /etc/rc.d/init.d/sqoop-server
+#   /etc/rc.d/init.d/sqoop
 #
-#   Sqoop-server service
+#   Sqoop service
 #
 ### BEGIN INIT INFO
-# Provides:          Sqoop-server
+# Provides:          Sqoop
 # Required-Start:    $network $remote_fs $named
 # Required-Stop:     $network $remote_fs $named
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Starts Sqoop-server
-# Description:       Starts Sqoop-server sso using start-stop-daemon
+# Short-Description: Starts Sqoop
+# Description:       Starts Sqoop sso using start-stop-daemon
 ### END INIT INFO
 
 # Source function library.
 . /etc/init.d/functions
 
 # Only configuration needed here
-NAME="sqoop-server"
-DESC="Sqoop-server single sign on service"
+NAME="sqoop"
+DESC="Sqoop single sign on service"
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 VARIABLES="/etc/default/$NAME-variables"
