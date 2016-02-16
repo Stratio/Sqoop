@@ -329,6 +329,17 @@ limitations under the License.
                                 </goals>
                                 <configuration>
                                     <architecture>all</architecture>
+                                    <assembly>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-deb.sh</path>
+                                            <toFile>/etc/init.d/sqoop</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>644</mode>
+                                            </attributes>
+                                        </copyFile>
+                                    </assembly>
                                 </configuration>
                             </execution>
                             <execution>
@@ -339,6 +350,17 @@ limitations under the License.
                                 </goals>
                                 <configuration>
                                     <architecture>noarch</architecture>
+                                    <assembly>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-rpm.sh</path>
+                                            <toFile>/etc/init.d/sqoop</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>644</mode>
+                                            </attributes>
+                                        </copyFile>
+                                    </assembly>
                                 </configuration>
                             </execution>
                         </executions>
