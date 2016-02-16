@@ -542,7 +542,7 @@ limitations under the License.
     <module>execution</module>
     <module>submission</module>
     <module>security</module>
-    <module>test</module>
+    <!--<module>test</module>-->
     <module>tools</module>
   </modules>
 
