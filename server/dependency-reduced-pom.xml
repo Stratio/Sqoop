@@ -3,7 +3,7 @@
   <parent>
     <artifactId>sqoop</artifactId>
     <groupId>com.stratio.sqoop</groupId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0-RC1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.sqoop</groupId>
@@ -167,8 +167,8 @@
                       <to>/opt/sds/sqoop-server/config</to>
                     </copyDirectory>
                     <copyFile>
-                      <path>target/sqoop-server-0.1.0-SNAPSHOT.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-SNAPSHOT.jar</toFile>
+                      <path>target/sqoop-server-0.1.0-RC1.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-RC1.jar</toFile>
                     </copyFile>
                   </assembly>
                   <defaults>
@@ -244,8 +244,8 @@
                       <to>/opt/sds/sqoop-server/config</to>
                     </copyDirectory>
                     <copyFile>
-                      <path>target/sqoop-server-0.1.0-SNAPSHOT.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-SNAPSHOT.jar</toFile>
+                      <path>target/sqoop-server-0.1.0-RC1.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-RC1.jar</toFile>
                     </copyFile>
                   </assembly>
                   <defaults>
@@ -316,8 +316,8 @@
                   <to>/opt/sds/sqoop-server/config</to>
                 </copyDirectory>
                 <copyFile>
-                  <path>target/sqoop-server-0.1.0-SNAPSHOT.jar</path>
-                  <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-SNAPSHOT.jar</toFile>
+                  <path>target/sqoop-server-0.1.0-RC1.jar</path>
+                  <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-RC1.jar</toFile>
                 </copyFile>
               </assembly>
               <defaults>
