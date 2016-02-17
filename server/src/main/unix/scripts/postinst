@@ -14,7 +14,7 @@ DIR_RUN='/opt/sds/sqoop-server/bin'
 
     chmod 755 /opt/sds/sqoop-server/bin
     chmod 755 /opt/sds/sqoop-server/bin/*
-    chmod +x /etc/init.d/sqoop
+    chmod +x /etc/init.d/sqoop-server
 
 case "$1" in
   configure)
