@@ -257,6 +257,7 @@ limitations under the License.
                             <contactEmail>sqoop@stratio.com</contactEmail>
                             <deb>
                                 <section>devel</section>
+                                <depends>lockfile-progs</depends>
                             </deb>
                             <rpm>
                                 <group>stratio</group>
