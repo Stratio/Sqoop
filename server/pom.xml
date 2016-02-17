@@ -332,6 +332,24 @@ limitations under the License.
                                     <architecture>all</architecture>
                                     <assembly>
                                         <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-functions-deb</path>
+                                            <toFile>/etc/default/sqoop-functions</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>644</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-variables-deb</path>
+                                            <toFile>/etc/default/sqoop-variables</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>644</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <copyFile>
                                             <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-deb.sh</path>
                                             <toFile>/etc/init.d/sqoop</toFile>
                                             <attributes>
@@ -352,6 +370,24 @@ limitations under the License.
                                 <configuration>
                                     <architecture>noarch</architecture>
                                     <assembly>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-functions-rpm</path>
+                                            <toFile>/etc/default/sqoop-functions</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>644</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-variables-rpm</path>
+                                            <toFile>/etc/default/sqoop-variables</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>644</mode>
+                                            </attributes>
+                                        </copyFile>
                                         <copyFile>
                                             <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-rpm.sh</path>
                                             <toFile>/etc/init.d/sqoop</toFile>
