@@ -25,10 +25,10 @@ import org.apache.sqoop.server.SqoopProtocolServlet;
 
 
 /**
- * Displays connector(s) registered in sqoop
+ * Displays connector(s) registered in sqoop-server
  *
  * GET v1/connector/all (remains for backward compatibility)
- *  Return all connectors registered in the sqoop system with their corresponding config params
+ *  Return all connectors registered in the sqoop-server system with their corresponding config params
  * GET /v1/connector/{cname}
  *  Return details about one particular connector with name {cname} with its config params
  * GET /v1/connector/{cid}

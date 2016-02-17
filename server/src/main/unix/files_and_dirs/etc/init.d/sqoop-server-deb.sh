@@ -28,7 +28,7 @@
 ### END INIT INFO
 
 # Only configuration needed here
-NAME="sqoop"
+NAME="sqoop-server"
 DESC="Sqoop single sign on service"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script

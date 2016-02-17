@@ -1,3 +1,0 @@
-export SQOOP_CONF="/etc/sds/sqoop"
-export SQOOP_HOME="/opt/sds/sqoop"
-export SQOOP_LOGS="/var/logs/sds/sqoop"

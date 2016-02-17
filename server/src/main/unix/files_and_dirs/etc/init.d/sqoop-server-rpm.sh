@@ -19,7 +19,7 @@
 #
 
 #
-#   /etc/rc.d/init.d/sqoop
+#   /etc/rc.d/init.d/sqoop-server
 #
 #   Sqoop service
 #
@@ -37,7 +37,7 @@
 . /etc/init.d/functions
 
 # Only configuration needed here
-NAME="sqoop"
+NAME="sqoop-server"
 DESC="Sqoop single sign on service"
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin

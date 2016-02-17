@@ -24,7 +24,7 @@ import org.apache.sqoop.server.RequestHandler;
 import org.apache.sqoop.server.SqoopProtocolServlet;
 
 /**
- * Displays driver registered in sqoop
+ * Displays driver registered in sqoop-server
  *
  * GET /v1/driver/
  *  Return details about the registered driver and its configs

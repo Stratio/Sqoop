@@ -39,8 +39,8 @@ function checkRunDirectory() {
 
 
 
-# Check for sqoop environment folders
-function checkSqoopFolders(){
+# Check for sqoop-server environment folders
+function checkSqoopServerFolders(){
     if [ ! -d $LOG_DIR -a ! -d $DATA_DIR -a ! -d $WORK_DIR ]; then
         echo "Directories don't exist!"
         echo "Directories don't exist!" >>$LOG_FILE
@@ -48,12 +48,12 @@ function checkSqoopFolders(){
     fi
 }
 
-# Export Sqoop service variables
-exportSqoopVariables(){
-    export Sqoop_HEAP_SIZE
-    export Sqoop_HEAP_NEWSIZE
-    export Sqoop_DIRECT_SIZE
-    export Sqoop_JAVA_OPTS
+# Export SqoopServer service variables
+exportSqoopServerVariables(){
+    export SqoopServer_HEAP_SIZE
+    export SqoopServer_HEAP_NEWSIZE
+    export SqoopServer_DIRECT_SIZE
+    export SqoopServer_JAVA_OPTS
 }
 
 
@@ -74,12 +74,12 @@ function prepareEnvironment(){
 
 #Validate environment var
 function checkEnvironmentVar(){
- if [ ! -x "$Sqoop_HOME" ]; then
-        echo "Could not find the sqoop installation. Please set Sqoop_HOME" | tee -a $LOG_FILE
+ if [ ! -x "$SqoopServer_HOME" ]; then
+        echo "Could not find the sqoop-server installation. Please set SqoopServer_HOME" | tee -a $LOG_FILE
         exit 1
   fi
   if [ ! -x "$SERVER_PROPERTIES" ]; then
-         echo "Could not find the sqoop properties. Please set SERVER_PROPERTIES" | tee -a $LOG_FILE
+         echo "Could not find the sqoop-server properties. Please set SERVER_PROPERTIES" | tee -a $LOG_FILE
          exit 1
    fi
 }
@@ -91,7 +91,7 @@ function checkEnvironmentVar(){
 function validateService() {
     checkUser
     checkRunDirectory
-    exportSqoopVariables
+    exportSqoopServerVariables
     checkEnvironmentVar
 }
 
@@ -99,7 +99,7 @@ function validateService() {
 function validateStart() {
     checkJava
     checkHeapSize
-    checkSqoopFolders
+    checkSqoopServerFolders
     prepareEnvironment
 }
 

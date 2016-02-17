@@ -23,14 +23,14 @@ public class SqoopJettyConstants {
 
   /**
    * All audit logger related configuration is prefixed with this:
-   * <tt>org.apache.sqoop.jetty.</tt>
+   * <tt>org.apache.sqoop-server.jetty.</tt>
    */
   public static final String PREFIX_JETTY_CONFIG =
           ConfigurationConstants.PREFIX_GLOBAL_CONFIG + "jetty.";
 
   /**
    * Max number of worker in thread pool to be used, specified by:
-   * <tt>org.apache.sqoop.jetty.thread.pool.worker.max</tt>
+   * <tt>org.apache.sqoop-server.jetty.thread.pool.worker.max</tt>
    */
   public static final String SYSCFG_JETTY_THREAD_POOL_MAX_WORKER = PREFIX_JETTY_CONFIG
           + "thread.pool.worker.max";
@@ -39,7 +39,7 @@ public class SqoopJettyConstants {
 
   /**
    * Min number of worker in thread pool to be used, specified by:
-   * <tt>org.apache.sqoop.jetty.thread.pool.worker.min</tt>
+   * <tt>org.apache.sqoop-server.jetty.thread.pool.worker.min</tt>
    */
   public static final String SYSCFG_JETTY_THREAD_POOL_MIN_WORKER = PREFIX_JETTY_CONFIG
           + "thread.pool.worker.min";
@@ -48,7 +48,7 @@ public class SqoopJettyConstants {
 
   /**
    * Alive time of Worker in thread pool to be used, specified by:
-   * <tt>org.apache.sqoop.jetty.thread.pool.worker.alive.time</tt>
+   * <tt>org.apache.sqoop-server.jetty.thread.pool.worker.alive.time</tt>
    */
   public static final String SYSCFG_JETTY_THREAD_POOL_WORKER_ALIVE_TIME = PREFIX_JETTY_CONFIG
           + "thread.pool.worker.alive.time";
@@ -57,7 +57,7 @@ public class SqoopJettyConstants {
 
   /**
    * The Port number for Jetty server:
-   * <tt>org.apache.sqoop.jetty.port</tt>
+   * <tt>org.apache.sqoop-server.jetty.port</tt>
    */
   public static final String SYSCFG_JETTY_PORT = PREFIX_JETTY_CONFIG + "port";
 
