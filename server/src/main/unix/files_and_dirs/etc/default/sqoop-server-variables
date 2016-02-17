@@ -53,5 +53,5 @@ if [ -d $LOCKDIR/subsys ]; then # It's most likely a CentOS
 	LOCKDIR=$LOCKDIR/subsys
 fi
 LOCKFILE=$LOCKDIR/$NAME
-DAEMON=$SqoopServer_HOME/bin/sqoop-server.sh
+DAEMON=$SqoopServer_HOME/bin/server
 DAEMON_OPTS=
