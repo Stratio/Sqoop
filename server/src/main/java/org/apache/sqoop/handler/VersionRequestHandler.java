@@ -45,7 +45,7 @@ public class VersionRequestHandler implements RequestHandler {
   private final VersionBean versionBean;
 
   public VersionRequestHandler() {
-    // this will hold all the possible API versions supported by sqoop
+    // this will hold all the possible API versions supported by sqoop-server
     String[] apiVersions = { CURRENT_REST_API_VERSION };
     versionBean = new VersionBean(VersionInfo.getBuildVersion(),
         VersionInfo.getSourceRevision(), VersionInfo.getBuildDate(),
