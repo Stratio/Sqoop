@@ -42,7 +42,7 @@ export MAX_MAP_COUNT=262144
 ############################ SERVICE VARIABLES ############################
 SCRIPTNAME=/etc/init.d/$NAME
 # Run Sqoop Server as this user ID and group ID
-USER=sqoop-server
+USER=stratio
 GROUP=stratio
 
 # Define other required variables
