@@ -25,13 +25,13 @@ import org.apache.sqoop.server.RequestHandler;
 import org.apache.sqoop.server.SqoopProtocolServlet;
 
 /**
- * Displays a given configurable registered in sqoop-server
+ * Displays a given configurable registered in sqoop
  * GET v1/configurable/connector/{cname}
  *  Return a registered connector with  given name
  * GET v1/configurable/connector/{cid}
  *  Return a registered connector with given id
  * GET v1/configurable/driver
- *  Return the only driver registered in sqoop-server
+ *  Return the only driver registered in sqoop
  */
 @SuppressWarnings("serial")
 public class ConfigurableServlet extends SqoopProtocolServlet {

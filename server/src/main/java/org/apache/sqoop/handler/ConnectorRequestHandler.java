@@ -67,7 +67,7 @@ public class ConnectorRequestHandler implements RequestHandler {
 
     } else {
       // NOTE: we now support using unique name as well as the connector id
-      // NOTE: connectorId is a fallback for older sqoop-server clients if any, since we want to primarily use unique conenctorNames
+      // NOTE: connectorId is a fallback for older sqoop clients if any, since we want to primarily use unique conenctorNames
       MConnector mConnector = HandlerUtils.getConnectorFromConnectorName(cIdentifier);
 
       configParamBundles = new HashMap<>();

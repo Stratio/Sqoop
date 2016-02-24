@@ -24,7 +24,7 @@ import org.apache.sqoop.server.RequestHandler;
 import org.apache.sqoop.server.SqoopProtocolServlet;
 
 /**
- * Display job submissions in the sqoop-server system
+ * Display job submissions in the sqoop system
  *
  * GET /v1/submissions
  * Get all submissions in the system

@@ -102,7 +102,7 @@ public class SqoopJettyServer {
 
   private static ServletContextHandler createServletContextHandler() {
     ServletContextHandler context = new ServletContextHandler();
-    context.setContextPath("/sqoop-server");
+    context.setContextPath("/sqoop");
     context.addServlet(AuthorizationServlet.class, "/v1/authorization/*");
     context.addServlet(ConfigurableServlet.class, "/v1/configurable/*");
     context.addServlet(ConnectorServlet.class, "/v1/connector/*");
