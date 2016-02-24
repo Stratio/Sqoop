@@ -1,32 +1,47 @@
 #!/bin/bash
 
 ### BEGIN INIT INFO
-# Provides: sqoop
+# Provides: stratio-sqoop-server
 # Required-Start: $remote_fs
 # Required-Stop: $remote_fs
 # Should-Stop: $all
 # Default-Start: 2 3 4 5
 # Default-Stop: 0 1 6
-# Short-Description: Sqoop
-# Description: Description for sqoop
+# Short-Description: Sqoop server
+# Description: Description for stratio-sqoop-server-server
 ### END INIT INFO
-# Developed by eruiz@stratio.com and aargomaniz@stratio.com
-# Version: 0.1 2015
+# Developed by pmadrid@stratio.com
+# Broken by alvaro@stratio.com
+# Version: 0.1 2014
 # When I learn scripting a bit better, I'll try to improve this one...
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INIT_HOME=`cd "${DIR}/.." >/dev/null; pwd`
 
-NAME="sqoop"
-DESC="Description for sqoop"
-BASEDIR=/opt/sds/sqoop
-CONFDIR=/etc/sds/sqoop
-LOGFILE=/var/log/sds/sqoop/sqoop.log
-RUNFILE=$BASEDIR/bin/sqoop
-pidDir=/var/run/sds/sqoop
-serviceUser=stratio
-serviceGroup=stratio
-PIDFileName=sqoop
+DEFAULT="/etc/default/sqoop-server"
+VARIABLES="/etc/default/sqoop-server-variables"
+FUNCTIONS="/etc/default/sqoop-server-functions"
+
+# Read default configuration variable file if it is present
+[ -r $DEFAULT ] && . $DEFAULT
+
+# Source default configuration
+if [ -r $VARIABLES ]; then
+    . $VARIABLES
+fi
+
+
+
+NAME="stratio-sqoop-server"
+DESC="Description for stratio-sqoop-server"
+BASEDIR=$SQOOP_HOME
+CONFDIR=$SQOOP_CONF
+LOGFILE=$SQOOP_LOGS/sqoop-server.log
+RUNFILE=$BASEDIR/bin/server
+pidDir=/var/run/sds
+serviceUser=$USER
+serviceGroup=$GROUP
+PIDFileName=sqoop-server
 
 # If JAVA_HOME has not been set, try to determine it.ner
 JVM_SEARCH_DIRS="/usr/java/default /usr/java/latest /opt/java"
@@ -134,10 +149,10 @@ function stopService {
 
 function checkServiceStatus {
 	echo "Checking for ${NAME}: "
-	if [ ! -f "${CONFDIR}/connector-application.conf" ]; then
+	if [ ! -f "${CONFDIR}/sqoop.properties" ]; then
 		echo "Error: Configuration file not found!"
 		return 1
-	fi
+	fi	
 	if getServicePid; then
 		local servicePid="$(<$pidFile)"
 		echo "$DESC seems to be running (pid $servicePid)"

@@ -1,3 +1,3 @@
-/etc/default/sqoop
-/etc/sds/sqoop/spark-defaults.conf
-/etc/sds/sqoop/sqoop.properties
+/etc/default/sqoop-server-variables
+/etc/sds/sqoop-server/spark-defaults.conf
+/etc/sds/sqoop-server/sqoop.properties

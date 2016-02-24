@@ -6,14 +6,17 @@ set -e
 #DEB
 
 GROUP='stratio'
-USER='stratio'
+USER='sqoop'
 DIR_INSTALL='/opt/sds/sqoop-server'
-DIR_CONF='/opt/sds/sqoop-server/config'
+DIR_CONF='/etc/sds/sqoop-server'
 DIR_LOG='/var/log/sds/sqoop-server'
-DIR_RUN='/opt/sds/sqoop-server/bin'
+DIR_RUN='/var/run/sds'
 
+    chmod 755 /etc/init.d/sqoop-server
     chmod 755 /opt/sds/sqoop-server/bin
-    chmod 755 /opt/sds/sqoop-server/bin/*
+#    chmod 755 /opt/sds/sqoop-server.sh-server/bin/*
+     chmod +x /opt/sds/sqoop-server/bin/server
+
 
 case "$1" in
   configure)
@@ -40,9 +43,13 @@ case "$1" in
   chown -R ${USER}:${GROUP} $DIR_CONF
   chown -R ${USER}:${GROUP} $DIR_LOG
   chmod -R 775 $DIR_INSTALL
-  chmod 775 $DIR_LOG
+  chmod -R 775 $DIR_LOG
 
   chown -R ${USER}:${GROUP} $DIR_RUN
 
+#  sed -i 's!"$BASEDIR"/:/etc/sds/sqoop-server/config!/etc/sds/sqoop-server!g' /opt/sds/sqoop-server/bin/server
+
+  update-rc.d sqoop-server defaults
+  ;;
 esac
 exit 0

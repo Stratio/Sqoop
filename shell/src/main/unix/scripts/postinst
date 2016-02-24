@@ -4,4 +4,8 @@
 
 set -e
 
+GROUP='stratio'
+USER='sqoop'
+DIR_INSTALL='/opt/sds/sqoop-shell'
 chmod 0755 /opt/sds/sqoop-shell/bin/*
+chown -R $USER:$GROUP $DIR_INSTALL
