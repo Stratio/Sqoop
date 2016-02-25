@@ -38,6 +38,7 @@ case "$1" in
     mkdir $DIR_LOG
   fi
 
+  chown root:root /etc/init.d/sqoop-server
 
   chown -R ${USER}:${GROUP} $DIR_INSTALL
   chown -R ${USER}:${GROUP} $DIR_CONF
@@ -46,6 +47,8 @@ case "$1" in
   chmod -R 775 $DIR_LOG
 
   chown -R ${USER}:${GROUP} $DIR_RUN
+  chown -R ${USER}:${GROUP} /opt/sds/.m2
+
 
 #  sed -i 's!"$BASEDIR"/:/etc/sds/sqoop-server/config!/etc/sds/sqoop-server!g' /opt/sds/sqoop-server/bin/server
 

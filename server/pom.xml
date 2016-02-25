@@ -271,6 +271,18 @@ limitations under the License.
                                 <dir>/usr</dir>
                                 <dir>/bin</dir>
                             </excludeDirectoryAttributes>
+                            <defaults>
+                                <directoryAttributes>
+                                    <user>sqoop</user>
+                                    <group>stratio</group>
+                                    <mode>0750</mode>
+                                </directoryAttributes>
+                                <fileAttributes>
+                                    <user>sqoop</user>
+                                    <group>stratio</group>
+                                    <mode>0644</mode>
+                                </fileAttributes>
+                            </defaults>
                             <assembly>
                                 <copyFile>
                                     <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -320,6 +332,10 @@ limitations under the License.
                                 <copyDirectory>
                                     <from>target/appassembler/config/</from>
                                     <to>/etc/sds/sqoop-server/</to>
+                                    <directoryAttributes>
+                                        <user>sqoop</user>
+                                        <group>stratio</group>
+                                    </directoryAttributes>
                                 </copyDirectory>
                                 <copyFile>
                                     <path>target/sqoop-server-${project.version}.jar</path>
@@ -335,14 +351,6 @@ limitations under the License.
                                     </attributes>
                                 </copyFile>
                             </assembly>
-                            <defaults>
-                                <directoryAttributes>
-                                    <mode>0775</mode>
-                                </directoryAttributes>
-                                <fileAttributes>
-                                    <mode>0644</mode>
-                                </fileAttributes>
-                            </defaults>
                         </configuration>
                         <executions>
                             <execution>
