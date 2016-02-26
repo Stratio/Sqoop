@@ -4,4 +4,32 @@
 
 set -e
 
-chmod 0755 /opt/sds/sqoop-shell/bin/*
+GROUP='stratio'
+USER='sqoop'
+DIR_INSTALL='/opt/sds/sqoop-shell'
+DIR_CONF='/etc/sds/sqoop-shell'
+
+
+case "$1" in
+  configure)
+
+  # Add stratio group if it doesn't already exists
+  if ! getent group $GROUP >/dev/null 2>&1; then
+    groupadd ${GROUP}
+  fi
+
+  # Add stratio user if it doesn't already exists
+  if ! getent passwd $USER >/dev/null 2>&1; then
+    [ -d /opt ] || mkdir /opt
+    useradd -M -d /opt/sds -g ${GROUP} -s /bin/bash ${USER}
+  else
+    usermod -G $GROUP $USER
+  fi
+
+  chmod 0755 $DIR_INSTALL/bin/*
+  chown -R $USER:$GROUP $DIR_INSTALL
+  chown -R ${USER}:${GROUP} $DIR_CONF
+
+
+  ;;
+esac

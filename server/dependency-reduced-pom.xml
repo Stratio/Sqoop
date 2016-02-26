@@ -3,7 +3,7 @@
   <parent>
     <artifactId>sqoop</artifactId>
     <groupId>com.stratio.sqoop</groupId>
-    <version>0.1.0-RC1</version>
+    <version>0.1.0-RC2-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.sqoop</groupId>
@@ -32,7 +32,7 @@
                   <copyConfigurationDirectory>true</copyConfigurationDirectory>
                   <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                   <assembleDirectory>target/appassembler</assembleDirectory>
-                  <extraJvmArguments>-Dsqoop.config.dir=config</extraJvmArguments>
+                  <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
                   <programs>
                     <program>
                       <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
@@ -50,7 +50,7 @@
               <copyConfigurationDirectory>true</copyConfigurationDirectory>
               <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
               <assembleDirectory>target/appassembler</assembleDirectory>
-              <extraJvmArguments>-Dsqoop.config.dir=config</extraJvmArguments>
+              <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
               <programs>
                 <program>
                   <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
@@ -112,6 +112,61 @@
                 </goals>
                 <configuration>
                   <architecture>all</architecture>
+                  <assembly>
+                    <copyFile>
+                      <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-deb.sh</path>
+                      <toFile>/etc/init.d/sqoop</toFile>
+                      <attributes>
+                        <user>root</user>
+                        <group>root</group>
+                        <mode>644</mode>
+                      </attributes>
+                    </copyFile>
+                    <mkdirs>
+                      <path>/opt/sds/sqoop-server</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <mkdirs>
+                      <path>/var/run/sds</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <mkdirs>
+                      <path>/var/log/sds/sqoop-server</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <mkdirs>
+                      <path>/opt/sds/.m2</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <copyDirectory>
+                      <from>target/appassembler/bin</from>
+                      <to>/opt/sds/sqoop-server/bin</to>
+                    </copyDirectory>
+                    <copyDirectory>
+                      <from>target/appassembler/repo</from>
+                      <to>/opt/sds/sqoop-server/repo</to>
+                    </copyDirectory>
+                    <copyDirectory>
+                      <from>target/appassembler/config/</from>
+                      <to>/etc/sds/sqoop-server/</to>
+                      <directoryAttributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </directoryAttributes>
+                    </copyDirectory>
+                  </assembly>
                   <outputFileName>stratio-sqoop-server</outputFileName>
                   <contact>Stratio Sqoop&lt;sqoop@stratio.com&gt;</contact>
                   <contactEmail>sqoop@stratio.com</contactEmail>
@@ -132,50 +187,15 @@
                     <dir>/usr</dir>
                     <dir>/bin</dir>
                   </excludeDirectoryAttributes>
-                  <assembly>
-                    <mkdirs>
-                      <path>/opt/sds/sqoop-server</path>
-                      <attributes>
-                        <user>stratio</user>
-                        <group>stratio</group>
-                      </attributes>
-                    </mkdirs>
-                    <mkdirs>
-                      <path>/var/run/sds</path>
-                      <attributes>
-                        <user>stratio</user>
-                        <group>stratio</group>
-                      </attributes>
-                    </mkdirs>
-                    <mkdirs>
-                      <path>/var/log/sds/sqoop-server</path>
-                      <attributes>
-                        <user>stratio</user>
-                        <group>stratio</group>
-                      </attributes>
-                    </mkdirs>
-                    <copyDirectory>
-                      <from>target/appassembler/bin</from>
-                      <to>/opt/sds/sqoop-server/bin</to>
-                    </copyDirectory>
-                    <copyDirectory>
-                      <from>target/appassembler/repo</from>
-                      <to>/opt/sds/sqoop-server/repo</to>
-                    </copyDirectory>
-                    <copyDirectory>
-                      <from>target/appassembler/config/</from>
-                      <to>/opt/sds/sqoop-server/config</to>
-                    </copyDirectory>
-                    <copyFile>
-                      <path>target/sqoop-server-0.1.0-RC1.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-RC1.jar</toFile>
-                    </copyFile>
-                  </assembly>
                   <defaults>
                     <directoryAttributes>
-                      <mode>0775</mode>
+                      <user>sqoop</user>
+                      <group>stratio</group>
+                      <mode>0750</mode>
                     </directoryAttributes>
                     <fileAttributes>
+                      <user>sqoop</user>
+                      <group>stratio</group>
                       <mode>0644</mode>
                     </fileAttributes>
                   </defaults>
@@ -189,6 +209,61 @@
                 </goals>
                 <configuration>
                   <architecture>noarch</architecture>
+                  <assembly>
+                    <copyFile>
+                      <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-rpm.sh</path>
+                      <toFile>/etc/init.d/sqoop</toFile>
+                      <attributes>
+                        <user>root</user>
+                        <group>root</group>
+                        <mode>644</mode>
+                      </attributes>
+                    </copyFile>
+                    <mkdirs>
+                      <path>/opt/sds/sqoop-server</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <mkdirs>
+                      <path>/var/run/sds</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <mkdirs>
+                      <path>/var/log/sds/sqoop-server</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <mkdirs>
+                      <path>/opt/sds/.m2</path>
+                      <attributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </attributes>
+                    </mkdirs>
+                    <copyDirectory>
+                      <from>target/appassembler/bin</from>
+                      <to>/opt/sds/sqoop-server/bin</to>
+                    </copyDirectory>
+                    <copyDirectory>
+                      <from>target/appassembler/repo</from>
+                      <to>/opt/sds/sqoop-server/repo</to>
+                    </copyDirectory>
+                    <copyDirectory>
+                      <from>target/appassembler/config/</from>
+                      <to>/etc/sds/sqoop-server/</to>
+                      <directoryAttributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </directoryAttributes>
+                    </copyDirectory>
+                  </assembly>
                   <outputFileName>stratio-sqoop-server</outputFileName>
                   <contact>Stratio Sqoop&lt;sqoop@stratio.com&gt;</contact>
                   <contactEmail>sqoop@stratio.com</contactEmail>
@@ -209,50 +284,15 @@
                     <dir>/usr</dir>
                     <dir>/bin</dir>
                   </excludeDirectoryAttributes>
-                  <assembly>
-                    <mkdirs>
-                      <path>/opt/sds/sqoop-server</path>
-                      <attributes>
-                        <user>stratio</user>
-                        <group>stratio</group>
-                      </attributes>
-                    </mkdirs>
-                    <mkdirs>
-                      <path>/var/run/sds</path>
-                      <attributes>
-                        <user>stratio</user>
-                        <group>stratio</group>
-                      </attributes>
-                    </mkdirs>
-                    <mkdirs>
-                      <path>/var/log/sds/sqoop-server</path>
-                      <attributes>
-                        <user>stratio</user>
-                        <group>stratio</group>
-                      </attributes>
-                    </mkdirs>
-                    <copyDirectory>
-                      <from>target/appassembler/bin</from>
-                      <to>/opt/sds/sqoop-server/bin</to>
-                    </copyDirectory>
-                    <copyDirectory>
-                      <from>target/appassembler/repo</from>
-                      <to>/opt/sds/sqoop-server/repo</to>
-                    </copyDirectory>
-                    <copyDirectory>
-                      <from>target/appassembler/config/</from>
-                      <to>/opt/sds/sqoop-server/config</to>
-                    </copyDirectory>
-                    <copyFile>
-                      <path>target/sqoop-server-0.1.0-RC1.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-RC1.jar</toFile>
-                    </copyFile>
-                  </assembly>
                   <defaults>
                     <directoryAttributes>
-                      <mode>0775</mode>
+                      <user>sqoop</user>
+                      <group>stratio</group>
+                      <mode>0750</mode>
                     </directoryAttributes>
                     <fileAttributes>
+                      <user>sqoop</user>
+                      <group>stratio</group>
                       <mode>0644</mode>
                     </fileAttributes>
                   </defaults>
@@ -281,25 +321,53 @@
                 <dir>/usr</dir>
                 <dir>/bin</dir>
               </excludeDirectoryAttributes>
+              <defaults>
+                <directoryAttributes>
+                  <user>sqoop</user>
+                  <group>stratio</group>
+                  <mode>0750</mode>
+                </directoryAttributes>
+                <fileAttributes>
+                  <user>sqoop</user>
+                  <group>stratio</group>
+                  <mode>0644</mode>
+                </fileAttributes>
+              </defaults>
               <assembly>
+                <copyFile>
+                  <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
+                  <toFile>/etc/init.d/sqoop-server</toFile>
+                  <attributes>
+                    <user>root</user>
+                    <group>root</group>
+                    <mode>755</mode>
+                  </attributes>
+                </copyFile>
                 <mkdirs>
                   <path>/opt/sds/sqoop-server</path>
                   <attributes>
-                    <user>stratio</user>
+                    <user>sqoop</user>
                     <group>stratio</group>
                   </attributes>
                 </mkdirs>
                 <mkdirs>
                   <path>/var/run/sds</path>
                   <attributes>
-                    <user>stratio</user>
+                    <user>sqoop</user>
                     <group>stratio</group>
                   </attributes>
                 </mkdirs>
                 <mkdirs>
                   <path>/var/log/sds/sqoop-server</path>
                   <attributes>
-                    <user>stratio</user>
+                    <user>sqoop</user>
+                    <group>stratio</group>
+                  </attributes>
+                </mkdirs>
+                <mkdirs>
+                  <path>/opt/sds/.m2</path>
+                  <attributes>
+                    <user>sqoop</user>
                     <group>stratio</group>
                   </attributes>
                 </mkdirs>
@@ -313,21 +381,26 @@
                 </copyDirectory>
                 <copyDirectory>
                   <from>target/appassembler/config/</from>
-                  <to>/opt/sds/sqoop-server/config</to>
+                  <to>/etc/sds/sqoop-server/</to>
+                  <directoryAttributes>
+                    <user>sqoop</user>
+                    <group>stratio</group>
+                  </directoryAttributes>
                 </copyDirectory>
                 <copyFile>
-                  <path>target/sqoop-server-0.1.0-RC1.jar</path>
-                  <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-RC1.jar</toFile>
+                  <path>target/sqoop-server-0.1.0-RC2-SNAPSHOT.jar</path>
+                  <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.1.0-RC2-SNAPSHOT.jar</toFile>
+                </copyFile>
+                <copyFile>
+                  <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-variables</path>
+                  <toFile>/etc/default/sqoop-server-variables</toFile>
+                  <attributes>
+                    <user>root</user>
+                    <group>root</group>
+                    <mode>755</mode>
+                  </attributes>
                 </copyFile>
               </assembly>
-              <defaults>
-                <directoryAttributes>
-                  <mode>0775</mode>
-                </directoryAttributes>
-                <fileAttributes>
-                  <mode>0644</mode>
-                </fileAttributes>
-              </defaults>
             </configuration>
           </plugin>
         </plugins>
