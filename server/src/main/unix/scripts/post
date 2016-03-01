@@ -24,6 +24,10 @@ else
 usermod -G $GROUP $USER
 fi
 
+
+    chmod 755 /opt/sds/sqoop-server/bin/*
+    chmod +x /etc/init.d/sqoop*
+
 if [ ! -d "$DIR_LOG" ]; then
 mkdir $DIR_LOG
 fi

@@ -132,6 +132,18 @@
                     <dir>/usr</dir>
                     <dir>/bin</dir>
                   </excludeDirectoryAttributes>
+                  <defaults>
+                    <directoryAttributes>
+                      <user>sqoop</user>
+                      <group>stratio</group>
+                      <mode>0750</mode>
+                    </directoryAttributes>
+                    <fileAttributes>
+                      <user>sqoop</user>
+                      <group>stratio</group>
+                      <mode>0644</mode>
+                    </fileAttributes>
+                  </defaults>
                   <assembly>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -181,6 +193,13 @@
                     <copyDirectory>
                       <from>target/appassembler/config/</from>
                       <to>/etc/sds/sqoop-server/</to>
+<<<<<<< HEAD
+=======
+                      <directoryAttributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </directoryAttributes>
+>>>>>>> Commented_test_module
                     </copyDirectory>
                     <copyFile>
                       <path>target/sqoop-server-0.1.0-RC2-SNAPSHOT.jar</path>
@@ -196,14 +215,6 @@
                       </attributes>
                     </copyFile>
                   </assembly>
-                  <defaults>
-                    <directoryAttributes>
-                      <mode>0775</mode>
-                    </directoryAttributes>
-                    <fileAttributes>
-                      <mode>0644</mode>
-                    </fileAttributes>
-                  </defaults>
                 </configuration>
               </execution>
               <execution>
@@ -234,6 +245,18 @@
                     <dir>/usr</dir>
                     <dir>/bin</dir>
                   </excludeDirectoryAttributes>
+                  <defaults>
+                    <directoryAttributes>
+                      <user>sqoop</user>
+                      <group>stratio</group>
+                      <mode>0750</mode>
+                    </directoryAttributes>
+                    <fileAttributes>
+                      <user>sqoop</user>
+                      <group>stratio</group>
+                      <mode>0644</mode>
+                    </fileAttributes>
+                  </defaults>
                   <assembly>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -283,6 +306,13 @@
                     <copyDirectory>
                       <from>target/appassembler/config/</from>
                       <to>/etc/sds/sqoop-server/</to>
+<<<<<<< HEAD
+=======
+                      <directoryAttributes>
+                        <user>sqoop</user>
+                        <group>stratio</group>
+                      </directoryAttributes>
+>>>>>>> Commented_test_module
                     </copyDirectory>
                     <copyFile>
                       <path>target/sqoop-server-0.1.0-RC2-SNAPSHOT.jar</path>
@@ -298,14 +328,6 @@
                       </attributes>
                     </copyFile>
                   </assembly>
-                  <defaults>
-                    <directoryAttributes>
-                      <mode>0775</mode>
-                    </directoryAttributes>
-                    <fileAttributes>
-                      <mode>0644</mode>
-                    </fileAttributes>
-                  </defaults>
                 </configuration>
               </execution>
             </executions>
@@ -331,6 +353,18 @@
                 <dir>/usr</dir>
                 <dir>/bin</dir>
               </excludeDirectoryAttributes>
+              <defaults>
+                <directoryAttributes>
+                  <user>sqoop</user>
+                  <group>stratio</group>
+                  <mode>0750</mode>
+                </directoryAttributes>
+                <fileAttributes>
+                  <user>sqoop</user>
+                  <group>stratio</group>
+                  <mode>0644</mode>
+                </fileAttributes>
+              </defaults>
               <assembly>
                 <copyFile>
                   <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -380,6 +414,13 @@
                 <copyDirectory>
                   <from>target/appassembler/config/</from>
                   <to>/etc/sds/sqoop-server/</to>
+<<<<<<< HEAD
+=======
+                  <directoryAttributes>
+                    <user>sqoop</user>
+                    <group>stratio</group>
+                  </directoryAttributes>
+>>>>>>> Commented_test_module
                 </copyDirectory>
                 <copyFile>
                   <path>target/sqoop-server-0.1.0-RC2-SNAPSHOT.jar</path>
@@ -395,14 +436,6 @@
                   </attributes>
                 </copyFile>
               </assembly>
-              <defaults>
-                <directoryAttributes>
-                  <mode>0775</mode>
-                </directoryAttributes>
-                <fileAttributes>
-                  <mode>0644</mode>
-                </fileAttributes>
-              </defaults>
             </configuration>
           </plugin>
         </plugins>
