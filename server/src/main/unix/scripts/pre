@@ -5,7 +5,12 @@
 set -e
 
 GROUP='stratio'
-USER='stratio'
+USER='sqoop'
+
+
+if [ "$1" = "2" ]; then
+   service sqoop-server stop
+fi
 
 # Add stratio group if it doesn't already exists
 if ! getent group $GROUP >/dev/null 2>&1; then
