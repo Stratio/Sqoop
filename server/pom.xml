@@ -284,15 +284,6 @@ limitations under the License.
                                 </fileAttributes>
                             </defaults>
                             <assembly>
-                                <copyFile>
-                                    <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
-                                    <toFile>/etc/init.d/sqoop-server</toFile>
-                                    <attributes>
-                                        <user>root</user>
-                                        <group>root</group>
-                                        <mode>755</mode>
-                                    </attributes>
-                                </copyFile>
                                 <mkdirs>
                                     <path>/opt/sds/sqoop-server</path>
                                     <attributes>
@@ -341,15 +332,6 @@ limitations under the License.
                                     <path>target/sqoop-server-${project.version}.jar</path>
                                     <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
                                 </copyFile>
-                                <copyFile>
-                                    <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-variables</path>
-                                    <toFile>/etc/default/sqoop-server-variables</toFile>
-                                    <attributes>
-                                        <user>root</user>
-                                        <group>root</group>
-                                        <mode>755</mode>
-                                    </attributes>
-                                </copyFile>
                             </assembly>
                         </configuration>
                         <executions>
@@ -361,17 +343,26 @@ limitations under the License.
                                 </goals>
                                 <configuration>
                                     <architecture>all</architecture>
-                                    <!--<assembly>
+                                    <assembly>
                                         <copyFile>
-                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-deb.sh</path>
-                                            <toFile>/etc/init.d/sqoop</toFile>
+                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
+                                            <toFile>/etc/init.d/sqoop-server</toFile>
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>644</mode>
+                                                <mode>755</mode>
                                             </attributes>
                                         </copyFile>
-                                    </assembly>-->
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-variables</path>
+                                            <toFile>/etc/default/sqoop-server-variables</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
+                                    </assembly>
                                 </configuration>
                             </execution>
                             <execution>
@@ -382,17 +373,26 @@ limitations under the License.
                                 </goals>
                                 <configuration>
                                     <architecture>noarch</architecture>
-                                    <!--<assembly>
-                                        <copyFile>d
-                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-rpm.sh</path>
-                                            <toFile>/etc/init.d/sqoop</toFile>
+                                    <assembly>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
+                                            <toFile>/etc/init.d/sqoop-server</toFile>
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>644</mode>
+                                                <mode>755</mode>
                                             </attributes>
                                         </copyFile>
-                                    </assembly>-->
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-variables</path>
+                                            <toFile>/etc/default/sqoop-server-variables</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
+                                    </assembly>
                                 </configuration>
                             </execution>
                         </executions>
