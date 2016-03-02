@@ -1,7 +1,7 @@
 export SQOOP_HOME=/opt/sds/sqoop-server
 export SQOOP_CONF=/etc/sds/sqoop-server
 export SQOOP_LOGS=/var/log/sds/sqoop-server
-export SQOOP_OPTS="-Xms2048m -Xmx2048m -Dcom.sun.management.jmxremote.port=7195 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
+export SQOOP_OPTS="-Xms2048m -Xmx2048m -Dcom.sun.management.jmxremote.port=7196 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
 
 export USER=sqoop
 export GROUP=stratio
