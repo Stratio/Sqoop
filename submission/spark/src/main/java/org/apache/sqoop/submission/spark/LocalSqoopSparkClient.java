@@ -57,7 +57,7 @@ public class LocalSqoopSparkClient extends SqoopSparkClientManager {
     }
 
     public void stop(String jobId) throws Exception {
-        context.stop();
+        context.cancelJobGroup(jobId);
         client = null;
     }
 
