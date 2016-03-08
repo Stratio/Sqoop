@@ -63,8 +63,6 @@ public class SparkSubmissionEngine extends SubmissionEngine {
         LOG.info("Initializing Spark Submission Engine");
 
         sqoopConf = new SqoopConf();
-        //TODO: Load configured spark configuration directory
-        //TODO: Create spark client, for now a local one
         try {
 
             sqoopConf.add(Constants.SPARK_UI_ENABLED, "true");
@@ -182,12 +180,16 @@ public class SparkSubmissionEngine extends SubmissionEngine {
             SubmissionStatus newStatus = convertSparkState(sparkClient.getSparkContext().statusTracker()
                     .getJobInfo(sparkClient.getSparkContext().sc().jobProgressListener().jobIdToData().size() - 1)
                     .status());
+            sparkClient.getSparkContext().statusTracker().getJobInfo(sparkClient.getSparkContext().sc()
+                    .jobProgressListener().jobIdToData().size() - 1);
+            //TODO: Review how to use spark counters to show status. http://localhost:4040/metrics/json/counters
             if (newStatus.isRunning()) {
                 progress = (Double.valueOf(sqoopConf.get("mapTime")) + Double.valueOf(sqoopConf.get
                         ("reduceTime"))) / 2;
             }
             //            else {
-            //                counters = counters(sparkClient.getSparkContext().sc().jobProgressListener().);
+            //    progress = (Double) sparkClient.getSparkContext().sc().jobProgressListener().completedJobs().last()
+            //            .completionTime().get();
             //            }
             submission.setStatus(newStatus);
             //            submission.setCounters(counters);
