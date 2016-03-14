@@ -18,13 +18,14 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 /**
  * Contains a list of Oracle columns.
  */
 public class OracleTableColumns extends
-    OracleGenerics.ObjectList<OracleTableColumn> {
+    OracleGenerics.ObjectList<OracleTableColumn> implements Serializable {
 
   public OracleTableColumn findColumnByName(String columnName) {
 

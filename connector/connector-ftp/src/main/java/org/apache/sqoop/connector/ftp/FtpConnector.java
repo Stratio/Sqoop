@@ -27,6 +27,7 @@ import org.apache.sqoop.connector.spi.SqoopConnector;
 import org.apache.sqoop.job.etl.From;
 import org.apache.sqoop.job.etl.To;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -36,7 +37,7 @@ import java.util.ResourceBundle;
  * Implementation of a Sqoop 2 connector to support data movement to/from an
  * FTP server.
  */
-public class FtpConnector extends SqoopConnector {
+public class FtpConnector extends SqoopConnector implements Serializable {
 
   /**
    * Define the TO instance.

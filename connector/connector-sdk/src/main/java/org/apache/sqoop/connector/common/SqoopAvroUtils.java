@@ -27,6 +27,7 @@ import org.apache.sqoop.schema.type.Column;
 import org.apache.sqoop.schema.type.FixedPoint;
 import org.apache.sqoop.schema.type.FloatingPoint;
 
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ import java.util.Set;
 
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
-public class SqoopAvroUtils {
+public class SqoopAvroUtils implements Serializable {
 
   public static final String COLUMN_TYPE = "columnType";
   public static final String SQOOP_SCHEMA_NAMESPACE = "org.apache.sqoop";

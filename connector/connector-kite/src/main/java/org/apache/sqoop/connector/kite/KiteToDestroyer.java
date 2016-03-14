@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.kite;
 
+import java.io.Serializable;
+
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.log4j.Logger;
@@ -37,7 +39,7 @@ import org.kitesdk.data.Datasets;
  * In case of errors, they will be removed physically.
  */
 public class KiteToDestroyer extends Destroyer<LinkConfiguration,
-    ToJobConfiguration> {
+    ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(KiteToDestroyer.class);
 

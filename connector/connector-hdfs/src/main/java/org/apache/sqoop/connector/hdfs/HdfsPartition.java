@@ -21,6 +21,7 @@ package org.apache.sqoop.connector.hdfs;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.sqoop.job.etl.Partition;
@@ -29,7 +30,7 @@ import org.apache.sqoop.job.etl.Partition;
  * This class derives mostly from CombineFileSplit of Hadoop, i.e.
  * org.apache.hadoop.mapreduce.lib.input.CombineFileSplit.
  */
-public class HdfsPartition extends Partition {
+public class HdfsPartition extends Partition implements Serializable {
 
   private long lenFiles;
   private int numFiles;

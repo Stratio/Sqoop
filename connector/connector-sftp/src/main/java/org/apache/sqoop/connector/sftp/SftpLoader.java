@@ -24,12 +24,13 @@ import org.apache.sqoop.etl.io.DataReader;
 import org.apache.sqoop.job.etl.Loader;
 import org.apache.sqoop.job.etl.LoaderContext;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Class to receive data from a From instance and load to a To instance.
  */
-public class SftpLoader extends Loader<LinkConfiguration, ToJobConfiguration> {
+public class SftpLoader extends Loader<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   /**
    * Number of records written by last call to load() method.

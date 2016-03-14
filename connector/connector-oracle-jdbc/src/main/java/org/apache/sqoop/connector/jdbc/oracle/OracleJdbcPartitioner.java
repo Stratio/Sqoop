@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ import org.apache.sqoop.job.etl.Partitioner;
 import org.apache.sqoop.job.etl.PartitionerContext;
 
 public class OracleJdbcPartitioner extends
-    Partitioner<LinkConfiguration, FromJobConfiguration> {
+    Partitioner<LinkConfiguration, FromJobConfiguration> implements Serializable {
 
   private static final Logger LOG =
       Logger.getLogger(OracleJdbcPartitioner.class);

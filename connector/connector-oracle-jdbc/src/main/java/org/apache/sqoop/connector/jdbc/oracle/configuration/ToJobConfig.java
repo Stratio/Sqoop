@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle.configuration;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.sqoop.connector.jdbc.oracle.util.OracleUtilities;
@@ -29,7 +30,7 @@ import org.apache.sqoop.validation.validators.NotEmpty;
  *
  */
 @ConfigClass
-public class ToJobConfig {
+public class ToJobConfig implements Serializable {
 
   @Input(size = 2000, validators = { @Validator(NotEmpty.class)})
   public String tableName;

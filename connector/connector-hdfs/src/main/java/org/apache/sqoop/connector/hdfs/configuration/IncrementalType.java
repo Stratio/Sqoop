@@ -17,7 +17,9 @@
  */
 package org.apache.sqoop.connector.hdfs.configuration;
 
-public enum IncrementalType {
+import java.io.Serializable;
+
+public enum IncrementalType implements Serializable {
   NONE,
   NEW_FILES
 }

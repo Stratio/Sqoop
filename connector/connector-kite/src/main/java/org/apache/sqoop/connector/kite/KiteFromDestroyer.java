@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.kite;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.connector.kite.configuration.FromJobConfiguration;
 import org.apache.sqoop.connector.kite.configuration.LinkConfiguration;
 import org.apache.sqoop.job.etl.Destroyer;
@@ -26,7 +28,7 @@ import org.apache.sqoop.job.etl.DestroyerContext;
  * This classes allows connector to define work to complete execution.
  */
 public class KiteFromDestroyer extends Destroyer<LinkConfiguration,
-    FromJobConfiguration> {
+    FromJobConfiguration> implements Serializable {
 
   @Override
   public void destroy(DestroyerContext context,

@@ -33,6 +33,7 @@ import org.apache.sqoop.etl.io.DataReader;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
@@ -41,7 +42,7 @@ import java.util.Properties;
  * uses the JSch library to provide the SFTP functionality. See
  * http://www.jcraft.com/jsch/.
  */
-public class SftpConnectorClient {
+public class SftpConnectorClient implements Serializable {
 
   /**
    * Java secure channel implementation supporting sftp functionality.

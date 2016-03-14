@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.sftp;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.connector.sftp.configuration.LinkConfiguration;
 import org.apache.sqoop.connector.sftp.configuration.ToJobConfiguration;
 import org.apache.sqoop.job.etl.Destroyer;
@@ -25,7 +27,7 @@ import org.apache.sqoop.job.etl.DestroyerContext;
 /**
  * Perform any clean up, etc. tasks when the Sqoop execution completes.
  */
-public class SftpToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> {
+public class SftpToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> implements Serializable {
   /**
    * Callback to clean up after job execution.
    *

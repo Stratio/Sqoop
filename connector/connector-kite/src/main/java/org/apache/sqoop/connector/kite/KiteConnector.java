@@ -28,6 +28,7 @@ import org.apache.sqoop.connector.spi.SqoopConnector;
 import org.apache.sqoop.job.etl.From;
 import org.apache.sqoop.job.etl.To;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -36,7 +37,7 @@ import java.util.ResourceBundle;
  * formats (CSV, Avro and Parquet). The power behind the scenes is
  * <a href="http://kitesdk.org/">Kite Library</a>.
  */
-public class KiteConnector extends SqoopConnector {
+public class KiteConnector extends SqoopConnector implements Serializable {
 
   private static final To TO = new To(
           KiteToInitializer.class,

@@ -29,6 +29,7 @@ import org.apache.sqoop.schema.type.FloatingPoint;
 import org.apache.sqoop.schema.type.Text;
 import org.apache.sqoop.schema.type.Unknown;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ import java.util.List;
  */
 @InterfaceAudience.Private
 @InterfaceStability.Unstable
-public class AvroDataTypeUtil {
+public class AvroDataTypeUtil implements Serializable {
 
   public static org.apache.sqoop.schema.Schema createSqoopSchema(
       Schema avroSchema) {

@@ -18,13 +18,15 @@
  */
 package org.apache.sqoop.connector.sftp;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.configurable.ConfigurableUpgradeUtil;
 import org.apache.sqoop.connector.spi.ConnectorConfigurableUpgrader;
 import org.apache.sqoop.model.MLinkConfig;
 import org.apache.sqoop.model.MToConfig;
 
 //NOTE: All config types have the similar upgrade path at this point
-public class SftpConnectorUpgrader extends ConnectorConfigurableUpgrader {
+public class SftpConnectorUpgrader extends ConnectorConfigurableUpgrader implements Serializable {
 
   /**
    * {@inheritDoc}

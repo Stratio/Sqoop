@@ -18,6 +18,7 @@
 
 package org.apache.sqoop.connector.hdfs;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -33,7 +34,7 @@ import org.apache.sqoop.error.code.HdfsConnectorError;
 import org.apache.sqoop.job.etl.From;
 import org.apache.sqoop.job.etl.To;
 
-public class HdfsConnector extends SqoopConnector {
+public class HdfsConnector extends SqoopConnector implements Serializable {
 
   private static final From FROM = new From(
           HdfsFromInitializer.class,

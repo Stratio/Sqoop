@@ -18,6 +18,7 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +27,7 @@ import java.util.regex.Pattern;
  * Contains a list of Oracle table partitions.
  */
 public class OracleTablePartitions extends
-    OracleGenerics.ObjectList<OracleTablePartition> {
+    OracleGenerics.ObjectList<OracleTablePartition> implements Serializable {
 
   public OracleTablePartition findPartitionByName(String partitionName) {
 

@@ -18,10 +18,12 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
+
 /**
  * Contains details about a column in an Oracle table.
  */
-public class OracleTableColumn {
+public class OracleTableColumn implements Serializable {
 
   private String name;
   private String dataType; // <- i.e. The data_type from dba_tab_columns

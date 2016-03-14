@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.ftp.configuration;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.common.SqoopException;
 import org.apache.sqoop.connector.ftp.ftpclient.FtpConnectorClient;
 import org.apache.sqoop.model.ConfigClass;
@@ -30,7 +32,7 @@ import org.apache.sqoop.validation.validators.NotEmpty;
  * Attributes for FTP connector link configuration.
  */
 @ConfigClass(validators = {@Validator(LinkConfig.ConfigValidator.class)})
-public class LinkConfig {
+public class LinkConfig implements Serializable {
 
   /**
    * FTP server hostname.

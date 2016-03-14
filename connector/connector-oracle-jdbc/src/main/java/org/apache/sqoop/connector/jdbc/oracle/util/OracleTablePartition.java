@@ -18,10 +18,12 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
+
 /**
  * Contains details about a partition for an Oracle table.
  */
-public class OracleTablePartition {
+public class OracleTablePartition implements Serializable {
 
   private String name;
   private boolean isSubPartition;

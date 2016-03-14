@@ -17,11 +17,12 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public final class OracleJdbcConnectorConstants {
+public final class OracleJdbcConnectorConstants implements Serializable {
 
   // Resource bundle name
   public static final String RESOURCE_BUNDLE_NAME =

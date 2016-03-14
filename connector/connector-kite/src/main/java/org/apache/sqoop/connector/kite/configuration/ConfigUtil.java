@@ -17,10 +17,12 @@
  */
 package org.apache.sqoop.connector.kite.configuration;
 
+import java.io.Serializable;
+
 import com.google.common.base.Strings;
 import org.kitesdk.data.URIBuilder;
 
-public class ConfigUtil {
+public class ConfigUtil implements Serializable {
 
   /**
    * Returns a dataset uri, including the filesystem location part, if it is

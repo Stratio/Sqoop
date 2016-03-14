@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -45,7 +46,8 @@ import org.apache.sqoop.job.etl.InitializerContext;
 import org.apache.sqoop.schema.Schema;
 import org.apache.sqoop.schema.type.Column;
 
-public abstract class OracleJdbcCommonInitializer<JobConfiguration> extends Initializer<LinkConfiguration, JobConfiguration> {
+public abstract class OracleJdbcCommonInitializer<JobConfiguration> extends Initializer<LinkConfiguration, JobConfiguration> implements
+        Serializable {
 
   private static final Logger LOG =
       Logger.getLogger(OracleJdbcCommonInitializer.class);

@@ -17,13 +17,15 @@
  */
 package org.apache.sqoop.connector.matcher;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.classification.InterfaceAudience;
 import org.apache.sqoop.classification.InterfaceStability;
 import org.apache.sqoop.schema.Schema;
 
 @InterfaceAudience.Private
 @InterfaceStability.Unstable
-public class MatcherFactory {
+public class MatcherFactory implements Serializable {
   public static Matcher getMatcher(Schema fromSchema, Schema toSchema) {
     if (toSchema.isEmpty() || fromSchema.isEmpty()) {
       return new LocationMatcher(fromSchema, toSchema);

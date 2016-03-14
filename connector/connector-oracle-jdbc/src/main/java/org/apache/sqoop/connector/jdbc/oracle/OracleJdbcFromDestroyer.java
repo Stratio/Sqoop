@@ -17,13 +17,15 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.connector.jdbc.oracle.configuration.FromJobConfiguration;
 import org.apache.sqoop.connector.jdbc.oracle.configuration.LinkConfiguration;
 import org.apache.sqoop.job.etl.Destroyer;
 import org.apache.sqoop.job.etl.DestroyerContext;
 
 public class OracleJdbcFromDestroyer extends
-    Destroyer<LinkConfiguration, FromJobConfiguration> {
+    Destroyer<LinkConfiguration, FromJobConfiguration> implements Serializable {
 
   @Override
   public void destroy(DestroyerContext context,

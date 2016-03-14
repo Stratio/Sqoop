@@ -37,6 +37,7 @@ import org.json.simple.parser.ParseException;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -47,7 +48,7 @@ import java.util.Set;
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
 @edu.umd.cs.findbugs.annotations.SuppressWarnings("PZLA_PREFER_ZERO_LENGTH_ARRAYS")
-public class JSONIntermediateDataFormat extends IntermediateDataFormat<JSONObject> {
+public class JSONIntermediateDataFormat extends IntermediateDataFormat<JSONObject> implements Serializable {
 
   // need this default constructor for reflection magic used in execution engine
   public JSONIntermediateDataFormat() {

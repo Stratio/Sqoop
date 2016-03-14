@@ -31,6 +31,7 @@ import org.apache.sqoop.schema.Schema;
 import org.apache.sqoop.utils.ClassUtils;
 import org.kitesdk.data.Datasets;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -39,7 +40,7 @@ import java.util.Set;
  * It will check whether dataset exists in destination already.
  */
 public class KiteToInitializer extends Initializer<LinkConfiguration,
-    ToJobConfiguration> {
+    ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(KiteToInitializer.class);
 

@@ -22,6 +22,7 @@ import org.apache.sqoop.classification.InterfaceStability;
 import org.apache.sqoop.schema.Schema;
 import org.apache.sqoop.schema.type.Column;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -32,7 +33,7 @@ import java.util.HashMap;
  */
 @InterfaceAudience.Private
 @InterfaceStability.Unstable
-public class NameMatcher extends Matcher {
+public class NameMatcher extends Matcher implements Serializable {
 
   private HashMap<String, Integer> fromColNameIndexMap;
 

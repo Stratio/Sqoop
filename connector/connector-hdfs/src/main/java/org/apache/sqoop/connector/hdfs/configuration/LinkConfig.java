@@ -24,13 +24,14 @@ import org.apache.sqoop.validation.Status;
 import org.apache.sqoop.validation.validators.AbstractValidator;
 import org.apache.sqoop.validation.validators.DirectoryExistsValidator;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @ConfigClass(validators = {@Validator(LinkConfig.ConfigValidator.class)})
-public class LinkConfig {
+public class LinkConfig implements Serializable {
   @Input(size = 255) public String uri;
 
   @Input(size = 255, validators = { @Validator(DirectoryExistsValidator.class)})

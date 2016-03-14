@@ -21,11 +21,12 @@ package org.apache.sqoop.connector.jdbc.oracle.util;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Data should be split by partition.
  */
-public class OracleDataChunkPartition extends OracleDataChunk {
+public class OracleDataChunkPartition extends OracleDataChunk implements Serializable {
 
   private boolean isSubPartition;
   private long blocks;

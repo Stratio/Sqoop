@@ -27,6 +27,7 @@ import org.apache.sqoop.schema.Schema;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -40,7 +41,7 @@ import java.util.Set;
  */
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
-public class CSVIntermediateDataFormat extends IntermediateDataFormat<String> {
+public class CSVIntermediateDataFormat extends IntermediateDataFormat<String> implements Serializable {
 
   public static final Logger LOG = Logger.getLogger(CSVIntermediateDataFormat.class);
 

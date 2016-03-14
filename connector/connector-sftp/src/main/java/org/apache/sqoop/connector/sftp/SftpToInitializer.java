@@ -25,12 +25,13 @@ import org.apache.sqoop.job.etl.Initializer;
 import org.apache.sqoop.job.etl.InitializerContext;
 import org.apache.sqoop.utils.ClassUtils;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Perform any required initialization before execution of job.
  */
-public class SftpToInitializer extends Initializer<LinkConfiguration, ToJobConfiguration> {
+public class SftpToInitializer extends Initializer<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(SftpToInitializer.class);
 

@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,7 +47,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 public class OracleJdbcExtractor extends
-    Extractor<LinkConfiguration, FromJobConfiguration, OracleJdbcPartition> {
+    Extractor<LinkConfiguration, FromJobConfiguration, OracleJdbcPartition> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(OracleJdbcExtractor.class);
 

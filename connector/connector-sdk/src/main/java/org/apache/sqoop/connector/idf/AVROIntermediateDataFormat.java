@@ -47,6 +47,7 @@ import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
@@ -60,7 +61,7 @@ import java.util.Set;
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
 @edu.umd.cs.findbugs.annotations.SuppressWarnings("PZLA_PREFER_ZERO_LENGTH_ARRAYS")
-public class AVROIntermediateDataFormat extends IntermediateDataFormat<GenericRecord> {
+public class AVROIntermediateDataFormat extends IntermediateDataFormat<GenericRecord> implements Serializable {
 
   private Schema avroSchema;
 

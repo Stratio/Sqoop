@@ -31,6 +31,7 @@ import org.apache.sqoop.etl.io.DataReader;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
@@ -39,7 +40,7 @@ import java.util.UUID;
  * uses the Apache Commons Net libraries to provide the FTP functionality. See
  * http://commons.apache.org/proper/commons-net/.
  */
-public class FtpConnectorClient {
+public class FtpConnectorClient implements Serializable {
 
   /**
    * Apache Commons Net FTP client.

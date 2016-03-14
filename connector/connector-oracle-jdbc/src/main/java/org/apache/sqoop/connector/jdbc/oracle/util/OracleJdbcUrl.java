@@ -18,6 +18,8 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.connector.jdbc.oracle.util.OracleUtilities.JdbcOracleThinConnection;
 import org.apache.sqoop.connector.jdbc.oracle.util.OracleUtilities
          .JdbcOracleThinConnectionParsingError;
@@ -25,7 +27,7 @@ import org.apache.sqoop.connector.jdbc.oracle.util.OracleUtilities
 /**
  * Parses the Oracle connection string.
  */
-public class OracleJdbcUrl {
+public class OracleJdbcUrl implements Serializable {
 
   private String jdbcConnectString;
 

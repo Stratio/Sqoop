@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.sftp.configuration;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.model.ConfigClass;
 import org.apache.sqoop.model.Input;
 import org.apache.sqoop.model.Validator;
@@ -26,7 +28,7 @@ import org.apache.sqoop.validation.validators.NotEmpty;
  * Attributes for SFTP connector TO configuration.
  */
 @ConfigClass
-public class ToJobConfig {
+public class ToJobConfig implements Serializable {
 
   /**
    * Directory on FTP server to write data to.

@@ -28,11 +28,12 @@ import org.apache.sqoop.model.MInput;
 import org.apache.sqoop.model.MLinkConfig;
 import org.apache.sqoop.model.MToConfig;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KiteConnectorUpgrader extends ConnectorConfigurableUpgrader {
+public class KiteConnectorUpgrader extends ConnectorConfigurableUpgrader implements Serializable {
   private static final Logger LOG = Logger.getLogger(KiteConnectorUpgrader.class);
 
   private static final Map<String, String> LINK_CONFIG_MAP;

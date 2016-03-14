@@ -28,8 +28,9 @@ import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 
-public class HdfsTextWriter extends GenericHdfsWriter {
+public class HdfsTextWriter extends GenericHdfsWriter implements Serializable {
 
   private BufferedWriter filewriter;
 
