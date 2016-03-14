@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.common;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.classification.InterfaceAudience;
 import org.apache.sqoop.classification.InterfaceStability;
 
@@ -25,7 +27,7 @@ import org.apache.sqoop.classification.InterfaceStability;
  */
 @InterfaceAudience.Private
 @InterfaceStability.Unstable
-public enum FileFormat {
+public enum FileFormat implements Serializable {
 
   /**
    * Comma separated text file

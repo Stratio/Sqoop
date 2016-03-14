@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.ftp;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.connector.ftp.configuration.LinkConfiguration;
 import org.apache.sqoop.connector.ftp.configuration.ToJobConfiguration;
 import org.apache.sqoop.job.etl.Initializer;
@@ -25,7 +27,7 @@ import org.apache.sqoop.job.etl.InitializerContext;
 /**
  * Perform any required initialization before execution of job.
  */
-public class FtpToInitializer extends Initializer<LinkConfiguration, ToJobConfiguration> {
+public class FtpToInitializer extends Initializer<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   /**
    * Initialize new submission based on given configuration properties. Any

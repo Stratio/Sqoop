@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.sftp.configuration;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.model.Config;
 import org.apache.sqoop.model.ConfigurationClass;
 
@@ -24,7 +26,7 @@ import org.apache.sqoop.model.ConfigurationClass;
  * Class to encapsulate link attributes for FTP connector.
  */
 @ConfigurationClass
-public class LinkConfiguration {
+public class LinkConfiguration implements Serializable {
   @Config
   public LinkConfig linkConfig;
 

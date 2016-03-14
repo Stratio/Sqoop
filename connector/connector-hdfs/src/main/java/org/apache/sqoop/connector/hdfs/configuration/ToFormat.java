@@ -17,10 +17,12 @@
  */
 package org.apache.sqoop.connector.hdfs.configuration;
 
+import java.io.Serializable;
+
 /**
  * Various supported formats on disk
  */
-public enum ToFormat {
+public enum ToFormat implements Serializable {
   /**
    * Comma separated text file
    */

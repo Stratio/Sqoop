@@ -33,6 +33,7 @@ import org.json.simple.JSONValue;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -56,7 +57,7 @@ import java.util.Set;
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
 @SuppressWarnings("rawtypes")
-public abstract class IntermediateDataFormat<T> implements Comparable {
+public abstract class IntermediateDataFormat<T> implements Comparable,Serializable {
 
     protected volatile T data;
 

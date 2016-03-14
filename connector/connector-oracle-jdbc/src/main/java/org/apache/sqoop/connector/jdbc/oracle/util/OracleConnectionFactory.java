@@ -18,6 +18,7 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -34,7 +35,7 @@ import org.apache.sqoop.connector.jdbc.oracle.configuration.ConnectionConfig;
 /**
  * Create and initialize connections to Oracle RDBMS.
  */
-public class OracleConnectionFactory {
+public class OracleConnectionFactory implements Serializable {
 
   protected OracleConnectionFactory() {
   }

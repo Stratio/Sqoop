@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.hdfs;
 
+import java.io.Serializable;
+
 import org.apache.log4j.Logger;
 import org.apache.sqoop.connector.hdfs.configuration.FromJobConfiguration;
 import org.apache.sqoop.connector.hdfs.configuration.LinkConfiguration;
@@ -24,7 +26,7 @@ import org.apache.sqoop.job.etl.Destroyer;
 import org.apache.sqoop.job.etl.DestroyerContext;
 import org.joda.time.DateTime;
 
-public class HdfsFromDestroyer extends Destroyer<LinkConfiguration, FromJobConfiguration> {
+public class HdfsFromDestroyer extends Destroyer<LinkConfiguration, FromJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(HdfsFromDestroyer.class);
 

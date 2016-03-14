@@ -22,8 +22,9 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.compress.CompressionCodec;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public abstract class GenericHdfsWriter {
+public abstract class GenericHdfsWriter implements Serializable {
 
   public abstract void initialize(Path filepath, Configuration conf, CompressionCodec codec) throws IOException;
 

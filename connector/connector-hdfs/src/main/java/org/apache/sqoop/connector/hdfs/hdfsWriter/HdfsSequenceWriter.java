@@ -25,8 +25,9 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.compress.CompressionCodec;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class HdfsSequenceWriter  extends GenericHdfsWriter {
+public class HdfsSequenceWriter  extends GenericHdfsWriter implements Serializable {
 
   private SequenceFile.Writer filewriter;
   private Text text;

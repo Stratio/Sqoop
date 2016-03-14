@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -30,7 +31,7 @@ import org.apache.sqoop.connector.spi.SqoopConnector;
 import org.apache.sqoop.job.etl.From;
 import org.apache.sqoop.job.etl.To;
 
-public class OracleJdbcConnector extends SqoopConnector {
+public class OracleJdbcConnector extends SqoopConnector implements Serializable {
 
   private static final To TO = new To(
       OracleJdbcToInitializer.class,

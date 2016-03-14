@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +44,7 @@ import org.apache.sqoop.job.etl.LoaderContext;
 import org.apache.sqoop.schema.type.Column;
 import org.joda.time.LocalDateTime;
 
-public class OracleJdbcLoader extends Loader<LinkConfiguration, ToJobConfiguration> {
+public class OracleJdbcLoader extends Loader<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG =
       Logger.getLogger(OracleJdbcToDestroyer.class);

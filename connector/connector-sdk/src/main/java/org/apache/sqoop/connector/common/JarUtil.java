@@ -20,6 +20,7 @@ package org.apache.sqoop.connector.common;
 import org.apache.sqoop.classification.InterfaceAudience;
 import org.apache.sqoop.classification.InterfaceStability;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.LinkedList;
@@ -31,7 +32,7 @@ import java.util.regex.Pattern;
  */
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
-public class JarUtil {
+public class JarUtil implements Serializable {
 
   /**
    * Returns a list of matched jars from current thread or an empty list.

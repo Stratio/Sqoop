@@ -19,6 +19,7 @@
 package org.apache.sqoop.connector.hdfs;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.PrivilegedExceptionAction;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,7 +56,7 @@ import org.apache.sqoop.job.etl.PartitionerContext;
  * This class derives mostly from CombineFileInputFormat of Hadoop, i.e.
  * org.apache.hadoop.mapreduce.lib.input.CombineFileInputFormat.
  */
-public class HdfsPartitioner extends Partitioner<LinkConfiguration, FromJobConfiguration> {
+public class HdfsPartitioner extends Partitioner<LinkConfiguration, FromJobConfiguration> implements Serializable {
 
   public static final Logger LOG = Logger.getLogger(HdfsPartitioner.class);
 

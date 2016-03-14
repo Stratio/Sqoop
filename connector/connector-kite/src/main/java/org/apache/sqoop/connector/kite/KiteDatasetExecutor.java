@@ -38,6 +38,7 @@ import org.kitesdk.data.Format;
 import org.kitesdk.data.URIBuilder;
 import org.kitesdk.data.spi.filesystem.FileSystemDataset;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
@@ -48,7 +49,7 @@ import java.util.UUID;
  * guarantee).
  */
 @edu.umd.cs.findbugs.annotations.SuppressWarnings("PZLA_PREFER_ZERO_LENGTH_ARRAYS")
-public class KiteDatasetExecutor {
+public class KiteDatasetExecutor implements Serializable {
 
   private final Dataset<GenericRecord> dataset;
 

@@ -18,13 +18,15 @@
  */
 package org.apache.sqoop.connector.ftp;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.configurable.ConfigurableUpgradeUtil;
 import org.apache.sqoop.connector.spi.ConnectorConfigurableUpgrader;
 import org.apache.sqoop.model.MLinkConfig;
 import org.apache.sqoop.model.MToConfig;
 
 //NOTE: All config types have the similar upgrade path at this point
-public class FtpConnectorUpgrader extends ConnectorConfigurableUpgrader {
+public class FtpConnectorUpgrader extends ConnectorConfigurableUpgrader implements Serializable {
 
   /**
    * {@inheritDoc}

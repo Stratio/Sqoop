@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.hdfs.configuration;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.model.ConfigClass;
 import org.apache.sqoop.model.Input;
 import org.apache.sqoop.model.Validator;
@@ -26,7 +28,7 @@ import org.apache.sqoop.validation.validators.NotEmpty;
  *
  */
 @ConfigClass
-public class FromJobConfig {
+public class FromJobConfig implements Serializable {
 
   @Input(size = 255, validators = { @Validator(NotEmpty.class) }) public String inputDirectory;
 

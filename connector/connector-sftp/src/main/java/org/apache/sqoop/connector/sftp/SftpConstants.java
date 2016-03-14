@@ -18,12 +18,14 @@
 
 package org.apache.sqoop.connector.sftp;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.job.Constants;
 
 /**
  * Constants for FTP connector.
  */
-public final class SftpConstants extends Constants {
+public final class SftpConstants extends Constants implements Serializable {
 
   /**
    * Name of resource bundle for configuring this connector.

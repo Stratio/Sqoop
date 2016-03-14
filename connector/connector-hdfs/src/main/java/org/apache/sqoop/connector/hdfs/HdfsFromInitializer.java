@@ -34,10 +34,11 @@ import org.apache.sqoop.job.etl.InitializerContext;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.PrivilegedExceptionAction;
 
 
-public class HdfsFromInitializer extends Initializer<LinkConfiguration, FromJobConfiguration> {
+public class HdfsFromInitializer extends Initializer<LinkConfiguration, FromJobConfiguration> implements Serializable {
 
   public static final Logger LOG = Logger.getLogger(HdfsFromInitializer.class);
 

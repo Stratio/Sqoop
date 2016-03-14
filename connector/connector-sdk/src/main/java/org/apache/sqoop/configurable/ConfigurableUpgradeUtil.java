@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.configurable;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ import org.apache.sqoop.model.MInput;
 
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
-public class ConfigurableUpgradeUtil {
+public class ConfigurableUpgradeUtil implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(ConfigurableUpgradeUtil.class);
   /*

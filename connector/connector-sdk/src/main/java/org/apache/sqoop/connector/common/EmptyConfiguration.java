@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.common;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.classification.InterfaceAudience;
 import org.apache.sqoop.classification.InterfaceStability;
 import org.apache.sqoop.model.ConfigurationClass;
@@ -28,6 +30,6 @@ import org.apache.sqoop.model.ConfigurationClass;
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
 @ConfigurationClass
-public class EmptyConfiguration {
+public class EmptyConfiguration implements Serializable {
 
 }

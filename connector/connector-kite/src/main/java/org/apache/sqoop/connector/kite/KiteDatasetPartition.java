@@ -23,11 +23,12 @@ import org.apache.sqoop.job.etl.Partition;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * A part of the input data partitioned by the Partitioner.
  */
-public class KiteDatasetPartition extends Partition {
+public class KiteDatasetPartition extends Partition implements Serializable {
 
   /** The uri to the dataset */
   private String uri;

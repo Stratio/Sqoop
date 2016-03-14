@@ -18,10 +18,12 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
+
 /**
  * Represents an Oracle version and allows comparing of versions.
  */
-public class OracleVersion {
+public class OracleVersion implements Serializable {
   private int major;
   private int minor;
   private int version;

@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.kite.configuration;
 
+import java.io.Serializable;
+
 import com.google.common.base.Strings;
 import org.apache.sqoop.model.ConfigClass;
 import org.apache.sqoop.model.Input;
@@ -26,7 +28,7 @@ import org.apache.sqoop.validation.validators.AbstractValidator;
 import org.apache.sqoop.validation.validators.HostAndPortValidator;
 
 @ConfigClass(validators = {@Validator(LinkConfig.ConfigValidator.class)})
-public class LinkConfig {
+public class LinkConfig implements Serializable {
 
   @Input(size = 255)
   public String authority;

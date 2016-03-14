@@ -18,9 +18,11 @@
 
 package org.apache.sqoop.connector.kite;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.job.Constants;
 
-public final class KiteConnectorConstants extends Constants {
+public final class KiteConnectorConstants extends Constants implements Serializable {
 
   // Resource bundle name
   public static final String RESOURCE_BUNDLE_NAME = "kite-connector-config";

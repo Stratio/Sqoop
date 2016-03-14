@@ -18,6 +18,7 @@
 package org.apache.sqoop.connector.hdfs;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.PrivilegedExceptionAction;
 
@@ -49,7 +50,8 @@ import org.apache.sqoop.schema.Schema;
  * Extract from HDFS.
  * Default field delimiter of a record is comma.
  */
-public class HdfsExtractor extends Extractor<LinkConfiguration, FromJobConfiguration, HdfsPartition> {
+public class HdfsExtractor extends Extractor<LinkConfiguration, FromJobConfiguration, HdfsPartition> implements
+        Serializable {
 
   public static final Logger LOG = Logger.getLogger(HdfsExtractor.class);
 

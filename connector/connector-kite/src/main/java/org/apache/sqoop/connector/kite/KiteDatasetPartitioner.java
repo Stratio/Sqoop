@@ -25,6 +25,7 @@ import org.apache.sqoop.job.etl.Partition;
 import org.apache.sqoop.job.etl.Partitioner;
 import org.apache.sqoop.job.etl.PartitionerContext;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ import java.util.List;
  * parallelism.
  */
 public class KiteDatasetPartitioner extends Partitioner<LinkConfiguration,
-    FromJobConfiguration> {
+    FromJobConfiguration> implements Serializable {
 
   @Override
   public List<Partition> getPartitions(PartitionerContext context,

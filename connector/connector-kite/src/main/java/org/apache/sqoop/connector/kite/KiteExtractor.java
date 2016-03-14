@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.kite;
 
+import java.io.Serializable;
+
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.log4j.Logger;
@@ -34,7 +36,7 @@ import org.kitesdk.data.Datasets;
  * partition.
  */
 public class KiteExtractor extends Extractor<LinkConfiguration,
-    FromJobConfiguration, KiteDatasetPartition> {
+    FromJobConfiguration, KiteDatasetPartition> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(KiteExtractor.class);
 

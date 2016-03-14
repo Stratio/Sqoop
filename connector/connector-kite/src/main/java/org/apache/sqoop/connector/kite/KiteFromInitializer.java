@@ -31,13 +31,14 @@ import org.apache.sqoop.utils.ClassUtils;
 import org.kitesdk.data.Dataset;
 import org.kitesdk.data.Datasets;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * This class allows connector to define initialization work for execution.
  */
 public class KiteFromInitializer extends Initializer<LinkConfiguration,
-    FromJobConfiguration> {
+    FromJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(KiteFromInitializer.class);
 

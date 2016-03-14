@@ -28,13 +28,14 @@ import org.apache.sqoop.connector.hdfs.configuration.ToJobConfiguration;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.Map;
 
 /**
  * Utilities for HDFS.
  */
-public class HdfsUtils {
+public class HdfsUtils implements Serializable {
 
   public static final String DEFAULT_HADOOP_CONF_DIR = "/etc/hadoop/conf";
 

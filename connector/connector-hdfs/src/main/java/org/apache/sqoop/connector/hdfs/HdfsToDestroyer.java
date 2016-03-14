@@ -32,9 +32,10 @@ import org.apache.sqoop.job.etl.Destroyer;
 import org.apache.sqoop.job.etl.DestroyerContext;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.PrivilegedExceptionAction;
 
-public class HdfsToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> {
+public class HdfsToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(HdfsToDestroyer.class);
 

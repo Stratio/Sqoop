@@ -18,9 +18,11 @@
 
 package org.apache.sqoop.connector.hdfs;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.job.Constants;
 
-public final class HdfsConstants extends Constants {
+public final class HdfsConstants extends Constants implements Serializable {
 
   // Resource bundle name
   public static final String RESOURCE_BUNDLE_NAME =

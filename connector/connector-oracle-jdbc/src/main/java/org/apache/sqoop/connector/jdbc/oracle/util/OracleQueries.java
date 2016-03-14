@@ -18,6 +18,7 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -47,7 +48,7 @@ import org.joda.time.DateTimeZone;
 /**
  * Contains the queries to get data dictionary information from Oracle database.
  */
-public final class OracleQueries {
+public final class OracleQueries implements Serializable {
 
   private static final Logger LOG =
       Logger.getLogger(OracleQueries.class);

@@ -18,12 +18,14 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.job.etl.Partition;
 
 /**
  * How data should be split between mappers.
  */
-public abstract class OracleDataChunk extends Partition {
+public abstract class OracleDataChunk extends Partition implements Serializable {
 
   private String id;
 

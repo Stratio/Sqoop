@@ -21,6 +21,7 @@ package org.apache.sqoop.connector.jdbc.oracle.util;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -45,7 +46,7 @@ import org.apache.sqoop.connector.jdbc.oracle.configuration.ToJobConfig;
 /**
  * Utilities used by OraOop.
  */
-public final class OracleUtilities {
+public final class OracleUtilities implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(OracleUtilities.class);
 

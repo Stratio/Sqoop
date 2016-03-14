@@ -36,6 +36,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -61,7 +62,7 @@ import java.util.Collections;
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
 @edu.umd.cs.findbugs.annotations.SuppressWarnings("PZLA_PREFER_ZERO_LENGTH_ARRAYS")
-public class SqoopIDFUtils {
+public class SqoopIDFUtils implements Serializable {
 
   public static final String NULL_VALUE = "NULL";
 

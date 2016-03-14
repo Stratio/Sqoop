@@ -18,10 +18,12 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
+
 /**
  * Wraps data from v$active_instances.
  */
-public class OracleActiveInstance {
+public class OracleActiveInstance implements Serializable {
 
   private String instanceName;
   private String hostName;

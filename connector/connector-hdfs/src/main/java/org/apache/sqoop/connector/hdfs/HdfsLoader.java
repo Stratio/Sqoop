@@ -18,6 +18,7 @@
 package org.apache.sqoop.connector.hdfs;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.security.PrivilegedExceptionAction;
 import java.util.UUID;
 
@@ -42,7 +43,7 @@ import org.apache.sqoop.job.etl.LoaderContext;
 import org.apache.sqoop.schema.ByteArraySchema;
 import org.apache.sqoop.utils.ClassUtils;
 
-public class HdfsLoader extends Loader<LinkConfiguration, ToJobConfiguration> {
+public class HdfsLoader extends Loader<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   private long rowsWritten = 0;
 

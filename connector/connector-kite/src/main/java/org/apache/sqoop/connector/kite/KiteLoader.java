@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.kite;
 
+import java.io.Serializable;
+
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.log4j.Logger;
@@ -33,7 +35,7 @@ import org.kitesdk.data.Dataset;
 /**
  * This class allows Kite connector to load data into a target system.
  */
-public class KiteLoader extends Loader<LinkConfiguration, ToJobConfiguration> {
+public class KiteLoader extends Loader<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(KiteLoader.class);
 

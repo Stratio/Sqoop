@@ -25,6 +25,7 @@ import org.apache.sqoop.validation.Status;
 import org.apache.sqoop.validation.validators.AbstractValidator;
 import org.apache.sqoop.validation.validators.StartsWith;
 
+import java.io.Serializable;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
@@ -34,7 +35,7 @@ import java.util.Map;
  *
  */
 @ConfigClass(validators = {@Validator(ConnectionConfig.ConfigValidator.class)})
-public class ConnectionConfig {
+public class ConnectionConfig implements Serializable {
   @Input(size = 128, validators = {@Validator(value = StartsWith.class, strArg = "jdbc:")} )
   public String connectionString;
 

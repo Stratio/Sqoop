@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
 import java.sql.Types;
 
 import org.apache.log4j.Logger;
@@ -32,7 +33,7 @@ import org.apache.sqoop.schema.type.Text;
 import org.apache.sqoop.schema.type.Time;
 import org.apache.sqoop.schema.type.Unknown;
 
-public class OracleSqlTypesUtils {
+public class OracleSqlTypesUtils implements Serializable {
 
   private static final Logger LOG =
       Logger.getLogger(OracleSqlTypesUtils.class);

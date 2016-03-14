@@ -17,10 +17,12 @@
  */
 package org.apache.sqoop.connector.hdfs.configuration;
 
+import java.io.Serializable;
+
 /**
  * Supported compressions
  */
-public enum ToCompression {
+public enum ToCompression implements Serializable {
   NONE,
   DEFAULT,
   DEFLATE,

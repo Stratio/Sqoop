@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc.oracle;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -38,7 +39,7 @@ import org.apache.sqoop.connector.jdbc.oracle.util.OracleUtilities.UpdateMode;
 import org.apache.sqoop.job.etl.Destroyer;
 import org.apache.sqoop.job.etl.DestroyerContext;
 
-public class OracleJdbcToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> {
+public class OracleJdbcToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG =
     Logger.getLogger(OracleJdbcToDestroyer.class);

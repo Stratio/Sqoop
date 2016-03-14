@@ -18,10 +18,12 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
+
 /**
  * Contains details about an Oracle table.
  */
-public class OracleTable {
+public class OracleTable implements Serializable {
 
   private String schema;
   private String name;

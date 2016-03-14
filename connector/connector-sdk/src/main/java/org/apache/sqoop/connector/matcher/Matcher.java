@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.matcher;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.classification.InterfaceAudience;
 import org.apache.sqoop.classification.InterfaceStability;
 import org.apache.log4j.Logger;
@@ -28,7 +30,7 @@ import org.apache.sqoop.schema.type.Column;
 
 @InterfaceAudience.Public
 @InterfaceStability.Unstable
-public abstract class Matcher {
+public abstract class Matcher implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(Matcher.class);
   private final Schema fromSchema;

@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.hdfs.configuration;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.model.ConfigClass;
 import org.apache.sqoop.model.Input;
 import org.apache.sqoop.validation.Status;
@@ -24,7 +26,7 @@ import org.apache.sqoop.validation.validators.AbstractValidator;
 import org.joda.time.DateTime;
 
 @ConfigClass
-public class IncrementalRead {
+public class IncrementalRead implements Serializable {
   @Input
   public IncrementalType incrementalType;
 

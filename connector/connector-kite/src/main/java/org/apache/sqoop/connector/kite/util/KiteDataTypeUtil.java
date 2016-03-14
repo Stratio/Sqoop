@@ -31,6 +31,7 @@ import org.joda.time.LocalDateTime;
 import org.kitesdk.data.Format;
 import org.kitesdk.data.Formats;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ import java.util.List;
  * The helper class provides methods to convert Sqoop data types to Kite
  * supported data types.
  */
-public class KiteDataTypeUtil {
+public class KiteDataTypeUtil implements Serializable {
 
   public static final String SQOOP_TYPE = "SqoopType";
   public static final String DEFAULT_SQOOP_SCHEMA_NAMESPACE = "sqoop";

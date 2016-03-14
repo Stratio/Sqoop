@@ -17,6 +17,8 @@
  */
 package org.apache.sqoop.connector.matcher;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.classification.InterfaceAudience;
 import org.apache.sqoop.classification.InterfaceStability;
 import org.apache.sqoop.schema.Schema;
@@ -31,7 +33,7 @@ import org.apache.sqoop.schema.type.Column;
  */
 @InterfaceAudience.Private
 @InterfaceStability.Unstable
-public class LocationMatcher extends Matcher {
+public class LocationMatcher extends Matcher implements Serializable {
 
   public LocationMatcher(Schema from, Schema to) {
     super(from, to);

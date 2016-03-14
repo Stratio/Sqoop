@@ -18,6 +18,7 @@
 
 package org.apache.sqoop.connector.jdbc.oracle.util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * Generic class to hold list of objects.
  */
-public class OracleGenerics {
+public class OracleGenerics implements Serializable {
 
   /**
    * Generic class to hold list of objects.

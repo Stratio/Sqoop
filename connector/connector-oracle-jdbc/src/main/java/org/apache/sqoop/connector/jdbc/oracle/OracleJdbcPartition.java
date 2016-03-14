@@ -20,13 +20,14 @@ package org.apache.sqoop.connector.jdbc.oracle;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.sqoop.connector.jdbc.oracle.util.OracleDataChunk;
 import org.apache.sqoop.job.etl.Partition;
 
-public class OracleJdbcPartition extends Partition {
+public class OracleJdbcPartition extends Partition implements Serializable {
 
 
   private int splitId;
