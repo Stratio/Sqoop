@@ -525,20 +525,27 @@ public class GenericJdbcPartitioner extends Partitioner<LinkConfiguration, FromJ
     protected String constructTextConditions(String prefix, Object lowerBound, Object upperBound,
             String lowerStringBound, String upperStringBound, boolean firstOne, boolean lastOne) {
         StringBuilder conditions = new StringBuilder();
-        BigDecimal lower = new BigDecimal((Integer) lowerBound);
-        BigDecimal upper = new BigDecimal((Integer) upperBound);
+        String lbString;
+        String ubString;
+        try {
+            lbString = prefix + bigDecimalToText((BigDecimal)lowerBound);
+            ubString = prefix + bigDecimalToText((BigDecimal)upperBound);
+            conditions.append('\'').append(firstOne ? lowerStringBound : lbString).append('\'');
+            conditions.append(" <= ");
+            conditions.append(partitionColumnName);
+            conditions.append(" AND ");
+            conditions.append(partitionColumnName);
+            conditions.append(lastOne ? " <= " : " < ");
+            conditions.append('\'').append(lastOne ? upperStringBound : ubString).append('\'');
+        }catch (ClassCastException ex){
+            return conditions.toString();
+        }
+
         //    String lbString = prefix + bigDecimalToText((BigDecimal)lowerBound);
-        String lbString = prefix + bigDecimalToText(lower);
-        String ubString = prefix + bigDecimalToText(upper);
+
         //    String ubString = prefix + bigDecimalToText((BigDecimal)upperBound);
 
-        conditions.append('\'').append(firstOne ? lowerStringBound : lbString).append('\'');
-        conditions.append(" <= ");
-        conditions.append(partitionColumnName);
-        conditions.append(" AND ");
-        conditions.append(partitionColumnName);
-        conditions.append(lastOne ? " <= " : " < ");
-        conditions.append('\'').append(lastOne ? upperStringBound : ubString).append('\'');
+
         return conditions.toString();
 
     }

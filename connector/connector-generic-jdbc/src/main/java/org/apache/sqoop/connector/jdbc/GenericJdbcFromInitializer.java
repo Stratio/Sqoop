@@ -85,7 +85,7 @@ public class GenericJdbcFromInitializer extends Initializer<LinkConfiguration, F
     ResultSetMetaData rsmt = null;
     try (Statement statement = executor.createStatement();
          ResultSet rs = statement.executeQuery(context.getString(GenericJdbcConnectorConstants.CONNECTOR_JDBC_FROM_DATA_SQL)
-                 .replace(GenericJdbcConnectorConstants.SQL_CONDITIONS_TOKEN, "1 = 0"));) {
+                 .replace(GenericJdbcConnectorConstants.SQL_CONDITIONS_TOKEN, "1 = 0"))) {
 
       rsmt = rs.getMetaData();
       for (int i = 1 ; i <= rsmt.getColumnCount(); i++) {
@@ -165,7 +165,8 @@ public class GenericJdbcFromInitializer extends Initializer<LinkConfiguration, F
     if(incrementalImport) {
       sb.setLength(0);
       sb.append("SELECT ");
-      sb.append("MAX(").append(executor.encloseIdentifier(jobConf.incrementalRead.checkColumn)).append(") ");
+//      sb.append("MAX(").append(executor.encloseIdentifier(jobConf.incrementalRead.checkColumn)).append(") ");
+      sb.append("MAX(").append(jobConf.incrementalRead.checkColumn).append(") ");
       sb.append("FROM ");
       sb.append(fromFragment);
 
@@ -189,8 +190,10 @@ public class GenericJdbcFromInitializer extends Initializer<LinkConfiguration, F
     if (minMaxQuery == null) {
       sb.setLength(0);
       sb.append("SELECT ");
-      sb.append("MIN(").append(executor.encloseIdentifier(partitionColumnName)).append("), ");
-      sb.append("MAX(").append(executor.encloseIdentifier(partitionColumnName)).append(") ");
+//      sb.append("MIN(").append(executor.encloseIdentifier(partitionColumnName)).append("), ");
+//      sb.append("MAX(").append(executor.encloseIdentifier(partitionColumnName)).append(") ");
+      sb.append("MIN(").append(partitionColumnName).append("), ");
+      sb.append("MAX(").append(partitionColumnName).append(") ");
       sb.append("FROM ").append(fromFragment).append(" ");
 
       if(incrementalImport) {

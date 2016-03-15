@@ -73,7 +73,6 @@ public class KafkaLoader extends Loader<LinkConfiguration,ToJobConfiguration> {
 
   private void sendToKafka(List<KeyedMessage<String,String>> messageList) {
     try {
-      LOG.info("LISTA DE MENSAJES"+messageList);
       producer.send(messageList);
       messageList.clear();
     } catch (Exception ex) {
