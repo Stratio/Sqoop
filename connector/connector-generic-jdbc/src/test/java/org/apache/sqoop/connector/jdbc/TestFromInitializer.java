@@ -140,7 +140,7 @@ public class TestFromInitializer {
         "SELECT * FROM " + schemalessTableName + " WHERE ${CONDITIONS}",
         //    "SELECT * FROM " + executor.encloseIdentifier(schemalessTableName) + " WHERE ${CONDITIONS}",
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(START),
         String.valueOf(START+NUMBER_OF_ROWS-1));
@@ -169,7 +169,7 @@ public class TestFromInitializer {
             "SELECT * FROM " + schemalessTableName + " WHERE ${CONDITIONS}",
         //"SELECT * FROM " + executor.encloseIdentifier(schemalessTableName) + " WHERE ${CONDITIONS}",
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(START),
         String.valueOf(START+NUMBER_OF_ROWS-1));
@@ -200,7 +200,7 @@ public class TestFromInitializer {
         "SELECT * FROM " + schemalessTableName + " WHERE ${CONDITIONS}",
         //"SELECT * FROM " + executor.encloseIdentifier(schemalessTableName) + " WHERE ${CONDITIONS}",
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(1),
         String.valueOf(START+NUMBER_OF_ROWS-1));
@@ -230,7 +230,7 @@ public class TestFromInitializer {
             "SELECT \"ICOL\", \"VCOL\" FROM " + schemalessTableName + " WHERE ${CONDITIONS}",
         //"SELECT \"ICOL\", \"VCOL\" FROM " + executor.encloseIdentifier(schemalessTableName) + " WHERE ${CONDITIONS}",
         "\"" + StringUtils.join(tableColumns, "\", \"") + "\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(START),
         String.valueOf(START+NUMBER_OF_ROWS-1));
@@ -257,7 +257,7 @@ public class TestFromInitializer {
     verifyResult(context,
         "SELECT * FROM " + schemalessTableName  + " WHERE ${CONDITIONS}",
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"DCOL\"",
+        "DCOL",
         String.valueOf(Types.DOUBLE),
         String.valueOf((double)START),
         String.valueOf((double)(START+NUMBER_OF_ROWS-1)));
@@ -286,7 +286,7 @@ public class TestFromInitializer {
     verifyResult(context,
         "SELECT * FROM " + schemalessTableName + " WHERE ${CONDITIONS}",
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(START),
         String.valueOf((START+NUMBER_OF_ROWS-1)));
@@ -316,7 +316,7 @@ public class TestFromInitializer {
     verifyResult(context,
         "SELECT * FROM " + schemalessTableName + " WHERE ${CONDITIONS}",
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(1),
         String.valueOf((START+NUMBER_OF_ROWS-1)));
@@ -346,7 +346,7 @@ public class TestFromInitializer {
     verifyResult(context,
         "SELECT * FROM " + fullTableName + " WHERE ${CONDITIONS}",
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(START),
         String.valueOf(START+NUMBER_OF_ROWS-1));
@@ -376,7 +376,7 @@ public class TestFromInitializer {
     verifyResult(context,
         "SELECT \"ICOL\", \"VCOL\" FROM " + fullTableName + " WHERE ${CONDITIONS}",
         "\"" + StringUtils.join(tableColumns, "\", \"") + "\"",
-        "\"ICOL\"",
+        "ICOL",
         String.valueOf(Types.INTEGER),
         String.valueOf(START),
         String.valueOf(START+NUMBER_OF_ROWS-1));
@@ -404,7 +404,7 @@ public class TestFromInitializer {
     verifyResult(context,
         tableSql,
         "\"ICOL\", \"DCOL\", \"VCOL\"",
-        "\"DCOL\"",
+        "DCOL",
         String.valueOf(Types.DOUBLE),
         String.valueOf((double)START),
         String.valueOf((double)(START+NUMBER_OF_ROWS-1)));
