@@ -141,7 +141,8 @@ public class GenericJdbcFromInitializer extends Initializer<LinkConfiguration, F
     }
     // If we don't have partition column name, we will error out
     if (partitionColumnName != null) {
-      context.setString(GenericJdbcConnectorConstants.CONNECTOR_JDBC_PARTITION_COLUMNNAME, executor.encloseIdentifier(partitionColumnName));
+//      context.setString(GenericJdbcConnectorConstants.CONNECTOR_JDBC_PARTITION_COLUMNNAME, executor.encloseIdentifier(partitionColumnName));
+      context.setString(GenericJdbcConnectorConstants.CONNECTOR_JDBC_PARTITION_COLUMNNAME, partitionColumnName);
     } else {
       throw new SqoopException(GenericJdbcConnectorError.GENERIC_JDBC_CONNECTOR_0005);
     }
