@@ -43,7 +43,9 @@ public class SqoopSparkDriver {
         long numExtractors = (driverContext.getLong(SparkJobConstants.JOB_ETL_EXTRACTOR_NUM,
                 defaultExtractors));
         int numLoaders = conf.getInt(NUM_LOADERS, 1);
-
+        if(request.getLoaders()!=1) {
+            numLoaders = request.getLoaders();
+        }
         List<Partition> sp = getPartitions(sparkJobRequest, numExtractors);
         LOG.info(">>> Partition size:" + sp.size());
 
