@@ -20,7 +20,7 @@ limitations under the License.
   <parent>
     <groupId>com.stratio</groupId>
     <artifactId>parent</artifactId>
-    <version>0.5.0</version>
+    <version>0.6.2</version>
   </parent>
 
   <groupId>com.stratio.sqoop</groupId>
@@ -537,7 +537,7 @@ limitations under the License.
     <module>server</module>
     <module>client</module>
     <module>shell</module>
-    <module>docs</module>
+    <!--<module>docs</module>-->
     <module>connector</module>
     <module>execution</module>
     <module>submission</module>
@@ -577,6 +577,7 @@ limitations under the License.
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.18.1</version>
           <configuration>
+            <skipTests>${skipUTs}</skipTests>
             <forkCount>1</forkCount>
             <reuseForks>false</reuseForks>
             <forkedProcessTimeoutInSeconds>3600</forkedProcessTimeoutInSeconds>

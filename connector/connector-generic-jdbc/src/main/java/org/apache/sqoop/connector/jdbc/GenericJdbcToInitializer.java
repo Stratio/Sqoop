@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -39,7 +40,8 @@ import org.apache.sqoop.schema.type.Column;
 import org.apache.sqoop.utils.ClassUtils;
 
 @edu.umd.cs.findbugs.annotations.SuppressWarnings("SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE")
-public class GenericJdbcToInitializer extends Initializer<LinkConfiguration, ToJobConfiguration> {
+public class GenericJdbcToInitializer extends Initializer<LinkConfiguration, ToJobConfiguration> implements
+        Serializable {
 
   private GenericJdbcExecutor executor;
   private static final Logger LOG =

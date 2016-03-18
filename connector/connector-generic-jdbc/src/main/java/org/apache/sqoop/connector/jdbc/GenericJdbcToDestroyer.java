@@ -17,13 +17,15 @@
  */
 package org.apache.sqoop.connector.jdbc;
 
+import java.io.Serializable;
+
 import org.apache.log4j.Logger;
 import org.apache.sqoop.connector.jdbc.configuration.LinkConfiguration;
 import org.apache.sqoop.connector.jdbc.configuration.ToJobConfiguration;
 import org.apache.sqoop.job.etl.Destroyer;
 import org.apache.sqoop.job.etl.DestroyerContext;
 
-public class GenericJdbcToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> {
+public class GenericJdbcToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   private static final Logger LOG = Logger.getLogger(GenericJdbcToDestroyer.class);
 

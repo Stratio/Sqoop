@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
@@ -35,7 +36,8 @@ import org.apache.sqoop.job.etl.Partition;
 import org.apache.sqoop.job.etl.Partitioner;
 import org.apache.sqoop.job.etl.PartitionerContext;
 
-public class GenericJdbcPartitioner extends Partitioner<LinkConfiguration, FromJobConfiguration> {
+public class GenericJdbcPartitioner extends Partitioner<LinkConfiguration, FromJobConfiguration> implements
+        Serializable {
 
   private static final BigDecimal NUMERIC_MIN_INCREMENT = BigDecimal.valueOf(10000 * Double.MIN_VALUE);
 

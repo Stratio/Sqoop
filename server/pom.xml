@@ -164,37 +164,6 @@ limitations under the License.
             <id>package</id>
             <build>
                 <plugins>
-
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>appassembler-maven-plugin</artifactId>
-                        <version>1.10</version>
-                        <configuration>
-                            <platforms>
-                                <platform>unix</platform>
-                            </platforms>
-                            <configurationDirectory>config</configurationDirectory>
-                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
-                            <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
-                            <assembleDirectory>target/appassembler</assembleDirectory>
-                            <extraJvmArguments> -Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
-
-                            <programs>
-                                <program>
-                                    <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
-                                    <name>server</name>
-                                </program>
-                            </programs>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>assemble</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-shade-plugin</artifactId>
@@ -206,6 +175,8 @@ limitations under the License.
                                     <goal>shade</goal>
                                 </goals>
                                 <configuration>
+                                    <shadedArtifactAttached>false</shadedArtifactAttached>
+                                    <!--<shadedClassifierName>jar-with-dependencies</shadedClassifierName>-->
                                     <filters>
                                         <filter>
                                             <artifact>*:*</artifact>
@@ -241,7 +212,36 @@ limitations under the License.
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>appassembler-maven-plugin</artifactId>
+                        <version>1.10</version>
+                        <configuration>
+                            <platforms>
+                                <platform>unix</platform>
+                            </platforms>
+                            <configurationDirectory>config</configurationDirectory>
+                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                            <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+                            <assembleDirectory>target/appassembler</assembleDirectory>
+                            <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
 
+                            <programs>
+                                <program>
+                                    <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
+                                    <name>server</name>
+                                </program>
+                            </programs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>assemble</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>com.stratio.mojo.unix</groupId>
                         <artifactId>unix-maven-plugin</artifactId>
@@ -328,10 +328,6 @@ limitations under the License.
                                         <group>stratio</group>
                                     </directoryAttributes>
                                 </copyDirectory>
-                                <copyFile>
-                                    <path>target/sqoop-server-${project.version}.jar</path>
-                                    <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
-                                </copyFile>
                             </assembly>
                         </configuration>
                         <executions>
@@ -345,6 +341,10 @@ limitations under the License.
                                     <architecture>all</architecture>
                                     <assembly>
                                         <copyFile>
+                                            <path>target/sqoop-server-${project.version}.jar</path>
+                                            <toFile>target/appassembler/repo/</toFile>
+                                        </copyFile>
+                                        <copyFile>
                                             <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
                                             <toFile>/etc/init.d/sqoop-server</toFile>
                                             <attributes>
@@ -362,6 +362,11 @@ limitations under the License.
                                                 <mode>755</mode>
                                             </attributes>
                                         </copyFile>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar-->
+                                            <!--</toFile>-->
+                                        <!--</copyFile>-->
                                     </assembly>
                                 </configuration>
                             </execution>
@@ -375,6 +380,10 @@ limitations under the License.
                                     <architecture>noarch</architecture>
                                     <assembly>
                                         <copyFile>
+                                            <path>target/sqoop-server-${project.version}.jar</path>
+                                            <toFile>target/appassembler/repo/</toFile>
+                                        </copyFile>
+                                        <copyFile>
                                             <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
                                             <toFile>/etc/init.d/sqoop-server</toFile>
                                             <attributes>
@@ -392,6 +401,11 @@ limitations under the License.
                                                 <mode>755</mode>
                                             </attributes>
                                         </copyFile>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar-->
+                                            <!--</toFile>-->
+                                        <!--</copyFile>-->
                                     </assembly>
                                 </configuration>
                             </execution>

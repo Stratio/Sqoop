@@ -17,13 +17,15 @@
  */
 package org.apache.sqoop.connector.jdbc;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.connector.jdbc.configuration.LinkConfiguration;
 import org.apache.sqoop.connector.jdbc.configuration.ToJobConfiguration;
 import org.apache.sqoop.job.etl.Loader;
 import org.apache.sqoop.job.etl.LoaderContext;
 
 @edu.umd.cs.findbugs.annotations.SuppressWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
-public class GenericJdbcLoader extends Loader<LinkConfiguration, ToJobConfiguration> {
+public class GenericJdbcLoader extends Loader<LinkConfiguration, ToJobConfiguration> implements Serializable {
 
   public static final int DEFAULT_ROWS_PER_BATCH = 100;
   public static final int DEFAULT_BATCHES_PER_TRANSACTION = 100;
