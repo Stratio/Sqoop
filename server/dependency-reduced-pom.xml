@@ -3,7 +3,7 @@
   <parent>
     <artifactId>sqoop</artifactId>
     <groupId>com.stratio.sqoop</groupId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.2.0-RC1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.sqoop</groupId>
@@ -121,8 +121,8 @@
                   <architecture>all</architecture>
                   <assembly>
                     <copyFile>
-                      <path>target/appassembler/repo/sqoop-server-0.2.0-SNAPSHOT.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-SNAPSHOT.jar</toFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-RC1.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-RC1.jar</toFile>
                     </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -231,8 +231,8 @@
                   <architecture>noarch</architecture>
                   <assembly>
                     <copyFile>
-                      <path>target/appassembler/repo/sqoop-server-0.2.0-SNAPSHOT.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-SNAPSHOT.jar</toFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-RC1.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-RC1.jar</toFile>
                     </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
