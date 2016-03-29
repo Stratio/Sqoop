@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#RPM
 
 set -e
 
@@ -35,16 +34,16 @@ fi
 chown root:root /etc/init.d/sqoop-server
 
 chown -R ${USER}:${GROUP} $DIR_INSTALL
+chmod -R 775 $DIR_INSTALL
+chown -R ${USER}:${GROUP} $DIR_LOG
+chmod -R 775 $DIR_LOG
 
 chown -R ${USER}:${GROUP} $DIR_CONF
-chown -R ${USER}:${GROUP} $DIR_LOG
-chmod -R 775 $DIR_INSTALL
-chmod -R 775 $DIR_LOG
 
 
 chmod 755 /etc/init.d/sqoop-server
 chmod 755 /opt/sds/sqoop-server/bin/server
-#chmod +x /etc/default/sqoop-server.sh
+chmod +x /etc/default/sqoop*
 
 #sed -i 's!"$BASEDIR"/:/etc/sds/sqoop-server/config!/etc/sds/sqoop-server!g' /opt/sds/sqoop-server/bin/server
 

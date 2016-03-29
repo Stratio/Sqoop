@@ -1,0 +1,17 @@
+#!/bin/sh
+# Copyright (c) 2016 Stratio (http://stratio.com)
+#
+
+set -e
+
+GROUP='stratio'
+USER='sqoop'
+DIR_INSTALL='/opt/sds/sqoop-shell'
+
+
+
+if [ "$1" = "remove" ]; then
+  rm -rf $DIR_INSTALL
+  update-rc.d gosec-sso remove > /dev/null 2>&1 || true
+  userdel gosec-sso
+fi
