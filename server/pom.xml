@@ -145,7 +145,6 @@ limitations under the License.
             <artifactId>sqoop-execution-mapreduce</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- TODO: Remove this dependency -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -184,6 +183,7 @@ limitations under the License.
                                                 <exclude>META-INF/*.SF</exclude>
                                                 <exclude>META-INF/*.DSA</exclude>
                                                 <exclude>META-INF/*.RSA</exclude>
+                                                <exclude>sqoopconnector.properties</exclude>
                                             </excludes>
                                         </filter>
                                     </filters>
@@ -194,6 +194,9 @@ limitations under the License.
                                             <exclude>jmock:*</exclude>
                                             <exclude>*:xml-apis</exclude>
                                             <exclude>org.apache.maven:lib:tests</exclude>
+                                            <exclude>org.slf4j:*</exclude>
+                                            <!--<exclude>org.apache.sqoop.connector:sqoop-connector-generic-jdbc</exclude>-->
+                                            <!--<exclude>org.apache.sqoop.connector:*</exclude>-->
                                         </excludes>
                                     </artifactSet>
                                     <transformers>
@@ -225,11 +228,12 @@ limitations under the License.
                             <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                             <assembleDirectory>target/appassembler</assembleDirectory>
                             <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
-
+                            <repositoryLayout>flat</repositoryLayout>
+                            <useWildcardClassPath>true</useWildcardClassPath>
                             <programs>
                                 <program>
                                     <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
-                                    <name>server</name>
+                                    <id>server</id>
                                 </program>
                             </programs>
                         </configuration>
@@ -245,7 +249,7 @@ limitations under the License.
                     <plugin>
                         <groupId>com.stratio.mojo.unix</groupId>
                         <artifactId>unix-maven-plugin</artifactId>
-                        <version>1.1.6</version>
+                        <version>1.2.0</version>
                         <extensions>true</extensions>
                         <inherited>false</inherited>
                         <configuration>
@@ -340,9 +344,13 @@ limitations under the License.
                                 <configuration>
                                     <architecture>all</architecture>
                                     <assembly>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>target/appassembler/repo/</toFile>-->
+                                        <!--</copyFile>-->
                                         <copyFile>
-                                            <path>target/sqoop-server-${project.version}.jar</path>
-                                            <toFile>target/appassembler/repo/</toFile>
+                                            <path>target/appassembler/repo/sqoop-server-${project.version}.jar</path>
+                                            <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
                                         </copyFile>
                                         <copyFile>
                                             <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -379,9 +387,13 @@ limitations under the License.
                                 <configuration>
                                     <architecture>noarch</architecture>
                                     <assembly>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>target/appassembler/repo/</toFile>-->
+                                        <!--</copyFile>-->
                                         <copyFile>
-                                            <path>target/sqoop-server-${project.version}.jar</path>
-                                            <toFile>target/appassembler/repo/</toFile>
+                                            <path>target/appassembler/repo/sqoop-server-${project.version}.jar</path>
+                                            <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
                                         </copyFile>
                                         <copyFile>
                                             <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>

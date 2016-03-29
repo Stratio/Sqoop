@@ -32,6 +32,7 @@
                         <exclude>META-INF/*.SF</exclude>
                         <exclude>META-INF/*.DSA</exclude>
                         <exclude>META-INF/*.RSA</exclude>
+                        <exclude>sqoopconnector.properties</exclude>
                       </excludes>
                     </filter>
                   </filters>
@@ -42,6 +43,7 @@
                       <exclude>jmock:*</exclude>
                       <exclude>*:xml-apis</exclude>
                       <exclude>org.apache.maven:lib:tests</exclude>
+                      <exclude>org.slf4j:*</exclude>
                     </excludes>
                   </artifactSet>
                   <transformers>
@@ -73,10 +75,12 @@
                   <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                   <assembleDirectory>target/appassembler</assembleDirectory>
                   <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
+                  <repositoryLayout>flat</repositoryLayout>
+                  <useWildcardClassPath>true</useWildcardClassPath>
                   <programs>
                     <program>
                       <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
-                      <name>server</name>
+                      <id>server</id>
                     </program>
                   </programs>
                 </configuration>
@@ -91,10 +95,12 @@
               <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
               <assembleDirectory>target/appassembler</assembleDirectory>
               <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
+              <repositoryLayout>flat</repositoryLayout>
+              <useWildcardClassPath>true</useWildcardClassPath>
               <programs>
                 <program>
                   <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
-                  <name>server</name>
+                  <id>server</id>
                 </program>
               </programs>
             </configuration>
@@ -102,7 +108,7 @@
           <plugin>
             <groupId>com.stratio.mojo.unix</groupId>
             <artifactId>unix-maven-plugin</artifactId>
-            <version>1.1.6</version>
+            <version>1.2.0</version>
             <extensions>true</extensions>
             <executions>
               <execution>
@@ -115,8 +121,8 @@
                   <architecture>all</architecture>
                   <assembly>
                     <copyFile>
-                      <path>target/sqoop-server-0.2.0-SNAPSHOT.jar</path>
-                      <toFile>target/appassembler/repo/</toFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-SNAPSHOT.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-SNAPSHOT.jar</toFile>
                     </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -225,8 +231,8 @@
                   <architecture>noarch</architecture>
                   <assembly>
                     <copyFile>
-                      <path>target/sqoop-server-0.2.0-SNAPSHOT.jar</path>
-                      <toFile>target/appassembler/repo/</toFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-SNAPSHOT.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-SNAPSHOT.jar</toFile>
                     </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
