@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.kafka;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -34,7 +35,7 @@ import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 
-public class KafkaLoader extends Loader<LinkConfiguration,ToJobConfiguration> {
+public class KafkaLoader extends Loader<LinkConfiguration,ToJobConfiguration> implements Serializable{
   private static final Logger LOG = Logger.getLogger(KafkaLoader.class);
 
   private List<KeyedMessage<String, String>> messageList =

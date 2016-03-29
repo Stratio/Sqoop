@@ -17,6 +17,7 @@
  */
 package org.apache.sqoop.connector.jdbc;
 
+import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -42,7 +43,8 @@ import org.apache.sqoop.utils.ClassUtils;
 
 @edu.umd.cs.findbugs.annotations.SuppressWarnings({
         "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING", "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE"})
-public class GenericJdbcFromInitializer extends Initializer<LinkConfiguration, FromJobConfiguration> {
+public class GenericJdbcFromInitializer extends Initializer<LinkConfiguration, FromJobConfiguration> implements
+        Serializable {
 
   private static final Logger LOG =
     Logger.getLogger(GenericJdbcFromInitializer.class);

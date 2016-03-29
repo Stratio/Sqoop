@@ -17,13 +17,15 @@
  */
 package org.apache.sqoop.connector.kafka;
 
+import java.io.Serializable;
+
 import org.apache.log4j.Logger;
 import org.apache.sqoop.connector.kafka.configuration.ToJobConfiguration;
 import org.apache.sqoop.connector.kafka.configuration.LinkConfiguration;
 import org.apache.sqoop.job.etl.Destroyer;
 import org.apache.sqoop.job.etl.DestroyerContext;
 
-public class KafkaToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> {
+public class KafkaToDestroyer extends Destroyer<LinkConfiguration, ToJobConfiguration> implements Serializable{
 
   private static final Logger LOG = Logger.getLogger(KafkaToDestroyer.class);
 

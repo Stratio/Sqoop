@@ -17,10 +17,12 @@
  */
 package org.apache.sqoop.connector.jdbc;
 
+import java.io.Serializable;
+
 /**
  *
  */
-public final class GenericJdbcConnectorConstants {
+public final class GenericJdbcConnectorConstants implements Serializable {
 
   // Resource bundle name
   public static final String RESOURCE_BUNDLE_NAME =

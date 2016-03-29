@@ -24,9 +24,10 @@ import org.apache.sqoop.job.etl.Initializer;
 import org.apache.sqoop.job.etl.InitializerContext;
 import org.apache.sqoop.utils.ClassUtils;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class KafkaToInitializer extends Initializer<LinkConfiguration,ToJobConfiguration> {
+public class KafkaToInitializer extends Initializer<LinkConfiguration,ToJobConfiguration> implements Serializable{
 
   private static final Logger LOG = Logger.getLogger(KafkaToInitializer.class);
 

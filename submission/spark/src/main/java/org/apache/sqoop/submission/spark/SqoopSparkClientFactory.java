@@ -28,12 +28,9 @@ public class SqoopSparkClientFactory {
         // Submit spark job through local spark context while spark master is local
         // mode, otherwise submit spark job through remote spark context.
         String master = sparkConf.get(Constants.SPARK_MASTER);
-        if (master.equals("local") || master.startsWith("local[")) {
+        if (!master.startsWith("yarn")) {
             // With local spark context, all user sessions share the same spark context.
             return LocalSqoopSparkClient.getInstance(generateSparkConf(sparkConf));
-        } else if (!master.startsWith("yarn")) {
-            return LocalSqoopSparkClient.getInstance(generateSparkConf(sparkConf));
-
         } else {
             LOG.info("Using yarn submitter");
             //TODO: hook up yarn submitter

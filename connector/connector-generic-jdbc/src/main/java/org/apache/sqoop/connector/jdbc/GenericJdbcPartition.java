@@ -20,10 +20,11 @@ package org.apache.sqoop.connector.jdbc;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.io.Serializable;
 
 import org.apache.sqoop.job.etl.Partition;
 
-public class GenericJdbcPartition extends Partition {
+public class GenericJdbcPartition extends Partition implements Serializable {
 
   private String conditions;
 

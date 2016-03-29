@@ -27,7 +27,7 @@ public class LocalSqoopSparkClient extends SqoopSparkClientManager {
 
     public LocalSqoopSparkClient(SparkConf sparkConf) {
         context = new JavaSparkContext(sparkConf);
-        context.addJar("repo/sqoop-server-0.1.0-SNAPSHOT.jar");
+        context.addJar("repo/sqoop-server-0.2.0-SNAPSHOT.jar");
     }
 
     public SparkConf getSparkConf() {
@@ -46,9 +46,6 @@ public class LocalSqoopSparkClient extends SqoopSparkClientManager {
     }
 
     public void execute(JobRequest request) throws Exception {
-
-        //SparkCounters sparkCounters = new SparkCounters(sc);
-
         SqoopSparkDriver.execute(request, getSparkConf(), context);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.FROM, SparkJobConstants.SUBMITTING_USER);
         SparkDestroyerExecutor.executeDestroyer(true, request, Direction.TO,SparkJobConstants.SUBMITTING_USER);

@@ -17,9 +17,11 @@
  */
 package org.apache.sqoop.connector.kafka;
 
+import java.io.Serializable;
+
 import org.apache.sqoop.job.Constants;
 
-public class KafkaConstants extends Constants {
+public class KafkaConstants extends Constants implements Serializable{
   // Resource bundle name
   public static final String RESOURCE_BUNDLE_NAME = "kafka-connector-config";
 

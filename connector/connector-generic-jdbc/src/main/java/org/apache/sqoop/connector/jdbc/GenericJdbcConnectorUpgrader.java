@@ -27,11 +27,12 @@ import org.apache.sqoop.model.MInput;
 import org.apache.sqoop.model.MLinkConfig;
 import org.apache.sqoop.model.MToConfig;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GenericJdbcConnectorUpgrader extends ConnectorConfigurableUpgrader {
+public class GenericJdbcConnectorUpgrader extends ConnectorConfigurableUpgrader implements Serializable {
 
   @Override
   public void upgradeLinkConfig(MLinkConfig original, MLinkConfig upgradeTarget) {

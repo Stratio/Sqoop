@@ -116,22 +116,6 @@ public class SparkSubmissionEngine extends SubmissionEngine {
 
         try {
             sparkClient.execute(jobRequest);
-            //            request.getJobSubmission().setExternalJobId(jobRequest.getJobName());
-            //            request.getJobSubmission().setProgress(progress(request));
-            //            SubmissionStatus successful=convertSparkState(sparkClient.getSparkContext().statusTracker()
-            //                    .getJobInfo(sparkClient.getSparkContext().sc().jobProgressListener().jobIdToData().size()-1)
-            //                    .status());
-            //            if (successful==SubmissionStatus.SUCCEEDED) {
-            //                request.getJobSubmission().setStatus(SubmissionStatus.SUCCEEDED);
-            //            } else {
-            //                // treat any other state as failed
-            //                request.getJobSubmission().setStatus(SubmissionStatus.FAILED);
-            //            }
-            //
-            //            // there is no failure info in this job api, unlike the running job
-            //            request.getJobSubmission().setError(null);
-            //            request.getJobSubmission().setLastUpdateDate(new Date());
-
         } catch (Exception e) {
             SubmissionError error = new SubmissionError();
             error.setErrorSummary(e.toString());
@@ -180,13 +164,13 @@ public class SparkSubmissionEngine extends SubmissionEngine {
             SubmissionStatus newStatus = convertSparkState(sparkClient.getSparkContext().statusTracker()
                     .getJobInfo(sparkClient.getSparkContext().sc().jobProgressListener().jobIdToData().size() - 1)
                     .status());
-            sparkClient.getSparkContext().statusTracker().getJobInfo(sparkClient.getSparkContext().sc()
-                    .jobProgressListener().jobIdToData().size() - 1);
-            //TODO: Review how to use spark counters to show status. http://localhost:4040/metrics/json/counters
-            if (newStatus.isRunning()) {
-                progress = (Double.valueOf(sqoopConf.get("mapTime")) + Double.valueOf(sqoopConf.get
-                        ("reduceTime"))) / 2;
-            }
+//            sparkClient.getSparkContext().statusTracker().getJobInfo(sparkClient.getSparkContext().sc()
+//                    .jobProgressListener().jobIdToData().size() - 1);
+//           TODO: Review how to use spark counters to show status. http://localhost:4040/metrics/json/counters
+//            if (newStatus.isRunning()) {
+//                progress = (Double.valueOf(sqoopConf.get("mapTime")) + Double.valueOf(sqoopConf.get
+//                        ("reduceTime"))) / 2;
+//            }
             //            else {
             //    progress = (Double) sparkClient.getSparkContext().sc().jobProgressListener().completedJobs().last()
             //            .completionTime().get();

@@ -15,6 +15,48 @@
       <build>
         <plugins>
           <plugin>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.3</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>false</shadedArtifactAttached>
+                  <filters>
+                    <filter>
+                      <artifact>*:*</artifact>
+                      <excludes>
+                        <exclude>META-INF/*.SF</exclude>
+                        <exclude>META-INF/*.DSA</exclude>
+                        <exclude>META-INF/*.RSA</exclude>
+                        <exclude>sqoopconnector.properties</exclude>
+                      </excludes>
+                    </filter>
+                  </filters>
+                  <artifactSet>
+                    <excludes>
+                      <exclude>classworlds:classworlds</exclude>
+                      <exclude>junit:junit</exclude>
+                      <exclude>jmock:*</exclude>
+                      <exclude>*:xml-apis</exclude>
+                      <exclude>org.apache.maven:lib:tests</exclude>
+                      <exclude>org.slf4j:*</exclude>
+                    </excludes>
+                  </artifactSet>
+                  <transformers>
+                    <transformer />
+                    <transformer>
+                      <resource>spark-defaults.conf</resource>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>appassembler-maven-plugin</artifactId>
             <version>1.10</version>
@@ -33,10 +75,12 @@
                   <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                   <assembleDirectory>target/appassembler</assembleDirectory>
                   <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
+                  <repositoryLayout>flat</repositoryLayout>
+                  <useWildcardClassPath>true</useWildcardClassPath>
                   <programs>
                     <program>
                       <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
-                      <name>server</name>
+                      <id>server</id>
                     </program>
                   </programs>
                 </configuration>
@@ -51,57 +95,20 @@
               <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
               <assembleDirectory>target/appassembler</assembleDirectory>
               <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
+              <repositoryLayout>flat</repositoryLayout>
+              <useWildcardClassPath>true</useWildcardClassPath>
               <programs>
                 <program>
                   <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
-                  <name>server</name>
+                  <id>server</id>
                 </program>
               </programs>
             </configuration>
           </plugin>
           <plugin>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>2.3</version>
-            <executions>
-              <execution>
-                <phase>package</phase>
-                <goals>
-                  <goal>shade</goal>
-                </goals>
-                <configuration>
-                  <filters>
-                    <filter>
-                      <artifact>*:*</artifact>
-                      <excludes>
-                        <exclude>META-INF/*.SF</exclude>
-                        <exclude>META-INF/*.DSA</exclude>
-                        <exclude>META-INF/*.RSA</exclude>
-                      </excludes>
-                    </filter>
-                  </filters>
-                  <artifactSet>
-                    <excludes>
-                      <exclude>classworlds:classworlds</exclude>
-                      <exclude>junit:junit</exclude>
-                      <exclude>jmock:*</exclude>
-                      <exclude>*:xml-apis</exclude>
-                      <exclude>org.apache.maven:lib:tests</exclude>
-                    </excludes>
-                  </artifactSet>
-                  <transformers>
-                    <transformer />
-                    <transformer>
-                      <resource>spark-defaults.conf</resource>
-                    </transformer>
-                  </transformers>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
             <groupId>com.stratio.mojo.unix</groupId>
             <artifactId>unix-maven-plugin</artifactId>
-            <version>1.1.6</version>
+            <version>1.2.0</version>
             <extensions>true</extensions>
             <executions>
               <execution>
@@ -113,6 +120,10 @@
                 <configuration>
                   <architecture>all</architecture>
                   <assembly>
+                    <copyFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-SNAPSHOT.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-SNAPSHOT.jar</toFile>
+                    </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
                       <toFile>/etc/init.d/sqoop-server</toFile>
@@ -219,6 +230,10 @@
                 <configuration>
                   <architecture>noarch</architecture>
                   <assembly>
+                    <copyFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-SNAPSHOT.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-SNAPSHOT.jar</toFile>
+                    </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
                       <toFile>/etc/init.d/sqoop-server</toFile>
@@ -396,10 +411,6 @@
                     <group>stratio</group>
                   </directoryAttributes>
                 </copyDirectory>
-                <copyFile>
-                  <path>target/sqoop-server-0.2.0-SNAPSHOT.jar</path>
-                  <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-SNAPSHOT.jar</toFile>
-                </copyFile>
               </assembly>
             </configuration>
           </plugin>
@@ -431,6 +442,12 @@
       <artifactId>annotations</artifactId>
       <version>1.3.2</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.java</groupId>
+      <artifactId>sonar-jacoco-listeners</artifactId>
+      <version>3.7.1</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
