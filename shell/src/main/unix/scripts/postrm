@@ -12,6 +12,6 @@ DIR_INSTALL='/opt/sds/sqoop-shell'
 
 if [ "$1" = "remove" ]; then
   rm -rf $DIR_INSTALL
-  update-rc.d gosec-sso remove > /dev/null 2>&1 || true
-  userdel gosec-sso
+  update-rc.d sqoop remove > /dev/null 2>&1 || true
+  userdel sqoop
 fi
