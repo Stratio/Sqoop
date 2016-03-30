@@ -27,7 +27,8 @@ public class LocalSqoopSparkClient extends SqoopSparkClientManager {
 
     public LocalSqoopSparkClient(SparkConf sparkConf) {
         context = new JavaSparkContext(sparkConf);
-        context.addJar("repo/sqoop-server-0.2.0-SNAPSHOT.jar");
+        String fatJar=sparkConf.get("spark.jars");
+        context.addJar(fatJar);
     }
 
     public SparkConf getSparkConf() {
