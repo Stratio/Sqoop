@@ -3,7 +3,7 @@
   <parent>
     <artifactId>sqoop</artifactId>
     <groupId>com.stratio.sqoop</groupId>
-    <version>0.2.0-RC1</version>
+    <version>0.2.0-RC2-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.sqoop</groupId>
@@ -13,7 +13,42 @@
     <profile>
       <id>package</id>
       <build>
+        <resources>
+          <resource>
+            <filtering>true</filtering>
+            <directory>/home/eruiz/Proyectos/sqoop/server/src/main/config</directory>
+          </resource>
+        </resources>
         <plugins>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.5</version>
+            <executions>
+              <execution>
+                <id>default-testResources</id>
+                <phase>process-test-resources</phase>
+                <goals>
+                  <goal>testResources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default-resources</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>resources</goal>
+                </goals>
+                <configuration>
+                  <encoding>UTF-8</encoding>
+                </configuration>
+              </execution>
+            </executions>
+            <configuration>
+              <encoding>UTF-8</encoding>
+            </configuration>
+          </plugin>
           <plugin>
             <artifactId>maven-shade-plugin</artifactId>
             <version>2.3</version>
@@ -72,6 +107,7 @@
                   </platforms>
                   <configurationDirectory>config</configurationDirectory>
                   <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                  <filterConfigurationDirectory>true</filterConfigurationDirectory>
                   <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                   <assembleDirectory>target/appassembler</assembleDirectory>
                   <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
@@ -92,6 +128,7 @@
               </platforms>
               <configurationDirectory>config</configurationDirectory>
               <copyConfigurationDirectory>true</copyConfigurationDirectory>
+              <filterConfigurationDirectory>true</filterConfigurationDirectory>
               <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
               <assembleDirectory>target/appassembler</assembleDirectory>
               <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
@@ -121,8 +158,8 @@
                   <architecture>all</architecture>
                   <assembly>
                     <copyFile>
-                      <path>target/appassembler/repo/sqoop-server-0.2.0-RC1.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-RC1.jar</toFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-RC2-SNAPSHOT.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-RC2-SNAPSHOT.jar</toFile>
                     </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
@@ -231,8 +268,8 @@
                   <architecture>noarch</architecture>
                   <assembly>
                     <copyFile>
-                      <path>target/appassembler/repo/sqoop-server-0.2.0-RC1.jar</path>
-                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-RC1.jar</toFile>
+                      <path>target/appassembler/repo/sqoop-server-0.2.0-RC2-SNAPSHOT.jar</path>
+                      <toFile>/opt/sds/sqoop-server/repo/sqoop-server-0.2.0-RC2-SNAPSHOT.jar</toFile>
                     </copyFile>
                     <copyFile>
                       <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
