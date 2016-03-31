@@ -27,4 +27,3 @@ chmod 0755 /opt/sds/sqoop-shell/bin/*
 chown -R $USER:$GROUP $DIR_INSTALL
 chown -R ${USER}:${GROUP} $DIR_CONF
 
-ln -s $DIR_CONF $DIR_INSTALL/config

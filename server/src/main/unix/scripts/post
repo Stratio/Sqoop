@@ -40,13 +40,11 @@ chmod -R 775 $DIR_LOG
 
 chown -R ${USER}:${GROUP} $DIR_CONF
 
-rm -rf /opt/sds/sqoop-server/config && ln -s $DIR_CONF /opt/sds/sqoop-server/config
 
 chmod 755 /etc/init.d/sqoop-server
 chmod 755 /opt/sds/sqoop-server/bin/server
 chmod +x /etc/default/sqoop*
 
-#sed -i 's!"$BASEDIR"/:/etc/sds/sqoop-server/config!/etc/sds/sqoop-server!g' /opt/sds/sqoop-server/bin/server
 
 /sbin/chkconfig --add sqoop-server
 

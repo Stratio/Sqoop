@@ -87,7 +87,9 @@ limitations under the License.
                             <platforms>
                                 <platform>unix</platform>
                             </platforms>
-                            <configurationDirectory>config</configurationDirectory>
+                            <configurationSourceDirectory>src/main/config</configurationSourceDirectory>
+                            <configurationDirectory>:/etc/sds/sqoop-shell</configurationDirectory>
+                            <filterConfigurationDirectory>true</filterConfigurationDirectory>
                             <copyConfigurationDirectory>true</copyConfigurationDirectory>
                             <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                             <assembleDirectory>target/appassembler</assembleDirectory>
@@ -177,7 +179,7 @@ limitations under the License.
                                     <to>/opt/sds/sqoop-shell/repo</to>
                                 </copyDirectory>
                                 <copyDirectory>
-                                    <from>target/appassembler/config</from>
+                                    <from>target/appassembler/:/etc/sds/sqoop-shell</from>
                                     <to>/etc/sds/sqoop-shell</to>
                                 </copyDirectory>
                             </assembly>
