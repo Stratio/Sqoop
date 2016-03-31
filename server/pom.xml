@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.stratio.sqoop</groupId>
+        <artifactId>sqoop</artifactId>
+        <version>0.3.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.apache.sqoop</groupId>
+    <artifactId>sqoop-server</artifactId>
+    <name>Sqoop Server</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.sqoop</groupId>
+            <artifactId>sqoop-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop</groupId>
+            <artifactId>sqoop-tools</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop</groupId>
+            <artifactId>sqoop-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop</groupId>
+            <artifactId>sqoop-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.submission</groupId>
+            <artifactId>sqoop-submission-mapreduce</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.submission</groupId>
+            <artifactId>sqoop-submission-spark</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.repository</groupId>
+            <artifactId>sqoop-repository-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.repository</groupId>
+            <artifactId>sqoop-repository-derby</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.repository</groupId>
+            <artifactId>sqoop-repository-postgresql</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.repository</groupId>
+            <artifactId>sqoop-repository-mysql</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.connector</groupId>
+            <artifactId>sqoop-connector-generic-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.connector</groupId>
+            <artifactId>sqoop-connector-hdfs</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.connector</groupId>
+            <artifactId>sqoop-connector-kite</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.connector</groupId>
+            <artifactId>sqoop-connector-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.connector</groupId>
+            <artifactId>sqoop-connector-sftp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.connector</groupId>
+            <artifactId>sqoop-connector-ftp</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.sqoop.connector</groupId>
+            <artifactId>sqoop-connector-oracle-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sqoop.execution</groupId>
+            <artifactId>sqoop-execution-mapreduce</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>package</id>
+            <build>
+
+                <resources>
+                    <resource>
+                        <directory>src/main/config</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>2.5</version>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>2.3</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                                <configuration>
+                                    <shadedArtifactAttached>false</shadedArtifactAttached>
+                                    <!--<shadedClassifierName>jar-with-dependencies</shadedClassifierName>-->
+                                    <filters>
+                                        <filter>
+                                            <artifact>*:*</artifact>
+                                            <excludes>
+                                                <exclude>META-INF/*.SF</exclude>
+                                                <exclude>META-INF/*.DSA</exclude>
+                                                <exclude>META-INF/*.RSA</exclude>
+                                                <exclude>sqoopconnector.properties</exclude>
+                                            </excludes>
+                                        </filter>
+                                    </filters>
+                                    <artifactSet>
+                                        <excludes>
+                                            <exclude>classworlds:classworlds</exclude>
+                                            <exclude>junit:junit</exclude>
+                                            <exclude>jmock:*</exclude>
+                                            <exclude>*:xml-apis</exclude>
+                                            <exclude>org.apache.maven:lib:tests</exclude>
+                                            <exclude>org.slf4j:*</exclude>
+                                            <!--<exclude>org.apache.sqoop.connector:sqoop-connector-generic-jdbc</exclude>-->
+                                            <!--<exclude>org.apache.sqoop.connector:*</exclude>-->
+                                        </excludes>
+                                    </artifactSet>
+                                    <transformers>
+                                        <transformer
+                                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                        <!--
+                                        Some care is required:
+                                        http://doc.akka.io/docs/akka/snapshot/general/configuration.html
+                                        -->
+                                        <transformer
+                                                implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                            <resource>spark-defaults.conf</resource>
+                                        </transformer>
+                                    </transformers>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>appassembler-maven-plugin</artifactId>
+                        <version>1.10</version>
+                        <configuration>
+                            <platforms>
+                                <platform>unix</platform>
+                            </platforms>
+                            <configurationDirectory>config</configurationDirectory>
+                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                            <filterConfigurationDirectory>true</filterConfigurationDirectory>
+                            <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+                            <assembleDirectory>target/appassembler</assembleDirectory>
+                            <extraJvmArguments>-Dsqoop.config.dir=/etc/sds/sqoop-server $SQOOP_OPTS</extraJvmArguments>
+                            <repositoryLayout>flat</repositoryLayout>
+                            <useWildcardClassPath>true</useWildcardClassPath>
+                            <programs>
+                                <program>
+                                    <mainClass>org.apache.sqoop.server.SqoopJettyServer</mainClass>
+                                    <id>server</id>
+                                </program>
+                            </programs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>assemble</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.stratio.mojo.unix</groupId>
+                        <artifactId>unix-maven-plugin</artifactId>
+                        <version>1.2.0</version>
+                        <extensions>true</extensions>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <outputFileName>stratio-sqoop-server</outputFileName>
+                            <contact>
+                                <![CDATA[Stratio Sqoop<sqoop@stratio.com>]]>
+                            </contact>
+                            <contactEmail>sqoop@stratio.com</contactEmail>
+                            <deb>
+                                <section>devel</section>
+                            </deb>
+                            <rpm>
+                                <group>stratio</group>
+                                <requires>bash</requires>
+                            </rpm>
+                            <name>Sqoop Shell</name>
+                            <excludeDirectoryAttributes>
+                                <dir>/etc</dir>
+                                <dir>/etc/init.d</dir>
+                                <dir>/etc/default</dir>
+                                <dir>/var</dir>
+                                <dir>/var/run</dir>
+                                <dir>/var/log</dir>
+                                <dir>/opt</dir>
+                                <dir>/usr</dir>
+                                <dir>/bin</dir>
+                            </excludeDirectoryAttributes>
+                            <defaults>
+                                <directoryAttributes>
+                                    <user>sqoop</user>
+                                    <group>stratio</group>
+                                    <mode>0750</mode>
+                                </directoryAttributes>
+                                <fileAttributes>
+                                    <user>sqoop</user>
+                                    <group>stratio</group>
+                                    <mode>0644</mode>
+                                </fileAttributes>
+                            </defaults>
+                            <assembly>
+                                <mkdirs>
+                                    <path>/opt/sds/sqoop-server</path>
+                                    <attributes>
+                                        <user>sqoop</user>
+                                        <group>stratio</group>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/var/run/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/var/log/sds/sqoop-server</path>
+                                    <attributes>
+                                        <user>sqoop</user>
+                                        <group>stratio</group>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/opt/sds/.m2</path>
+                                    <attributes>
+                                        <user>sqoop</user>
+                                        <group>stratio</group>
+                                    </attributes>
+                                </mkdirs>
+                                <copyDirectory>
+                                    <from>target/appassembler/bin</from>
+                                    <to>/opt/sds/sqoop-server/bin</to>
+                                </copyDirectory>
+                                <copyDirectory>
+                                    <from>target/appassembler/repo</from>
+                                    <to>/opt/sds/sqoop-server/repo</to>
+                                </copyDirectory>
+                                <copyDirectory>
+                                    <from>target/appassembler/config/</from>
+                                    <to>/etc/sds/sqoop-server/</to>
+                                    <directoryAttributes>
+                                        <user>sqoop</user>
+                                        <group>stratio</group>
+                                    </directoryAttributes>
+                                </copyDirectory>
+                            </assembly>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>deb</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>package-deb</goal>
+                                </goals>
+                                <configuration>
+                                    <architecture>all</architecture>
+                                    <assembly>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>target/appassembler/repo/</toFile>-->
+                                        <!--</copyFile>-->
+                                        <copyFile>
+                                            <path>target/appassembler/repo/sqoop-server-${project.version}.jar</path>
+                                            <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
+                                        </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
+                                            <toFile>/etc/init.d/sqoop-server</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-variables</path>
+                                            <toFile>/etc/default/sqoop-server-variables</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar-->
+                                            <!--</toFile>-->
+                                        <!--</copyFile>-->
+                                    </assembly>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>rpm</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>package-rpm</goal>
+                                </goals>
+                                <configuration>
+                                    <architecture>noarch</architecture>
+                                    <assembly>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>target/appassembler/repo/</toFile>-->
+                                        <!--</copyFile>-->
+                                        <copyFile>
+                                            <path>target/appassembler/repo/sqoop-server-${project.version}.jar</path>
+                                            <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
+                                        </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/init.d/sqoop-server</path>
+                                            <toFile>/etc/init.d/sqoop-server</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-variables</path>
+                                            <toFile>/etc/default/sqoop-server-variables</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <!--<copyFile>-->
+                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
+                                            <!--<toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar-->
+                                            <!--</toFile>-->
+                                        <!--</copyFile>-->
+                                    </assembly>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+
+            </build>
+        </profile>
+    </profiles>
+</project>
