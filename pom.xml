@@ -25,7 +25,7 @@ limitations under the License.
 
   <groupId>com.stratio.sqoop</groupId>
   <artifactId>sqoop</artifactId>
-  <version>0.2.0-RC2</version>
+  <version>0.2.0-RC3-SNAPSHOT</version>
   <description>Stratio Sqoop</description>
   <name>Stratio Sqoop</name>
   <packaging>pom</packaging>
