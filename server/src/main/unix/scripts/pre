@@ -17,12 +17,8 @@ if ! getent group $GROUP >/dev/null 2>&1; then
 groupadd ${GROUP}
 fi
 
-# Add stratio user if it doesn't already exists
 if ! getent passwd $USER >/dev/null 2>&1; then
-[ -d /opt ] || mkdir /opt
-useradd -M -d /opt/sds -g ${GROUP} -s /bin/bash ${USER}
-else
-usermod -G $GROUP $USER
+   useradd -M -d /opt/sds/sqoop-server -g $GROUP -s /bin/nologin $USER
 fi
 
 exit 0
