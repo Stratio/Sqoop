@@ -201,6 +201,7 @@ limitations under the License.
                                                 <exclude>META-INF/*.DSA</exclude>
                                                 <exclude>META-INF/*.RSA</exclude>
                                                 <exclude>sqoopconnector.properties</exclude>
+                                                <exclude>spark-defaults.properties</exclude>
                                             </excludes>
                                         </filter>
                                     </filters>
@@ -240,8 +241,9 @@ limitations under the License.
                             <platforms>
                                 <platform>unix</platform>
                             </platforms>
-                            <configurationDirectory>config</configurationDirectory>
-                            <copyConfigurationDirectory>false</copyConfigurationDirectory>
+                            <configurationSourceDirectory>src/main/config</configurationSourceDirectory>
+                            <configurationDirectory>:/etc/sds/sqoop-server</configurationDirectory>
+                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
                             <filterConfigurationDirectory>true</filterConfigurationDirectory>
                             <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                             <assembleDirectory>target/appassembler</assembleDirectory>
@@ -346,12 +348,8 @@ limitations under the License.
                                     <to>/opt/sds/sqoop-server/repo</to>
                                 </copyDirectory>
                                 <copyDirectory>
-                                    <from>target/appassembler/config/</from>
+                                    <from>target/appassembler/:/etc/sds/sqoop-server</from>
                                     <to>/etc/sds/sqoop-server</to>
-                                    <directoryAttributes>
-                                        <user>sqoop</user>
-                                        <group>stratio</group>
-                                    </directoryAttributes>
                                 </copyDirectory>
                             </assembly>
                         </configuration>
@@ -365,10 +363,6 @@ limitations under the License.
                                 <configuration>
                                     <architecture>all</architecture>
                                     <assembly>
-                                        <!--<copyFile>-->
-                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
-                                            <!--<toFile>target/appassembler/repo/</toFile>-->
-                                        <!--</copyFile>-->
                                         <copyFile>
                                             <path>target/appassembler/repo/sqoop-server-${project.version}.jar</path>
                                             <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
@@ -400,11 +394,6 @@ limitations under the License.
                                                 <mode>755</mode>
                                             </attributes>
                                         </copyFile>
-                                        <!--<copyFile>-->
-                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
-                                            <!--<toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar-->
-                                            <!--</toFile>-->
-                                        <!--</copyFile>-->
                                     </assembly>
                                 </configuration>
                             </execution>
@@ -417,10 +406,6 @@ limitations under the License.
                                 <configuration>
                                     <architecture>noarch</architecture>
                                     <assembly>
-                                        <!--<copyFile>-->
-                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
-                                            <!--<toFile>target/appassembler/repo/</toFile>-->
-                                        <!--</copyFile>-->
                                         <copyFile>
                                             <path>target/appassembler/repo/sqoop-server-${project.version}.jar</path>
                                             <toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar</toFile>
@@ -452,11 +437,6 @@ limitations under the License.
                                                 <mode>755</mode>
                                             </attributes>
                                         </copyFile>
-                                        <!--<copyFile>-->
-                                            <!--<path>target/sqoop-server-${project.version}.jar</path>-->
-                                            <!--<toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar-->
-                                            <!--</toFile>-->
-                                        <!--</copyFile>-->
                                     </assembly>
                                 </configuration>
                             </execution>
