@@ -241,7 +241,7 @@ limitations under the License.
                                 <platform>unix</platform>
                             </platforms>
                             <configurationDirectory>config</configurationDirectory>
-                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                            <copyConfigurationDirectory>false</copyConfigurationDirectory>
                             <filterConfigurationDirectory>true</filterConfigurationDirectory>
                             <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
                             <assembleDirectory>target/appassembler</assembleDirectory>
@@ -347,7 +347,7 @@ limitations under the License.
                                 </copyDirectory>
                                 <copyDirectory>
                                     <from>target/appassembler/config/</from>
-                                    <to>/etc/sds/sqoop-server/</to>
+                                    <to>/etc/sds/sqoop-server</to>
                                     <directoryAttributes>
                                         <user>sqoop</user>
                                         <group>stratio</group>
@@ -391,6 +391,15 @@ limitations under the License.
                                                 <mode>755</mode>
                                             </attributes>
                                         </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-functions</path>
+                                            <toFile>/etc/default/sqoop-server-functions</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
                                         <!--<copyFile>-->
                                             <!--<path>target/sqoop-server-${project.version}.jar</path>-->
                                             <!--<toFile>/opt/sds/sqoop-server/repo/sqoop-server-${project.version}.jar-->
@@ -428,6 +437,15 @@ limitations under the License.
                                         <copyFile>
                                             <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-variables</path>
                                             <toFile>/etc/default/sqoop-server-variables</toFile>
+                                            <attributes>
+                                                <user>root</user>
+                                                <group>root</group>
+                                                <mode>755</mode>
+                                            </attributes>
+                                        </copyFile>
+                                        <copyFile>
+                                            <path>src/main/unix/files_and_dirs/etc/default/sqoop-server-functions</path>
+                                            <toFile>/etc/default/sqoop-server-functions</toFile>
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
