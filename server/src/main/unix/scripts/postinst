@@ -47,8 +47,8 @@ case "$1" in
 
   chown -R ${USER}:${GROUP} /opt/sds/.m2
 
+#  rm -rf /opt/sds/sqoop-server/config && ln -s $DIR_CONF /opt/sds/sqoop-server/config
 
-#  sed -i 's!"$BASEDIR"/:/etc/sds/sqoop-server/config!/etc/sds/sqoop-server!g' /opt/sds/sqoop-server/bin/server
 
   update-rc.d sqoop-server defaults
   ;;

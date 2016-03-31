@@ -5,3 +5,5 @@ export SQOOP_OPTS="-Xms2048m -Xmx2048m -Dcom.sun.management.jmxremote.port=7199 
 
 export USER=sqoop
 export GROUP=stratio
+
+
