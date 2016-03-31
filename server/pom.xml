@@ -318,8 +318,9 @@ limitations under the License.
                                 <mkdirs>
                                     <path>/var/run/sds</path>
                                     <attributes>
-                                        <user>sqoop</user>
+                                        <user>root</user>
                                         <group>stratio</group>
+                                        <mode>0775</mode>
                                     </attributes>
                                 </mkdirs>
                                 <mkdirs>
