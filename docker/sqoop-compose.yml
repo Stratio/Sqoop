@@ -24,7 +24,7 @@ waitzk:
       - zookeeper
 
 kafka:
-  image: stratio/kafka:0.8.1.1
+  image: stratio/kafka:0.8.2.1
   container_name: kafka
   ports:
     - "9092:9092"
@@ -52,7 +52,7 @@ sqoop-server:
     - waitkafka
 
 sqoop-shell:
-  image: qa.stratio.com:5000/stratio/sqoop-shell:latest
+  image: stratio/sqoop-shell:latest
   container_name: sqoopshell
   links:
     - sqoop-server
