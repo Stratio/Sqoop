@@ -32,7 +32,7 @@ kafka:
     - waitzk
     - zookeeper
   environment:
-    ZK_CONNECT: zookeeper:2181
+    ZOOKEEPER_HOSTS: zookeeper:2181
 
 waitkafka:
   image: aanand/wait
