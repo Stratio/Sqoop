@@ -1,0 +1,58 @@
+# sudo -i 
+# curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+# chmod +x /usr/local/bin/docker-compose
+
+
+mysql:
+  image: mysql
+  container_name: mysql
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+
+zookeeper:
+  image: stratio/zookeeper:3.4.6
+  container_name: zookeeper
+  ports:
+    - "2181:2181"
+
+waitzk:
+  image: aanand/wait
+  container_name: waitzk
+  links:
+      - zookeeper
+
+kafka:
+  image: stratio/kafka:0.8.2.1
+  container_name: kafka
+  ports:
+    - "9092:9092"
+  links:
+    - waitzk
+    - zookeeper
+  environment:
+    ZOOKEEPER_HOSTS: zookeeper:2181
+
+waitkafka:
+  image: aanand/wait
+  container_name: waitkafka
+  links:
+    - kafka
+
+sqoop-server:
+  image: stratio/sqoop-server:latest
+  container_name: sqoopserver
+  ports:
+    - "8080:8080"
+  links:
+    - zookeeper
+    - mysql
+    - kafka
+    - waitkafka
+
+sqoop-shell:
+  image: stratio/sqoop-shell:latest
+  container_name: sqoopshell
+  links:
+    - sqoop-server
