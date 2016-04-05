@@ -6,7 +6,6 @@ Contents
 
 * Introduction
 * Stratio Sqoop components
-* Details about Stratio Sqoop
 * Compile & Package
 * FAQ
 
@@ -18,8 +17,8 @@ Apache Sqoop works on top of Hadoop but in Stratio we've adapted Sqoop to work a
 Stratio Sqoop components
 ------------------------
 * Server
-* Shell
-* API Rest
+* [Shell](https://stratio.atlassian.net/wiki/display/SQOOP/Sqoop-shell+Syntax)
+* [API Rest](https://stratio.atlassian.net/wiki/display/SQOOP/APIs)
 
 Compile & Package
 -----------------
@@ -38,13 +37,16 @@ FAQ
 ---
 
 **I would like to run my custom Sqoop job but I don’t know how to start.**
-*You can take a look at Get Started section. It’s a good starting point to understand better how to implement your custom business logic.*
+
+*You can take a look at [Get Started](https://stratio.atlassian.net/wiki/display/SQOOP/Get+Started) section. It’s a good starting point to understand better how to implement your custom business logic.*
  
 **If Stratio Sqoop is an Open Source project. Where can I download the code?**
+
 *You can get the code from https://github.com/Stratio/Sqoop/*
  
 **I don’t know how to build a custom connector to use Stratio Sqoop with my database. What can I do?**
-*You can take a look at Sqoop 2 Connector Development. You have Java project documentation ready to begin with your custom development.*
+
+*You can take a look at [Sqoop 2 Connector Development](http://sqoop.apache.org/docs/1.99.6/ConnectorDevelopment.html). You have Java project documentation ready to begin with your custom development.*
 
 
 Changelog
