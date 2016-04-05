@@ -27,5 +27,6 @@
 nb-configuration.xml
 patch-process
 target
+server/dependency-reduced-pom.xml
 
 # Sqoop2 specific
