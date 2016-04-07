@@ -147,7 +147,7 @@ limitations under the License.
                                 <directoryAttributes>
                                     <user>sqoop</user>
                                     <group>stratio</group>
-                                    <mode>0750</mode>
+                                    <mode>0755</mode>
                                 </directoryAttributes>
                                 <fileAttributes>
                                     <user>sqoop</user>

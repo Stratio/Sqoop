@@ -38,19 +38,20 @@ case "$1" in
   chown -R ${USER}:${GROUP} $DIR_CONF
   chown -R ${USER}:${GROUP} $DIR_LOG
 
-  chown ${USER}:${GROUP} /etc/default/sqoop-server-functions
-  chown ${USER}:${GROUP} /etc/default/sqoop-server-variables
+  chown root:root /etc/default/sqoop-server-functions
+  chown root:root /etc/default/sqoop-server-variables
 
   chmod 755 /etc/init.d/sqoop-server
 
   chown -R ${USER}:${GROUP} /opt/sds/.m2
 
-  chmod 750 $DIR_CONF
-  chmod 750 $DIR_LOG
-  chmod 750 $DIR_INSTALL
-  chmod 750 /opt/sds/sqoop-server/bin/*
+  chmod 755 $DIR_CONF
+  chmod 755 $DIR_LOG
+  chmod 755 $DIR_INSTALL
+  chmod 755 /opt/sds/sqoop-server/bin/*
+  chmod 644 /etc/default/sqoop-server-functions
+  chmod 644 /etc/default/sqoop-server-variables
 
-#  rm -rf /opt/sds/sqoop-server/config && ln -s $DIR_CONF /opt/sds/sqoop-server/config
 
 
   update-rc.d sqoop-server defaults
