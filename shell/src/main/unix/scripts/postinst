@@ -1,4 +1,3 @@
-
 #!/bin/sh
 # Copyright (c) 2016 Stratio (http://stratio.com)
 #
@@ -29,6 +28,9 @@ case "$1" in
 
   chown -R root:$GROUP /opt/sds
   chown -R root:$GROUP /etc/sds
+  chown -R root:$GROUP /var/log/sds
+  chown -R root:$GROUP /var/run/sds
+
   chown -R $USER:$GROUP $DIR_INSTALL
   chown -R ${USER}:${GROUP} $DIR_CONF
   chmod 755 $DIR_CONF
@@ -41,3 +43,4 @@ case "$1" in
 
   ;;
 esac
+
