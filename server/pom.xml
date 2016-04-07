@@ -311,12 +311,37 @@ limitations under the License.
                             </defaults>
                             <assembly>
                                 <mkdirs>
-                                    <path>/opt/sds/sqoop-server</path>
+                                    <path>/etc/sds</path>
                                     <attributes>
-                                        <user>sqoop</user>
+                                        <user>root</user>
                                         <group>stratio</group>
+                                        <mode>0775</mode>
                                     </attributes>
                                 </mkdirs>
+                                <mkdirs>
+                                    <path>/var/log/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/opt/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
+                                <!--<mkdirs>-->
+                                    <!--<path>/opt/sds/sqoop-server</path>-->
+                                    <!--<attributes>-->
+                                        <!--<user>sqoop</user>-->
+                                        <!--<group>stratio</group>-->
+                                        <!--<mode>0750</mode>-->
+                                    <!--</attributes>-->
+                                <!--</mkdirs>-->
                                 <mkdirs>
                                     <path>/var/run/sds</path>
                                     <attributes>
@@ -330,6 +355,7 @@ limitations under the License.
                                     <attributes>
                                         <user>sqoop</user>
                                         <group>stratio</group>
+                                        <mode>0750</mode>
                                     </attributes>
                                 </mkdirs>
                                 <mkdirs>
@@ -373,7 +399,6 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -382,7 +407,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -391,7 +416,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                     </assembly>
@@ -416,7 +441,6 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -425,7 +449,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -434,7 +458,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                     </assembly>

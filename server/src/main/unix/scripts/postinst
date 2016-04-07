@@ -10,7 +10,6 @@ USER='sqoop'
 DIR_INSTALL='/opt/sds/sqoop-server'
 DIR_CONF='/etc/sds/sqoop-server'
 DIR_LOG='/var/log/sds/sqoop-server'
-DIR_RUN='/var/run/sds'
 
 
 case "$1" in
