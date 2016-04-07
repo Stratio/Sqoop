@@ -10,7 +10,6 @@ USER='sqoop'
 DIR_INSTALL='/opt/sds/sqoop-server'
 DIR_CONF='/etc/sds/sqoop-server'
 DIR_LOG='/var/log/sds/sqoop-server'
-DIR_RUN='/var/run/sds'
 
 
 case "$1" in
@@ -39,13 +38,17 @@ case "$1" in
   chown -R ${USER}:${GROUP} $DIR_CONF
   chown -R ${USER}:${GROUP} $DIR_LOG
 
+  chown ${USER}:${GROUP} /etc/default/sqoop-server-functions
+  chown ${USER}:${GROUP} /etc/default/sqoop-server-variables
+
   chmod 755 /etc/init.d/sqoop-server
-  chmod 755 /opt/sds/sqoop-server/bin/*
-  chmod -R 775 $DIR_INSTALL
-  chmod -R 775 $DIR_CONF
-  chmod -R 775 $DIR_LOG
 
   chown -R ${USER}:${GROUP} /opt/sds/.m2
+
+  chmod 750 $DIR_CONF
+  chmod 750 $DIR_LOG
+  chmod 750 $DIR_INSTALL
+  chmod 750 /opt/sds/sqoop-server/bin/*
 
 #  rm -rf /opt/sds/sqoop-server/config && ln -s $DIR_CONF /opt/sds/sqoop-server/config
 
