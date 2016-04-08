@@ -11,6 +11,15 @@ mysql:
   environment:
     MYSQL_ROOT_PASSWORD: root
 
+postgres:
+  image: postgres
+  container_name: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    POSTGRES_USER: root
+    POSTGRES_PASSWORD: root
+
 zookeeper:
   image: stratio/zookeeper:3.4.6
   container_name: zookeeper
@@ -50,6 +59,7 @@ sqoop-server:
     - mysql
     - kafka
     - waitkafka
+    - postgres
 
 sqoop-shell:
   image: stratio/sqoop-shell:latest

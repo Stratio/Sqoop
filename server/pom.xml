@@ -157,7 +157,6 @@ limitations under the License.
         </dependency>
 
     </dependencies>
-
     <profiles>
         <profile>
             <id>package</id>
@@ -285,7 +284,7 @@ limitations under the License.
                                 <group>stratio</group>
                                 <requires>bash</requires>
                             </rpm>
-                            <name>Sqoop Shell</name>
+                            <name>Sqoop Server</name>
                             <excludeDirectoryAttributes>
                                 <dir>/etc</dir>
                                 <dir>/etc/init.d</dir>
@@ -301,7 +300,7 @@ limitations under the License.
                                 <directoryAttributes>
                                     <user>sqoop</user>
                                     <group>stratio</group>
-                                    <mode>0750</mode>
+                                    <mode>0755</mode>
                                 </directoryAttributes>
                                 <fileAttributes>
                                     <user>sqoop</user>
@@ -311,10 +310,27 @@ limitations under the License.
                             </defaults>
                             <assembly>
                                 <mkdirs>
-                                    <path>/opt/sds/sqoop-server</path>
+                                    <path>/etc/sds</path>
                                     <attributes>
-                                        <user>sqoop</user>
+                                        <user>root</user>
                                         <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/var/log/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/opt/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
                                     </attributes>
                                 </mkdirs>
                                 <mkdirs>
@@ -330,6 +346,7 @@ limitations under the License.
                                     <attributes>
                                         <user>sqoop</user>
                                         <group>stratio</group>
+                                        <mode>0755</mode>
                                     </attributes>
                                 </mkdirs>
                                 <mkdirs>
@@ -373,7 +390,6 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -382,7 +398,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -391,7 +407,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                     </assembly>
@@ -416,7 +432,6 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -425,7 +440,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                         <copyFile>
@@ -434,7 +449,7 @@ limitations under the License.
                                             <attributes>
                                                 <user>root</user>
                                                 <group>root</group>
-                                                <mode>755</mode>
+                                                <mode>644</mode>
                                             </attributes>
                                         </copyFile>
                                     </assembly>

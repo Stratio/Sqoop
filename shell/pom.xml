@@ -147,7 +147,7 @@ limitations under the License.
                                 <directoryAttributes>
                                     <user>sqoop</user>
                                     <group>stratio</group>
-                                    <mode>0750</mode>
+                                    <mode>0755</mode>
                                 </directoryAttributes>
                                 <fileAttributes>
                                     <user>sqoop</user>
@@ -156,6 +156,30 @@ limitations under the License.
                                 </fileAttributes>
                             </defaults>
                             <assembly>
+                                <mkdirs>
+                                    <path>/etc/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/var/log/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
+                                <mkdirs>
+                                    <path>/opt/sds</path>
+                                    <attributes>
+                                        <user>root</user>
+                                        <group>stratio</group>
+                                        <mode>0775</mode>
+                                    </attributes>
+                                </mkdirs>
                                 <mkdirs>
                                     <path>/opt/sds/sqoop-shell</path>
                                     <attributes>
@@ -166,8 +190,9 @@ limitations under the License.
                                 <mkdirs>
                                     <path>/var/run/sds</path>
                                     <attributes>
-                                        <user>sqoop</user>
+                                        <user>root</user>
                                         <group>stratio</group>
+                                        <mode>0775</mode>
                                     </attributes>
                                 </mkdirs>
                                 <copyDirectory>
