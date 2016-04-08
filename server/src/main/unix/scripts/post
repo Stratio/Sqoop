@@ -37,7 +37,7 @@ chown -R ${USER}:${GROUP} $DIR_LOG
 chown -R ${USER}:${GROUP} $DIR_CONF
 
 
-chmod 775 /etc/init.d/sqoop-server
+chmod 755 /etc/init.d/sqoop-server
 chmod 755 /opt/sds/sqoop-server/bin/server
 chmod 644 /etc/default/sqoop*
 
