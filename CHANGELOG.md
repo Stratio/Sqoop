@@ -1,6 +1,11 @@
 # Changelog
 
 Only listing significant user-visible, not internal code cleanups and minor bug fixes. 
+
+## 0.2.2 (April 2016)
+
+* Permission bugs fixed 
+
 ## 0.2.1 (April 2016)
 
 * Minor bugs fixed
