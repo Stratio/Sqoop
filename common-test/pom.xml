@@ -22,7 +22,7 @@ limitations under the License.
   <parent>
     <groupId>com.stratio.sqoop</groupId>
     <artifactId>sqoop</artifactId>
-    <version>0.2.2</version>
+    <version>0.2.3-RC1-SNAPSHOT</version>
   </parent>
 
   <groupId>org.apache.sqoop</groupId>
