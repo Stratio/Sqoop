@@ -52,6 +52,17 @@ case "$1" in
   chmod 644 /etc/default/sqoop-server-functions
   chmod 644 /etc/default/sqoop-server-variables
 
+    chown root:${GROUP} /etc/sds 2>/dev/null
+    chmod 775 /etc/sds 2>/dev/null
+
+    chown root:${GROUP} /var/log/sds 2>/dev/null
+    chmod 775 /var/log/sds 2>/dev/null
+
+    chown root:${GROUP} /var/run/sds 2>/dev/null
+    chmod 775 /var/run/sds 2>/dev/null
+
+    chown root:${GROUP} /opt/sds 2>/dev/null
+    chmod 775 /opt/sds 2>/dev/null
 
 
   update-rc.d sqoop-server defaults
