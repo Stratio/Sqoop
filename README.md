@@ -29,7 +29,7 @@ $ mvn clean compile package -Ppackage
 
 Sqoop server will be in server/target and Sqoop Shell in shell/target. You will find .deb, .rpm and .tar.gz packages 
 ready to use depending your environment.
-If you take a look at [documentation](https://stratio.atlassian.net/wiki/display/SQOOP/Home) you will
+If you take a look at [documentation](https://stratio.atlassian.net/wiki/display/SQOOP0x2/Home) you will
  find more details about how to install the product, and some useful examples to get a better understanding about 
  Stratio Sqoop.
 
