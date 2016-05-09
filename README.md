@@ -17,8 +17,8 @@ Apache Sqoop works on top of Hadoop but in Stratio we've adapted Sqoop to work a
 Stratio Sqoop components
 ------------------------
 * Server
-* [Shell](https://stratio.atlassian.net/wiki/display/SQOOP/Sqoop-shell+Syntax)
-* [API Rest](https://stratio.atlassian.net/wiki/display/SQOOP/APIs)
+* [Shell](https://stratio.atlassian.net/wiki/display/SQOOP0x2/Sqoop-shell+Syntax)
+* [API Rest](https://stratio.atlassian.net/wiki/display/SQOOP0x2/APIs)
 
 Compile & Package
 -----------------
@@ -38,7 +38,7 @@ FAQ
 
 **I would like to run my custom Sqoop job but I don’t know how to start.**
 
-*You can take a look at [Get Started](https://stratio.atlassian.net/wiki/display/SQOOP/Get+Started) section. It’s a good starting point to understand better how to implement your custom business logic.*
+*You can take a look at [Get Started](https://stratio.atlassian.net/wiki/display/SQOOP0x2/Get+Started) section. It’s a good starting point to understand better how to implement your custom business logic.*
  
 **If Stratio Sqoop is an Open Source project. Where can I download the code?**
 
