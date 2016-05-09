@@ -20,7 +20,7 @@ limitations under the License.
   <parent>
     <groupId>com.stratio</groupId>
     <artifactId>parent</artifactId>
-    <version>0.6.2</version>
+    <version>0.7.2</version>
   </parent>
 
   <groupId>com.stratio.sqoop</groupId>
